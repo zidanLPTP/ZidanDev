@@ -30,14 +30,19 @@ class RetroTerminal extends HTMLElement {
     this.input.addEventListener('keydown', (e) => this.handleKeydown(e));
     
     // Desktop Backtick Listener
-    window.addEventListener('keydown', (e) => {
+    this._boundBacktickHandler = (e) => {
       if (e.key === '`') {
         e.preventDefault();
         this.toggle();
       }
-    });
+    };
+    window.addEventListener('keydown', this._boundBacktickHandler);
 
     this.writeLine("Welcome to Bumbu Arcade CLI System. Type 'help' for command list.");
+  }
+
+  disconnectedCallback() {
+    window.removeEventListener('keydown', this._boundBacktickHandler);
   }
 
   toggle() {
@@ -91,6 +96,8 @@ class RetroTerminal extends HTMLElement {
     }
     else if (e.key === 'ArrowUp') {
       e.preventDefault();
+      this.lastTabInput = '';
+      this.cycleIndex = 0;
       if (this.historyIndex > 0) {
         this.historyIndex--;
         this.input.value = this.history[this.historyIndex];
@@ -98,6 +105,8 @@ class RetroTerminal extends HTMLElement {
     }
     else if (e.key === 'ArrowDown') {
       e.preventDefault();
+      this.lastTabInput = '';
+      this.cycleIndex = 0;
       if (this.historyIndex < this.history.length - 1) {
         this.historyIndex++;
         this.input.value = this.history[this.historyIndex];
