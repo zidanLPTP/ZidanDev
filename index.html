@@ -12,11 +12,22 @@
 </head>
 <body>
   <div id="crt-overlay"></div>
-  <header>
-    <h1 class="blink-fast">BUMBU ARCADE SYSTEM</h1>
+  <header style="text-align: center; margin-bottom: 30px;">
+    <h1 class="blink-fast" style="font-size: 2rem;">BUMBU ARCADE SYSTEM</h1>
   </header>
   <main id="app">
-    <!-- Component grids go here -->
+    <section class="grid-section">
+      <h2 style="font-size: 1.5rem; border-bottom: 2px solid var(--text-magenta); padding-bottom: 10px; margin-bottom: 20px;">[ BUMBU STUDIO ]</h2>
+      <div id="studio-grid" class="cards-container"></div>
+    </section>
+    <section class="grid-section">
+      <h2 style="font-size: 1.5rem; border-bottom: 2px solid var(--text-cyan); padding-bottom: 10px; margin-bottom: 20px;">[ 3D BLENDER ART ]</h2>
+      <div id="blender-grid" class="cards-container"></div>
+    </section>
+    <section class="grid-section">
+      <h2 style="font-size: 1.5rem; border-bottom: 2px solid var(--text-yellow); padding-bottom: 10px; margin-bottom: 20px;">[ RANDOM PROJECTS ]</h2>
+      <div id="random-grid" class="cards-container"></div>
+    </section>
   </main>
   <script type="module" src="/src/main.js"></script>
 </body>
