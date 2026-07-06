@@ -89,7 +89,7 @@ class RetroTerminal extends HTMLElement {
       const matchInfo = getAutocompleteMatch(this.lastTabInput, this.cycleIndex, this.commands, this.projectIds);
       if (matchInfo) {
         this.input.value = matchInfo.completed;
-        if (matchInfo.list.length > 1) {
+        if (matchInfo.list.length > 1 && this.cycleIndex === 0) {
           this.writeLine(`Matches: ${matchInfo.list.join(', ')}`);
         }
       }

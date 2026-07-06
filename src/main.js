@@ -26,12 +26,12 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Event listener delegation for 3D buttons
-  document.body.addEventListener('click', (e) => {
+  document.body.addEventListener('click', async (e) => {
     if (e.target.classList.contains('btn-3d')) {
       const projId = e.target.getAttribute('data-id');
       const project = projects.find(p => p.id === projId);
       if (project) {
-        openModelModal(project);
+        await openModelModal(project);
       }
     }
   });

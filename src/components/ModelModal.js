@@ -1,6 +1,7 @@
-import '@google/model-viewer';
+export async function openModelModal(project) {
+  // Dynamically import @google/model-viewer before creating the modal element
+  await import('@google/model-viewer');
 
-export function openModelModal(project) {
   // Create modal container element
   const modal = document.createElement('div');
   modal.id = 'model-modal';
@@ -35,7 +36,14 @@ export function openModelModal(project) {
   document.body.style.overflow = 'hidden';
   document.body.appendChild(modal);
 
+  const handleKeyDown = (event) => {
+    if (event.key === 'Escape') {
+      closeModal();
+    }
+  };
+
   const closeModal = () => {
+    window.removeEventListener('keydown', handleKeyDown);
     document.body.style.overflow = '';
     modal.remove();
   };
@@ -49,4 +57,6 @@ export function openModelModal(project) {
       closeModal();
     }
   });
+
+  window.addEventListener('keydown', handleKeyDown);
 }
