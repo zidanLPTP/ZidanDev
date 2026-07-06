@@ -1,6 +1,7 @@
 :root {
   --bg-primary: #0a0a0c;
   --bg-panel: #14151a;
+  --bg-terminal: #050505;
   --text-green: #39ff14;
   --text-cyan: #00f0ff;
   --text-magenta: #ff007f;
@@ -133,4 +134,97 @@ h1, h2, h3 {
   margin-top: 15px;
   color: #fff;
   font-family: var(--font-body);
+}
+
+/* CLI Terminal styling */
+#cli-panel {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 350px;
+  background-color: var(--bg-terminal);
+  border-top: 4px double var(--text-cyan);
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  z-index: 998;
+  font-family: var(--font-body);
+  color: var(--text-green);
+  text-shadow: 0 0 5px var(--text-green);
+  box-shadow: 0 -5px 15px rgba(0, 240, 255, 0.2);
+  transition: transform 0.3s ease;
+}
+
+#cli-panel.closed {
+  transform: translateY(100%);
+  pointer-events: none;
+}
+
+#cli-output {
+  flex: 1;
+  overflow-y: auto;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  line-height: 1.3;
+}
+
+#cli-input-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.prompt {
+  color: var(--text-yellow);
+  text-shadow: 0 0 5px var(--text-yellow);
+}
+
+#cli-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text-green);
+  font-family: var(--font-body);
+  font-size: 1.2rem;
+  text-shadow: 0 0 5px var(--text-green);
+}
+
+#cli-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: var(--bg-panel);
+  color: var(--text-yellow);
+  border: 2px solid var(--text-yellow);
+  font-family: var(--font-title);
+  font-size: 0.85rem;
+  padding: 0 15px;
+  height: 48px;
+  min-width: 160px;
+  cursor: pointer;
+  z-index: 997;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 10px rgba(255, 204, 0, 0.3);
+  transition: transform 0.1s;
+}
+
+#cli-toggle:active {
+  transform: scale(0.95);
+}
+
+#cli-toggle:hover {
+  background-color: var(--text-yellow);
+  color: #000;
+  box-shadow: 0 0 15px var(--text-yellow);
+}
+
+/* Ensure mobile layout doesn't overlap toggles */
+@media (max-width: 600px) {
+  #cli-panel {
+    height: 300px;
+  }
 }

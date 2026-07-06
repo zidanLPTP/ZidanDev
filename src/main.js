@@ -3,8 +3,13 @@ import './assets/css/retro-crt.css';
 import projects from './data/projects.json';
 import { renderCard } from './components/ProjectCard';
 import { openModelModal } from './components/ModelModal';
+import './components/RetroTerminal';
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Instantiate and append the Retro Terminal custom element
+  const terminal = document.createElement('retro-terminal');
+  document.body.appendChild(terminal);
+
   const studioGrid = document.getElementById('studio-grid');
   const blenderGrid = document.getElementById('blender-grid');
   const randomGrid = document.getElementById('random-grid');
