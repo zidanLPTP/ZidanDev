@@ -11,11 +11,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   projects.forEach(project => {
     const cardHTML = renderCard(project);
-    if (project.category === 'studio') {
+    if (project.category === 'studio' && studioGrid) {
       studioGrid.innerHTML += cardHTML;
-    } else if (project.category === '3d') {
+    } else if (project.category === '3d' && blenderGrid) {
       blenderGrid.innerHTML += cardHTML;
-    } else if (project.category === 'random') {
+    } else if (project.category === 'random' && randomGrid) {
       randomGrid.innerHTML += cardHTML;
     }
   });

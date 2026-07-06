@@ -32,10 +32,21 @@ export function openModelModal(project) {
     </div>
   `;
 
+  document.body.style.overflow = 'hidden';
   document.body.appendChild(modal);
 
-  // Close trigger
-  modal.querySelector('#close-modal').addEventListener('click', () => {
+  const closeModal = () => {
+    document.body.style.overflow = '';
     modal.remove();
+  };
+
+  // Close trigger
+  modal.querySelector('#close-modal').addEventListener('click', closeModal);
+
+  // Backdrop click
+  modal.addEventListener('click', (event) => {
+    if (event.target === modal) {
+      closeModal();
+    }
   });
 }
