@@ -1,0 +1,29 @@
+[
+  {
+    "id": "bumbu-coming-soon",
+    "name": "Project Cooking",
+    "category": "studio",
+    "isPlaceholder": true,
+    "description": "Bumbu Studio's next game is in active development. Insert coin to play soon!",
+    "link": "#",
+    "image": ""
+  },
+  {
+    "id": "robot-mech",
+    "name": "Sci-Fi Mech",
+    "category": "3d",
+    "isPlaceholder": false,
+    "description": "A low-poly retro sci-fi robot mech modeled in Blender.",
+    "modelSrc": "models/mech.glb",
+    "image": ""
+  },
+  {
+    "id": "weather-cli",
+    "name": "Retro Weather App",
+    "category": "random",
+    "isPlaceholder": false,
+    "description": "A Javascript terminal tool showcasing weather updates with ASCII visual representations.",
+    "link": "https://github.com/username/weather-cli",
+    "image": ""
+  }
+]
