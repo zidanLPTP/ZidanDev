@@ -1,3 +1,6 @@
+import characters from '../data/characters.json';
+const charIds = characters.map(c => c.id);
+
 export function getAutocompleteMatch(inputVal, cycleIndex, commands, projectIds, skillIds = []) {
   const parts = inputVal.trim().split(/\s+/);
   const commandInput = parts[0].toLowerCase();
@@ -32,6 +35,17 @@ export function getAutocompleteMatch(inputVal, cycleIndex, commands, projectIds,
     if (matchingSkills.length === 0) return null;
     const match = matchingSkills[cycleIndex % matchingSkills.length];
     return { completed: `${commandInput} ${match}`, index: cycleIndex % matchingSkills.length, list: matchingSkills };
+  }
+
+  // Case 4: Autocomplete character IDs (second word) after "select"
+  if (parts.length >= 1 && commandInput === 'select') {
+    const typedCharVal = (parts.length === 2 ? parts[1] : '').toLowerCase();
+    const matchingChars = charIds
+      .map(c => c.toLowerCase())
+      .filter(c => c.startsWith(typedCharVal));
+    if (matchingChars.length === 0) return null;
+    const match = matchingChars[cycleIndex % matchingChars.length];
+    return { completed: `${commandInput} ${match}`, index: cycleIndex % matchingChars.length, list: matchingChars };
   }
 
   return null;

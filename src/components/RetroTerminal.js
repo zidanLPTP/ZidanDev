@@ -1,14 +1,16 @@
 import projects from '../data/projects.json';
 import skills from '../data/skills.json';
 import quests from '../data/quests.json';
+import characters from '../data/characters.json';
 import { getAutocompleteMatch } from './RetroTerminalHelper';
 import { getLeaderboardEntries, addGuestbookEntry } from './GuestbookHelper';
 
 class RetroTerminal extends HTMLElement {
   connectedCallback() {
-    this.commands = ['help', 'projects', 'project', 'use', 'inspect', 'inventory', 'guestbook', 'sign', 'quests', 'guilds', 'clear', 'about', 'socials'];
+    this.commands = ['help', 'projects', 'project', 'use', 'inspect', 'inventory', 'guestbook', 'sign', 'quests', 'guilds', 'clear', 'about', 'socials', 'status', 'select'];
     this.projectIds = projects.map(p => p.id);
     this.skillIds = skills.map(s => s.id);
+    this.activeCharId = 'developer';
     this.history = [];
     this.historyIndex = -1;
     this.cycleIndex = 0;
@@ -42,11 +44,19 @@ class RetroTerminal extends HTMLElement {
     };
     window.addEventListener('keydown', this._boundBacktickHandler);
 
+    this._boundCharHandler = (e) => {
+      if (e.detail && e.detail.id) {
+        this.activeCharId = e.detail.id;
+      }
+    };
+    window.addEventListener('character-changed', this._boundCharHandler);
+
     this.writeLine("Welcome to Bumbu Arcade CLI System. Type 'help' for command list.");
   }
 
   disconnectedCallback() {
     window.removeEventListener('keydown', this._boundBacktickHandler);
+    window.removeEventListener('character-changed', this._boundCharHandler);
   }
 
   toggle() {
@@ -144,6 +154,8 @@ class RetroTerminal extends HTMLElement {
         this.writeLine("  guestbook          - View guestbook leaderboard entries");
         this.writeLine("  sign <init> <msg>  - Sign guestbook and earn arcade points");
         this.writeLine("  about              - Boot up developer profile biography");
+        this.writeLine("  status             - Show current RPG character stats");
+        this.writeLine("  select <class-id>  - Choose a character class");
         this.writeLine("  socials            - Clickable social channels listings");
         this.writeLine("  clear              - Wipe CLI panel clear");
         break;
@@ -297,6 +309,58 @@ class RetroTerminal extends HTMLElement {
         } else {
           this.writeLine(`ERROR: ${res.error}`);
         }
+        break;
+
+      case 'status':
+        const char = characters.find(c => c.id === this.activeCharId);
+        this.writeLine("============================================================");
+        this.writeLine(`CHARACTER STATUS: ${char.name}`);
+        this.writeLine("============================================================");
+        
+        Object.entries(char.stats).forEach(([stat, val]) => {
+          const blocksCount = Math.round(val / 10);
+          const fillBlocks = "█".repeat(blocksCount);
+          const emptyBlocks = "░".repeat(10 - blocksCount);
+          this.writeLine(`${stat.padEnd(4)}: [${fillBlocks}${emptyBlocks}] ${val}%`);
+        });
+        
+        this.writeLine("============================================================");
+        // Word-wrap description
+        const wrapLimit = 50;
+        const words = char.description.split(/\s+/);
+        let currentLine = '';
+        words.forEach(w => {
+          if ((currentLine + w).length > wrapLimit) {
+            this.writeLine(`BIO : ${currentLine.trim()}`);
+            currentLine = w + ' ';
+          } else {
+            currentLine += w + ' ';
+          }
+        });
+        if (currentLine) {
+          this.writeLine(`BIO : ${currentLine.trim()}`);
+        }
+        this.writeLine("============================================================");
+        break;
+
+      case 'select':
+        const targetClass = parts[1];
+        if (!targetClass) {
+          this.writeLine("Usage: select <developer|artist|gamer>");
+          break;
+        }
+        const matched = characters.find(c => c.id === targetClass.toLowerCase());
+        if (!matched) {
+          this.writeLine(`ERROR: Class '${targetClass}' not found.`);
+          break;
+        }
+        this.activeCharId = matched.id;
+        this.writeLine(`SELECTING CLASS: ${matched.name}... SUCCESS!`);
+        
+        // Dispatch synchronization event to visual GUI elements
+        window.dispatchEvent(new CustomEvent('character-changed', {
+          detail: { id: matched.id }
+        }));
         break;
 
       case 'clear':
