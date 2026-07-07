@@ -1,6 +1,6 @@
 # 🕹️ Retro Arcade Portfolio Website
 
-Welcome to **Bumbu Arcade**, a high-fidelity, interactive developer portfolio website styled after classic 80s arcade cabinets and RPG interfaces. Built using modern web technologies with a lightweight, dependency-free code architecture (respecting the **Ponytail** principle of clean, minimal code).
+Welcome to **Bumbu Arcade**, a high-fidelity, interactive developer portfolio website styled after classic 80s arcade cabinets and RPG interfaces. Built using modern web technologies with a lightweight, dependency-free code architecture.
 
 This portfolio features a hybrid interface: a gorgeous visual grid UI and a fully functional floating command-line terminal widget.
 

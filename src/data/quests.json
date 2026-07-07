@@ -1,0 +1,32 @@
+[
+  {
+    "id": "gdsc-staff",
+    "title": "Core Staff Member",
+    "guild": "Google Developer Student Clubs (GDSC)",
+    "period": "2025 - Present",
+    "type": "active",
+    "category": "guild",
+    "rewards": "EXP +400, Leadership +1, Network +5",
+    "description": "Contributing to organizing software engineering workshops, managing hackathon campaigns, and helping members with web development quests."
+  },
+  {
+    "id": "freelance-dev",
+    "title": "Freelance Web Developer",
+    "guild": "Bumbu Studio",
+    "period": "2024 - Present",
+    "type": "active",
+    "category": "work",
+    "rewards": "EXP +600, HTML Skill +3, CSS Skill +2",
+    "description": "Building custom responsive web applications for small businesses, implementing pixelated retro game graphics and layouts."
+  },
+  {
+    "id": "school-grad",
+    "title": "Software Engineering Student",
+    "guild": "Vocal High School",
+    "period": "2021 - 2024",
+    "type": "completed",
+    "category": "education",
+    "rewards": "EXP +1000, Title: Graduate",
+    "description": "Finished core software engineering curriculum, specialized in database schemas, basic algorithm structures, and web technologies."
+  }
+]
