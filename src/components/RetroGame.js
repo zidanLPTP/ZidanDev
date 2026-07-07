@@ -26,18 +26,24 @@ export class RetroGame {
     this.victory = false;
     this.active = false;
     this.rAF = null;
+    this.gameStarted = false;
+    this.countdown = 0;
+    if (this.countdownInterval) {
+      clearInterval(this.countdownInterval);
+      this.countdownInterval = null;
+    }
 
     // Paddle
     this.paddleHeight = 8;
     this.paddleWidth = 50;
     this.paddleX = (this.width - this.paddleWidth) / 2;
 
-    // Ball
+    // Ball (Slower ball speed: 1.2 pixels/frame, down from 2)
     this.ballRadius = 4;
     this.ballX = this.width / 2;
     this.ballY = this.height - 30;
-    this.ballDx = 2;
-    this.ballDy = -2;
+    this.ballDx = 1.2;
+    this.ballDy = -1.2;
 
     // Bricks Grid (3 rows x 6 columns)
     this.brickRows = 3;
@@ -63,6 +69,10 @@ export class RetroGame {
     this._keydownHandler = (e) => {
       if (e.key === 'Right' || e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') this.rightPressed = true;
       if (e.key === 'Left' || e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A') this.leftPressed = true;
+      if ((e.key === 'Enter' || e.key === ' ') && !this.gameStarted && this.countdown === 0) {
+        e.preventDefault();
+        this.startCountdown();
+      }
     };
 
     this._keyupHandler = (e) => {
@@ -74,11 +84,9 @@ export class RetroGame {
       if (!this.active) return;
       const rect = this.canvas.getBoundingClientRect();
       const touchX = e.touches[0].clientX - rect.left;
-      // Scale coordinates to canvas width
       const canvasTouchX = (touchX / rect.width) * this.width;
       this.paddleX = canvasTouchX - this.paddleWidth / 2;
 
-      // Keep inside bounds
       if (this.paddleX < 0) this.paddleX = 0;
       if (this.paddleX > this.width - this.paddleWidth) this.paddleX = this.width - this.paddleWidth;
     };
@@ -87,6 +95,10 @@ export class RetroGame {
       if (this.gameOver || this.victory) {
         this.reset();
         this.start();
+        return;
+      }
+      if (!this.gameStarted && this.countdown === 0) {
+        this.startCountdown();
       }
     };
 
@@ -95,6 +107,19 @@ export class RetroGame {
     this.canvas.addEventListener('touchmove', this._touchHandler, { passive: true });
     this.canvas.addEventListener('touchstart', this._touchHandler, { passive: true });
     this.canvas.addEventListener('click', this._clickHandler);
+  }
+
+  startCountdown() {
+    this.countdown = 3;
+    if (this.countdownInterval) clearInterval(this.countdownInterval);
+    this.countdownInterval = setInterval(() => {
+      this.countdown--;
+      if (this.countdown === 0) {
+        clearInterval(this.countdownInterval);
+        this.countdownInterval = null;
+        this.gameStarted = true;
+      }
+    }, 1000);
   }
 
   destroy() {
@@ -125,6 +150,10 @@ export class RetroGame {
       cancelAnimationFrame(this.rAF);
       this.rAF = null;
     }
+    if (this.countdownInterval) {
+      clearInterval(this.countdownInterval);
+      this.countdownInterval = null;
+    }
   }
 
   _updateScoreBoard() {
@@ -133,6 +162,12 @@ export class RetroGame {
   }
 
   _updatePhysics() {
+    if (!this.gameStarted || this.countdown > 0) {
+      // Allow the player to move the paddle and practice before starting!
+      if (this.rightPressed && this.paddleX < this.width - this.paddleWidth) this.paddleX += 3;
+      if (this.leftPressed && this.paddleX > 0) this.paddleX -= 3;
+      return;
+    }
     if (this.gameOver || this.victory) return;
 
     // Move paddle
@@ -162,9 +197,11 @@ export class RetroGame {
           // Reset ball position
           this.ballX = this.width / 2;
           this.ballY = this.height - 30;
-          this.ballDx = 2;
-          this.ballDy = -2;
+          this.ballDx = 1.2;
+          this.ballDy = -1.2;
           this.paddleX = (this.width - this.paddleWidth) / 2;
+          this.gameStarted = false;
+          this.countdown = 0;
         }
       }
     }
@@ -232,13 +269,6 @@ export class RetroGame {
     this.ctx.fillStyle = "magenta";
     this.ctx.fillRect(this.paddleX, this.height - this.paddleHeight, this.paddleWidth, this.paddleHeight);
 
-    // Draw ball
-    this.ctx.beginPath();
-    this.ctx.arc(this.ballX, this.ballY, this.ballRadius, 0, Math.PI * 2);
-    this.ctx.fillStyle = "cyan";
-    this.ctx.fill();
-    this.ctx.closePath();
-
     // Draw bricks
     for (let c = 0; c < this.brickCols; c++) {
       for (let r = 0; r < this.brickRows; r++) {
@@ -256,5 +286,41 @@ export class RetroGame {
         }
       }
     }
+
+    if (!this.gameStarted) {
+      if (this.countdown > 0) {
+        // Draw Countdown
+        this.ctx.font = "24px 'Press Start 2P', sans-serif";
+        this.ctx.fillStyle = "yellow";
+        this.ctx.textAlign = "center";
+        this.ctx.fillText(this.countdown.toString(), this.width / 2, this.height / 2 + 10);
+      } else {
+        // Draw Tutorial / Start Prompt
+        this.ctx.font = "10px 'Press Start 2P', sans-serif";
+        this.ctx.fillStyle = "yellow";
+        this.ctx.textAlign = "center";
+        this.ctx.fillText("BUMBU BREAKOUT", this.width / 2, this.height / 2 - 25);
+
+        this.ctx.font = "8px 'Press Start 2P', sans-serif";
+        this.ctx.fillStyle = "white";
+        // Flash text
+        if (Math.floor(Date.now() / 500) % 2 === 0) {
+          this.ctx.fillText("[ CLICK TO START ]", this.width / 2, this.height / 2);
+        }
+
+        this.ctx.font = "6px 'Press Start 2P', sans-serif";
+        this.ctx.fillStyle = "cyan";
+        this.ctx.fillText("GESER PADDLE UNTUK LATIHAN", this.width / 2, this.height / 2 + 25);
+        this.ctx.fillText("A/D ATAU TOMBOL PANAH", this.width / 2, this.height / 2 + 37);
+      }
+      return;
+    }
+
+    // Draw ball (only when game is started)
+    this.ctx.beginPath();
+    this.ctx.arc(this.ballX, this.ballY, this.ballRadius, 0, Math.PI * 2);
+    this.ctx.fillStyle = "cyan";
+    this.ctx.fill();
+    this.ctx.closePath();
   }
 }

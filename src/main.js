@@ -289,6 +289,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const gameCanvas = document.getElementById('game-canvas');
   const gameScoreBadge = document.getElementById('game-score-badge');
   const gameScoreVal = document.getElementById('game-score-val');
+  const gameBackdrop = document.getElementById('game-backdrop');
 
   if (gameToggle && gamePanel && gameClose && gameCanvas) {
     const game = new RetroGame('game-canvas', 'game-score', 'game-lives', (finalScore) => {
@@ -306,12 +307,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     const toggleGame = () => {
-      const isVisible = gamePanel.style.transform === 'translateY(0px)';
+      const isVisible = gamePanel.style.transform === 'translate(-50%, -50%)';
       if (isVisible) {
-        gamePanel.style.transform = 'translateY(120%)';
+        gamePanel.style.transform = 'translate(-50%, 150vh)';
+        if (gameBackdrop) gameBackdrop.style.display = 'none';
         game.stop();
       } else {
-        gamePanel.style.transform = 'translateY(0px)';
+        gamePanel.style.transform = 'translate(-50%, -50%)';
+        if (gameBackdrop) gameBackdrop.style.display = 'block';
         // Start game loop and focus canvas so keyboard works instantly
         game.start();
         gameCanvas.focus();
@@ -320,14 +323,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     gameToggle.addEventListener('click', toggleGame);
     gameClose.addEventListener('click', () => {
-      gamePanel.style.transform = 'translateY(120%)';
+      gamePanel.style.transform = 'translate(-50%, 150vh)';
+      if (gameBackdrop) gameBackdrop.style.display = 'none';
       game.stop();
     });
+
+    if (gameBackdrop) {
+      gameBackdrop.addEventListener('click', () => {
+        gamePanel.style.transform = 'translate(-50%, 150vh)';
+        gameBackdrop.style.display = 'none';
+        game.stop();
+      });
+    }
 
     // Listen to CLI command play trigger
     window.addEventListener('play-triggered', () => {
       // Toggle open if closed
-      if (gamePanel.style.transform !== 'translateY(0px)') {
+      if (gamePanel.style.transform !== 'translate(-50%, -50%)') {
         toggleGame();
       } else {
         gameCanvas.focus();
