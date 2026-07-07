@@ -88,6 +88,8 @@ These SVGs use `shape-rendering="crispEdges"` to guarantee sharp, non-blurry pix
 The inventory component sits inside the main app body layout:
 - Left Panel: `inventory-grid` containing 16 slots (4x4). Active skills occupy the first slots. The remaining empty slots render a centered dot (`.`) with dim opacity.
 - Right Panel: `inventory-details` displaying a stylized item stats sheet.
+- **Empty Slot Click Behavior**: Clicking an empty slot updates the `#inventory-details` panel to display a custom retro status message: `[ EMPTY SLOT. Complete new quests to unlock new skills! ]`.
+- **Responsive Layout**: On desktop, the grid and detail panel are positioned side-by-side (row direction). On screens narrower than `768px` (mobile/tablet), they stack vertically (column direction, grid on top, details below) using media queries.
 
 ---
 
@@ -99,4 +101,7 @@ The terminal Custom Element `<retro-terminal>` will read `skills.json` and suppo
 
 ### Tab Autocomplete Cycling
 - Command level: typing `inv` -> `inventory`, `ins` -> `inspect`.
-- Parameter level: typing `inspect j` -> cycles through matching skill IDs (e.g. `javascript`) from the database.
+- Parameter level conditional logic:
+  - If the active command is `project` or `use`, autocomplete matches against project IDs from `projects.json`.
+  - If the active command is `inspect`, autocomplete matches against skill IDs from `skills.json`.
+  - Cycling autocomplete cycles sequentially through matching IDs in response to repeated `Tab` presses.
