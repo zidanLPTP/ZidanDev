@@ -30,7 +30,7 @@ export function getLeaderboardEntries() {
   return merged.slice(0, 10);
 }
 
-export function addGuestbookEntry(initials, message) {
+export function addGuestbookEntry(initials, message, customScore = null) {
   const cleanInitials = initials.trim().toUpperCase();
   if (!/^[A-Z0-9]{3}$/.test(cleanInitials)) {
     return { success: false, error: 'Initials must be exactly 3 alphanumeric characters.' };
@@ -38,7 +38,7 @@ export function addGuestbookEntry(initials, message) {
   if (!message.trim()) return { success: false, error: 'Message cannot be empty.' };
   if (message.length > 100) return { success: false, error: 'Message cannot exceed 100 characters.' };
 
-  const score = calculateScore(message);
+  const score = customScore !== null ? Number(customScore) : calculateScore(message);
   const newEntry = {
     initials: cleanInitials,
     message: message.trim(),
