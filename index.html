@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bumbu Studio & Art Portfolio</title>
+  <link rel="icon" type="image/svg+xml" href="/icon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
@@ -19,6 +20,23 @@
     <section class="grid-section">
       <h2 style="font-size: 1.5rem; border-bottom: 2px solid var(--text-yellow); padding-bottom: 10px; margin-bottom: 20px;">[ RANDOM PROJECTS ]</h2>
       <div id="random-grid" class="cards-container"></div>
+    <section class="grid-section">
+      <h2 style="font-size: 1.5rem; border-bottom: 2px solid var(--text-cyan); padding-bottom: 10px; margin-bottom: 20px;">[ CHARACTER STATUS ]</h2>
+      <div class="char-select-layout">
+        <div class="char-left-panel">
+          <div class="char-buttons">
+            <button class="char-btn active" data-char="developer">[ DEVELOPER ]</button>
+            <button class="char-btn" data-char="artist">[ 3D ARTIST ]</button>
+            <button class="char-btn" data-char="gamer">[ GAMER ]</button>
+          </div>
+          <div id="char-portrait" class="char-portrait-box"></div>
+        </div>
+        <div class="char-right-panel">
+          <h3 id="char-name" class="char-title-name">SOFTWARE DEVELOPER</h3>
+          <p id="char-desc" class="char-bio-desc">Loading biography...</p>
+          <div id="char-stats-container" class="char-stats-grid"></div>
+        </div>
+      </div>
     </section>
     <section class="grid-section">
       <h2 style="font-size: 1.5rem; border-bottom: 2px solid var(--text-yellow); padding-bottom: 10px; margin-bottom: 20px;">[ RPG SKILLS INVENTORY ]</h2>

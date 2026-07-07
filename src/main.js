@@ -2,10 +2,13 @@ import './style.css';
 import './assets/css/retro-crt.css';
 import projects from './data/projects.json';
 import skills from './data/skills.json';
+import characters from './data/characters.json';
+import { getCharacterSprite } from './components/CharacterSprites';
 import { renderCard } from './components/ProjectCard';
 import { openModelModal } from './components/ModelModal';
 import { getSkillSprite } from './components/SkillSprites';
 import './components/RetroTerminal';
+
 
 document.addEventListener('DOMContentLoaded', () => {
   // Instantiate and append the Retro Terminal custom element
@@ -200,4 +203,77 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
+
+  const portraitBox = document.getElementById('char-portrait');
+  const charName = document.getElementById('char-name');
+  const charDesc = document.getElementById('char-desc');
+  const statsContainer = document.getElementById('char-stats-container');
+  const charBtns = document.querySelectorAll('.char-btn');
+
+  if (portraitBox && charName && charDesc && statsContainer && charBtns.length > 0) {
+    const updateCharacterUI = (id) => {
+      const char = characters.find(c => c.id === id);
+      if (!char) return;
+
+      // Update button styling state
+      charBtns.forEach(btn => {
+        if (btn.getAttribute('data-char') === id) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+
+      // Update Name & Bio
+      charName.textContent = char.name;
+      charDesc.textContent = char.description;
+
+      // Update Portrait
+      portraitBox.innerHTML = getCharacterSprite(id);
+
+      // Render stats bars with dynamic widths
+      statsContainer.innerHTML = '';
+      Object.entries(char.stats).forEach(([stat, val]) => {
+        const row = document.createElement('div');
+        row.className = 'char-stat-row';
+
+        const fillClass = stat.toLowerCase();
+        
+        row.innerHTML = `
+          <span class="char-stat-label">${stat}</span>
+          <div class="char-stat-bar-bg">
+            <div class="char-stat-bar-fill ${fillClass}" style="width: 0%;"></div>
+          </div>
+          <span class="char-stat-val">${val}%</span>
+        `;
+
+        statsContainer.appendChild(row);
+
+        // Force a layout reflow and set width so transition animates
+        setTimeout(() => {
+          const fill = row.querySelector('.char-stat-bar-fill');
+          if (fill) fill.style.width = `${val}%`;
+        }, 50);
+      });
+    };
+
+    // Initial render with default class 'developer'
+    updateCharacterUI('developer');
+
+    // Click Bindings
+    charBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.getAttribute('data-char');
+        updateCharacterUI(id);
+      });
+    });
+
+    // Listen to changes triggered from terminal
+    window.addEventListener('character-changed', (e) => {
+      if (e.detail && e.detail.id) {
+        updateCharacterUI(e.detail.id);
+      }
+    });
+  }
 });
+
