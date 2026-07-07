@@ -99,18 +99,20 @@ To keep the JSON payload clean, sharp pixelated SVGs representing the classes wi
 - `gamer`: Game controller.
 
 ### State Transitions
+- **Initial Load State**: On page load, `main.js` must fetch the characters dataset and automatically initialize the active state with the first class (`developer`).
 - Buttons are marked with class `.active`.
 - Toggling selection updates:
   - Portrait container (`#char-portrait`).
   - Name header (`#char-name`) and description paragraph (`#char-desc`).
   - Statistical bar widths (`.char-stat-bar-fill`). The width transition triggers automatically via CSS: `transition: width 0.4s`.
+- **Aesthetic Progress Bars**: All `.char-stat-bar-fill` and `.char-stat-bar-bg` elements must use `border-radius: 0;` (sharp edges). The fill elements must use a repeating block texture styled via `repeating-linear-gradient` (e.g. `repeating-linear-gradient(90deg, currentColor, currentColor 8px, transparent 8px, transparent 10px)`) to look like isolated 8-bit blocks.
 
 ---
 
 ## 5. CLI Commands Specification
 
 The terminal Custom Element `<retro-terminal>` will support:
-- `status`: Displays current selected class attributes and description formatted inside an ASCII panel box.
+- `status`: Displays current selected class attributes and description formatted inside an ASCII panel box. **CLI Description Word Wrap**: To prevent long bio descriptions from breaking the ASCII borders on smaller screens, a custom word-wrap helper must split the description text every 40 to 50 characters, inserting newlines prior to printing.
 - `select <class>`: Validates input class against `developer`, `artist`, and `gamer`. On success, updates local variable, dispatches window custom event `'character-changed'` with `detail: { id }`, and outputs confirmation.
 - Autocomplete routing:
   - Command autocomplete supports `status` and `select`.
