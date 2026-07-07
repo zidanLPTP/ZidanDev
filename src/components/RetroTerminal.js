@@ -139,12 +139,11 @@ class RetroTerminal extends HTMLElement {
         break;
 
       case 'projects':
-        this.writeLine("--- BUMBU STUDIO (GAMES & APPS) ---");
-        projects.filter(p => p.category === 'studio').forEach(p => this.writeLine(` - ${p.id} : ${p.name}`));
-        this.writeLine("--- 3D BLENDER ART ---");
-        projects.filter(p => p.category === '3d').forEach(p => this.writeLine(` - ${p.id} : ${p.name}`));
-        this.writeLine("--- RANDOM PROJECTS ---");
-        projects.filter(p => p.category === 'random').forEach(p => this.writeLine(` - ${p.id} : ${p.name}`));
+        const categories = { studio: 'BUMBU STUDIO (GAMES & APPS)', '3d': '3D BLENDER ART', random: 'RANDOM PROJECTS' };
+        for (const [cat, label] of Object.entries(categories)) {
+          this.writeLine(`--- ${label} ---`);
+          projects.filter(p => p.category === cat).forEach(p => this.writeLine(` - ${p.id} : ${p.name}`));
+        }
         break;
 
       case 'project':
