@@ -150,13 +150,13 @@
       <span>🎮 BUMBU_CONSOLE.EXE</span>
       <button id="game-close-btn" style="background:none; border:none; color:var(--text-magenta); font-family:var(--font-title); cursor:pointer;">[ X ]</button>
     </div>
-    <div class="terminal-body" style="padding: 15px; display: flex; flex-direction: column; align-items: center; gap: 12px; background-color: #050505;">
+    <div class="terminal-body">
       <canvas id="game-canvas" width="280" height="180" tabindex="0"></canvas>
-      <div style="font-family: var(--font-title); font-size: 0.65rem; color: var(--text-yellow); display: flex; gap: 20px;">
+      <div class="game-stats">
         <span>SCORE: <span id="game-score">000</span></span>
         <span>LIVES: <span id="game-lives">3</span></span>
       </div>
-      <div style="font-size: 0.75rem; color: #888; text-align: center;">
+      <div class="game-instructions">
         [ A/D / Panah Kiri-Kanan / Drag Layar untuk Bergerak ]
       </div>
     </div>
