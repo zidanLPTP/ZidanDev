@@ -93,12 +93,13 @@ All timelines and memberships are saved in a unified `src/data/quests.json` file
 - Checkbox markers:
   - Active: displays `[ ]`
   - Completed: displays `[x]`
+- **Tab State Reset**: When switching between tabs ("Active" / "Completed"), all active `.expanded` classes must be cleared from the DOM before rendering the newly selected tab's content.
 
 ---
 
 ## 5. CLI Commands Specification
 
 The terminal Custom Element `<retro-terminal>` will support:
-- `quests`: Displays both active and completed quests in a list formatted with checkbox symbols (`[ ]` / `[x]`).
-- `guilds`: Filters for active guild entries (`type === 'active' && category === 'guild'`) and prints them alongside metadata (role, term, and attributes bonus).
+- `quests`: Displays both active and completed quests in a list formatted with checkbox symbols (`[ ]` / `[x]`). All quest IDs in `quests.json` must consistently follow lowercase kebab-case (e.g., `gdsc-staff`, `freelance-dev`) to maintain consistency for any future argument integrations.
+- `guilds`: Filters for active guild entries (`type === 'active' && category === 'guild'`) and prints them. **Empty Guilds Fallback**: If no active guilds are found in the database, the CLI terminal must output a smart fallback closure message: `"Semua Guild Factions telah diselesaikan. Ketik 'quests' untuk melihat riwayat kejayaan masa lalu."`
 - Tab autocomplete supports `quests` and `guilds` commands.
