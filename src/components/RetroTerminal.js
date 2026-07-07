@@ -1,10 +1,11 @@
 import projects from '../data/projects.json';
 import skills from '../data/skills.json';
 import { getAutocompleteMatch } from './RetroTerminalHelper';
+import { getLeaderboardEntries, addGuestbookEntry } from './GuestbookHelper';
 
 class RetroTerminal extends HTMLElement {
   connectedCallback() {
-    this.commands = ['help', 'projects', 'project', 'use', 'inspect', 'inventory', 'clear', 'about', 'socials'];
+    this.commands = ['help', 'projects', 'project', 'use', 'inspect', 'inventory', 'guestbook', 'sign', 'clear', 'about', 'socials'];
     this.projectIds = projects.map(p => p.id);
     this.skillIds = skills.map(s => s.id);
     this.history = [];
@@ -137,6 +138,8 @@ class RetroTerminal extends HTMLElement {
         this.writeLine("  use <id>           - Securely open target project link in browser");
         this.writeLine("  inspect <item-id>  - Inspect details of a skill item");
         this.writeLine("  inventory          - Show inventory skills items");
+        this.writeLine("  guestbook          - View guestbook leaderboard entries");
+        this.writeLine("  sign <init> <msg>  - Sign guestbook and earn arcade points");
         this.writeLine("  about              - Boot up developer profile biography");
         this.writeLine("  socials            - Clickable social channels listings");
         this.writeLine("  clear              - Wipe CLI panel clear");
@@ -218,6 +221,49 @@ class RetroTerminal extends HTMLElement {
       case 'socials':
         this.writeLine("GitHub: https://github.com/your-username");
         this.writeLine("Itch.io: https://your-profile.itch.io");
+        break;
+
+      case 'guestbook':
+        this.writeLine("============================================================");
+        this.writeLine("RANK  INIT  SCORE   MESSAGE");
+        this.writeLine("============================================================");
+        const entries = getLeaderboardEntries();
+        entries.forEach((e, idx) => {
+          const rnkStr = `${idx + 1}.`.padEnd(5);
+          const initStr = e.initials.padEnd(6);
+          const scoreStr = e.score.toString().padEnd(8);
+          this.writeLine(`${rnkStr}${initStr}${scoreStr}${e.message}`);
+        });
+        this.writeLine("============================================================");
+        break;
+
+      case 'sign':
+        const signParts = cmdStr.trim().split(/\s+/);
+        if (signParts.length < 3) {
+          this.writeLine("Usage: sign <initials> <message>");
+          break;
+        }
+        const initials = signParts[1];
+        // Calculate message substring index to preserve spaces
+        const commandIndex = cmdStr.indexOf(signParts[0]);
+        const initIndex = cmdStr.indexOf(initials, commandIndex + signParts[0].length);
+        const message = cmdStr.substring(initIndex + initials.length).trim();
+
+        this.writeLine("INSERTING COIN... SUCCESS!");
+        const res = addGuestbookEntry(initials, message);
+        if (res.success) {
+          this.writeLine("SAVING SIGNATURE... SUCCESS!");
+          this.writeLine(`YOUR SCORE: ${res.entry.score} PTS`);
+          
+          // Find new rank
+          const updated = getLeaderboardEntries();
+          const newRank = updated.findIndex(e => e.initials === res.entry.initials && e.score === res.entry.score);
+          if (newRank !== -1) {
+            this.writeLine(`CONGRATULATIONS! YOU PLACED RANK #${newRank + 1} ON THE LEADERBOARD!`);
+          }
+        } else {
+          this.writeLine(`ERROR: ${res.error}`);
+        }
         break;
 
       case 'clear':
