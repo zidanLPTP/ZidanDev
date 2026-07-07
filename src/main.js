@@ -8,6 +8,7 @@ import { renderCard } from './components/ProjectCard';
 import { openModelModal } from './components/ModelModal';
 import { getSkillSprite } from './components/SkillSprites';
 import './components/RetroTerminal';
+import { RetroGame } from './components/RetroGame';
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -275,6 +276,84 @@ document.addEventListener('DOMContentLoaded', () => {
         updateCharacterUI(e.detail.id);
       }
     });
+  }
+
+  // Minigame Panel Overlay
+  const gameToggle = document.getElementById('game-toggle');
+  const gamePanel = document.getElementById('game-panel');
+  const gameClose = document.getElementById('game-close-btn');
+  const gameCanvas = document.getElementById('game-canvas');
+  const gameScoreBadge = document.getElementById('game-score-badge');
+  const gameScoreVal = document.getElementById('game-score-val');
+
+  if (gameToggle && gamePanel && gameClose && gameCanvas) {
+    let unlockedScore = null;
+
+    const game = new RetroGame('game-canvas', 'game-score', 'game-lives', (finalScore) => {
+      // Game Over / Victory Callback
+      unlockedScore = finalScore;
+      if (gameScoreBadge && gameScoreVal) {
+        gameScoreVal.textContent = finalScore.toString();
+        gameScoreBadge.style.display = 'block';
+      }
+      
+      // Dispatch game-finished custom event
+      window.dispatchEvent(new CustomEvent('game-finished', {
+        detail: { score: finalScore }
+      }));
+    });
+
+    const toggleGame = () => {
+      const isVisible = gamePanel.style.transform === 'translateY(0px)';
+      if (isVisible) {
+        gamePanel.style.transform = 'translateY(120%)';
+        game.stop();
+      } else {
+        gamePanel.style.transform = 'translateY(0px)';
+        // Start game loop and focus canvas so keyboard works instantly
+        game.start();
+        gameCanvas.focus();
+      }
+    };
+
+    gameToggle.addEventListener('click', toggleGame);
+    gameClose.addEventListener('click', () => {
+      gamePanel.style.transform = 'translateY(120%)';
+      game.stop();
+    });
+
+    // Listen to CLI command play trigger
+    window.addEventListener('play-triggered', () => {
+      // Toggle open if closed
+      if (gamePanel.style.transform !== 'translateY(0px)') {
+        toggleGame();
+      }
+    });
+
+    // Intercept Guestbook Form submit to inject customScore
+    const guestbookForm = document.getElementById('guestbook-form');
+    if (guestbookForm) {
+      guestbookForm.addEventListener('submit', (e) => {
+        if (unlockedScore !== null) {
+          e.preventDefault();
+          e.stopImmediatePropagation();
+          const initialsInput = document.getElementById('gb-initials');
+          const messageInput = document.getElementById('gb-message');
+          
+          import('./components/GuestbookHelper').then(({ addGuestbookEntry }) => {
+            const res = addGuestbookEntry(initialsInput.value, messageInput.value, unlockedScore);
+            if (res.success) {
+              initialsInput.value = '';
+              messageInput.value = '';
+              unlockedScore = null;
+              if (gameScoreBadge) gameScoreBadge.style.display = 'none';
+            } else {
+              alert(res.error);
+            }
+          });
+        }
+      });
+    }
   }
 });
 

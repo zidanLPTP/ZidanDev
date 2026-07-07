@@ -676,3 +676,67 @@ h1, h2, h3 {
     flex-direction: column;
   }
 }
+
+.contact-channels-panel {
+  border: 3px double var(--text-magenta);
+  background-color: #050505;
+  padding: 20px;
+  font-family: var(--font-body);
+}
+
+.contact-links {
+  display: flex;
+  gap: 20px;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.contact-link-item {
+  flex: 1 1 250px;
+  display: block;
+  text-decoration: none;
+  border: 1px dashed #333;
+  background-color: #111;
+  padding: 10px;
+  transition: all 0.2s;
+}
+
+.contact-link-item:hover {
+  border-color: var(--text-magenta);
+  box-shadow: 0 0 8px rgba(255, 0, 255, 0.3);
+}
+
+.contact-label {
+  font-family: var(--font-title);
+  font-size: 0.75rem;
+  color: var(--text-cyan);
+  margin-bottom: 4px;
+}
+
+.contact-val {
+  font-size: 0.9rem;
+  color: var(--text-green);
+}
+
+.guestbook-layout {
+  display: flex;
+  gap: 20px;
+}
+
+#game-canvas {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  outline: none;
+}
+
+@media (max-width: 992px) {
+  .guestbook-layout {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 768px) {
+  .contact-links {
+    flex-direction: column;
+  }
+}
