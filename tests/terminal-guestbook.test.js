@@ -48,3 +48,31 @@ test('RetroTerminal executes guestbook and sign commands correctly', () => {
 
   document.body.removeChild(terminal);
 });
+
+test('RetroTerminal sign command handles non-leaderboard placements correctly', () => {
+  // Populate local storage with 10 entries having very high scores
+  const highEntries = [];
+  for (let i = 0; i < 10; i++) {
+    highEntries.push({ initials: `H0${i}`, message: 'High score entry', score: 100000 + i });
+  }
+  localStorage.setItem('guestbook_entries', JSON.stringify(highEntries));
+
+  const terminal = document.createElement('retro-terminal');
+  document.body.appendChild(terminal);
+
+  const lines = [];
+  terminal.writeLine = (text) => {
+    lines.push(text);
+  };
+
+  // Test sign command with a low scoring entry (short message, max score around 600)
+  terminal.executeCommand('sign LOW x');
+  expect(lines[0]).toBe("INSERTING COIN... SUCCESS!");
+  expect(lines[1]).toBe("SAVING SIGNATURE... SUCCESS!");
+  expect(lines[2]).toContain("YOUR SCORE:");
+  expect(lines[3]).toBe("Your score did not place in the top 10 leaderboard. Try a longer message next time!");
+
+  document.body.removeChild(terminal);
+  localStorage.clear();
+});
+

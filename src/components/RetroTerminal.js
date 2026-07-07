@@ -260,6 +260,8 @@ class RetroTerminal extends HTMLElement {
           const newRank = updated.findIndex(e => e.initials === res.entry.initials && e.score === res.entry.score);
           if (newRank !== -1) {
             this.writeLine(`CONGRATULATIONS! YOU PLACED RANK #${newRank + 1} ON THE LEADERBOARD!`);
+          } else {
+            this.writeLine("Your score did not place in the top 10 leaderboard. Try a longer message next time!");
           }
         } else {
           this.writeLine(`ERROR: ${res.error}`);

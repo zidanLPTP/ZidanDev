@@ -138,6 +138,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Listen to updates
       window.addEventListener('guestbook-updated', renderLeaderboard);
-    });
+    }).catch(err => console.error("Failed to load GuestbookHelper:", err));
   }
 });

@@ -6,9 +6,23 @@ export function calculateScore(message) {
   return base + bonus;
 }
 
+function getLocalEntries() {
+  try {
+    const localData = localStorage.getItem('guestbook_entries');
+    if (localData) {
+      const parsed = JSON.parse(localData);
+      if (Array.isArray(parsed)) {
+        return parsed;
+      }
+    }
+  } catch (e) {
+    // Fail-safe fallback to empty array
+  }
+  return [];
+}
+
 export function getLeaderboardEntries() {
-  const localData = localStorage.getItem('guestbook_entries');
-  const localEntries = localData ? JSON.parse(localData) : [];
+  const localEntries = getLocalEntries();
   
   // Merge, sort descending by score, slice top 10
   const merged = [...presets, ...localEntries];
@@ -17,9 +31,12 @@ export function getLeaderboardEntries() {
 }
 
 export function addGuestbookEntry(initials, message) {
-  const cleanInitials = initials.trim().slice(0, 3).toUpperCase();
-  if (cleanInitials.length !== 3) return { success: false, error: 'Initials must be exactly 3 characters.' };
+  const cleanInitials = initials.trim().toUpperCase();
+  if (!/^[A-Z0-9]{3}$/.test(cleanInitials)) {
+    return { success: false, error: 'Initials must be exactly 3 alphanumeric characters.' };
+  }
   if (!message.trim()) return { success: false, error: 'Message cannot be empty.' };
+  if (message.length > 100) return { success: false, error: 'Message cannot exceed 100 characters.' };
 
   const score = calculateScore(message);
   const newEntry = {
@@ -28,8 +45,7 @@ export function addGuestbookEntry(initials, message) {
     score
   };
 
-  const localData = localStorage.getItem('guestbook_entries');
-  const localEntries = localData ? JSON.parse(localData) : [];
+  const localEntries = getLocalEntries();
   localEntries.push(newEntry);
   localStorage.setItem('guestbook_entries', JSON.stringify(localEntries));
 
@@ -38,3 +54,4 @@ export function addGuestbookEntry(initials, message) {
 
   return { success: true, entry: newEntry };
 }
+
