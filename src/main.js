@@ -12,6 +12,7 @@ import { RetroGame } from './components/RetroGame';
 
 
 document.addEventListener('DOMContentLoaded', () => {
+  let unlockedScore = null;
   // Instantiate and append the Retro Terminal custom element
   const terminal = document.createElement('retro-terminal');
   document.body.appendChild(terminal);
@@ -131,10 +132,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const initialsInput = document.getElementById('gb-initials');
         const messageInput = document.getElementById('gb-message');
 
-        const res = addGuestbookEntry(initialsInput.value, messageInput.value);
+        const res = addGuestbookEntry(initialsInput.value, messageInput.value, unlockedScore);
         if (res.success) {
           initialsInput.value = '';
           messageInput.value = '';
+          unlockedScore = null;
+          const gameScoreBadge = document.getElementById('game-score-badge');
+          if (gameScoreBadge) gameScoreBadge.style.display = 'none';
         } else {
           alert(res.error);
         }
@@ -287,8 +291,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const gameScoreVal = document.getElementById('game-score-val');
 
   if (gameToggle && gamePanel && gameClose && gameCanvas) {
-    let unlockedScore = null;
-
     const game = new RetroGame('game-canvas', 'game-score', 'game-lives', (finalScore) => {
       // Game Over / Victory Callback
       unlockedScore = finalScore;
@@ -329,31 +331,6 @@ document.addEventListener('DOMContentLoaded', () => {
         toggleGame();
       }
     });
-
-    // Intercept Guestbook Form submit to inject customScore
-    const guestbookForm = document.getElementById('guestbook-form');
-    if (guestbookForm) {
-      guestbookForm.addEventListener('submit', (e) => {
-        if (unlockedScore !== null) {
-          e.preventDefault();
-          e.stopImmediatePropagation();
-          const initialsInput = document.getElementById('gb-initials');
-          const messageInput = document.getElementById('gb-message');
-          
-          import('./components/GuestbookHelper').then(({ addGuestbookEntry }) => {
-            const res = addGuestbookEntry(initialsInput.value, messageInput.value, unlockedScore);
-            if (res.success) {
-              initialsInput.value = '';
-              messageInput.value = '';
-              unlockedScore = null;
-              if (gameScoreBadge) gameScoreBadge.style.display = 'none';
-            } else {
-              alert(res.error);
-            }
-          });
-        }
-      });
-    }
   }
 });
 
