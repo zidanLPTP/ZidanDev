@@ -30,6 +30,39 @@
       </div>
     </section>
     <section class="grid-section">
+      <h2 style="font-size: 1.5rem; border-bottom: 2px solid var(--text-magenta); padding-bottom: 10px; margin-bottom: 20px;">[ ARCADE GUESTBOOK ]</h2>
+      <div class="guestbook-layout">
+        <div class="leaderboard-panel">
+          <h3 class="blink-slow text-cyan" style="text-align: center; margin-bottom: 15px; font-family: var(--font-title); font-size: 1.2rem;">TOP 10 PLAYERS</h3>
+          <table id="leaderboard-table" class="retro-table">
+            <thead>
+              <tr>
+                <th style="width: 15%;">RNK</th>
+                <th style="width: 25%;">INIT</th>
+                <th style="width: 25%;">SCORE</th>
+                <th style="width: 35%;">MESSAGE</th>
+              </tr>
+            </thead>
+            <tbody id="leaderboard-body"></tbody>
+          </table>
+        </div>
+        <div class="guestbook-form-panel">
+          <h3 style="color: var(--text-yellow); margin-bottom: 15px; font-family: var(--font-title); font-size: 1.1rem;">[ SIGN THE LEADERBOARD ]</h3>
+          <form id="guestbook-form" autocomplete="off">
+            <div class="form-group">
+              <label for="gb-initials">YOUR INITIALS (3 CHARS):</label>
+              <input type="text" id="gb-initials" maxlength="3" required placeholder="AAA" style="text-transform: uppercase;" />
+            </div>
+            <div class="form-group" style="margin-top: 15px;">
+              <label for="gb-message">YOUR NOTE/MESSAGE (MAX 100 CHARS):</label>
+              <textarea id="gb-message" maxlength="100" required placeholder="ENTER MESSAGE..."></textarea>
+            </div>
+            <button type="submit" class="gb-submit-btn">[ INSERT COIN & SUBMIT ]</button>
+          </form>
+        </div>
+      </div>
+    </section>
+    <section class="grid-section">
       <h2 style="font-size: 1.5rem; border-bottom: 2px solid var(--text-cyan); padding-bottom: 10px; margin-bottom: 20px;">[ 3D BLENDER ART ]</h2>
       <div id="blender-grid" class="cards-container"></div>
     </section>

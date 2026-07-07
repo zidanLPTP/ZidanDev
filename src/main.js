@@ -86,4 +86,58 @@ document.addEventListener('DOMContentLoaded', () => {
       inventoryGrid.appendChild(slot);
     }
   }
+
+  const leaderboardBody = document.getElementById('leaderboard-body');
+  const guestbookForm = document.getElementById('guestbook-form');
+
+  if (leaderboardBody && guestbookForm) {
+    import('./components/GuestbookHelper').then(({ getLeaderboardEntries, addGuestbookEntry }) => {
+      const renderLeaderboard = () => {
+        leaderboardBody.innerHTML = '';
+        const entries = getLeaderboardEntries();
+        entries.forEach((entry, idx) => {
+          const tr = document.createElement('tr');
+
+          const tdRank = document.createElement('td');
+          tdRank.textContent = `${idx + 1}.`;
+          tr.appendChild(tdRank);
+
+          const tdInit = document.createElement('td');
+          tdInit.textContent = entry.initials;
+          tr.appendChild(tdInit);
+
+          const tdScore = document.createElement('td');
+          tdScore.textContent = entry.score.toLocaleString();
+          tr.appendChild(tdScore);
+
+          const tdMsg = document.createElement('td');
+          tdMsg.textContent = entry.message;
+          tr.appendChild(tdMsg);
+
+          leaderboardBody.appendChild(tr);
+        });
+      };
+
+      // Initial render
+      renderLeaderboard();
+
+      // Form submission handler
+      guestbookForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const initialsInput = document.getElementById('gb-initials');
+        const messageInput = document.getElementById('gb-message');
+
+        const res = addGuestbookEntry(initialsInput.value, messageInput.value);
+        if (res.success) {
+          initialsInput.value = '';
+          messageInput.value = '';
+        } else {
+          alert(res.error);
+        }
+      });
+
+      // Listen to updates
+      window.addEventListener('guestbook-updated', renderLeaderboard);
+    });
+  }
 });
