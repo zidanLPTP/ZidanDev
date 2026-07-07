@@ -66,6 +66,8 @@ The high score is calculated in Javascript:
   2. Load current items from local storage, push the new entry, and save it back.
   3. Dispatch custom event `window.dispatchEvent(new CustomEvent('guestbook-updated'));`.
 - The GUI rendering code listens to `guestbook-updated` on the `window` and automatically refreshes the table content.
+- **Sorting Requirement**: Before rendering the leaderboard, the merged list of entries (preset JSON + local storage) must be sorted descending by `score` (`a.score - b.score` descending) and sliced to include only the top 10 items.
+- **XSS Prevention (Security)**: To prevent Cross-Site Scripting (XSS), user-submitted data (initials and message) must never be directly rendered using `innerHTML`. The GUI renderer must instantiate table row cells and assign user input text using `.textContent` or `.innerText` to ensure it is treated strictly as plain text.
 
 ### Mobile Responsiveness
 On desktop, the layout displays side-by-side (flex row). On mobile/tablet screens narrower than `768px`, the layout stacks vertically (column).
@@ -77,4 +79,6 @@ On desktop, the layout displays side-by-side (flex row). On mobile/tablet screen
 The `<retro-terminal>` element supports:
 - `guestbook`: Prints a text representation of the top 10 leaderboard.
 - `sign <initials> <message>`: Validates initials (exactly 3 alphanumeric characters) and message (must not be empty), performs submission, and logs confirmation text.
+- **CLI Argument Spacing Parsing**: When executing the `sign` command, the parser in `RetroTerminal.js` must handle spaces inside the message correctly. Instead of splitting by space blindly, it must take the second word as initials (3 chars), and take the entire remaining substring of the command string as the message.
+- **CLI XSS Prevention**: Print messages in the terminal output using standard text content formatting or safely escaped outputs.
 - Tab autocomplete supports `guestbook` and `sign` command keywords.
