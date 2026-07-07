@@ -48,8 +48,9 @@ The minigame is a standard Canvas Brick Breaker:
 - **Canvas Size**: 280 width x 180 height.
 - **Bricks Grid**: 3 rows of 6 columns. Width: 40px, Height: 10px, Padding: 4px. Offset Top: 20px, Offset Left: 10px.
 - **Lives & Scores**: Starts with 3 lives and 0 score. Breaking each brick increases score by 100.
-- **Controls**: ArrowLeft/ArrowRight/A/D for keyboard movement. Touchstart/touchmove event triggers on the canvas track horizontal finger positions and set the paddle position directly.
+- **Controls & Keyboard Focus**: ArrowLeft/ArrowRight/A/D for keyboard movement. Touchstart/touchmove event triggers on the canvas track horizontal finger positions and set the paddle position directly. When the terminal executes the `play` command, it must call `this.input.blur()` to release keyboard input focus, and call `canvas.focus()` (with `tabindex="0"` on the canvas) to direct all keyboard inputs to the game console.
 - **CPU Throttling**: The animation update loop `requestAnimationFrame` runs only while the game drawer is expanded. Closing the drawer executes `cancelAnimationFrame` to freeze CPU execution.
+- **Leaderboard Score Integration**: When the game ends (Win or Game Over), the game dispatches a custom window event `'game-finished'` with the final score: `detail: { score }`. The Guestbook GUI form listens to this event, displaying a visual badge `[ 🏆 UNLOCKED GAME SCORE: XXX PTS ]` and setting a hidden score value. When the guestbook form is submitted, it passes this game score to `addGuestbookEntry(initials, message, customScore)` which registers the direct game score on the leaderboard rather than calculating a score based on message length.
 
 ---
 
@@ -58,18 +59,19 @@ The minigame is a standard Canvas Brick Breaker:
 ### index.html Restructure
 1. Add `<link rel="icon" type="image/svg+xml" href="/icon.svg">` in `<head>`.
 2. Restructure the Arcade Guestbook section to include the third panel `.contact-channels-panel` containing GitHub, Instagram, and Email.
-3. Place `#game-toggle` button and `#game-panel` drawer inside the body container.
+3. Place `#game-toggle` button and `#game-panel` drawer inside the body container. Set `tabindex="0"` on `#game-canvas` so it can receive keyboard focus.
 
 ### style.css Restructure
 1. Add `.contact-channels-panel` and `.contact-link-item` layout styling.
 2. Restructure `.guestbook-layout` to support `display: flex; gap: 20px;` and add screen media queries (`max-width: 992px`) to stack columns vertically.
 3. Add floating game drawer sliding animation using CSS transitions.
+4. Set `#game-canvas` styling with `image-rendering: pixelated; image-rendering: crisp-edges;` to lock sharp retro borders on high-DPI retina screens.
 
 ---
 
 ## 5. CLI Commands Specification
 
 The Custom Element `<retro-terminal>` will support:
-- `play`: Automatically toggles the game drawer open and starts the canvas rendering loop.
+- `play`: Automatically toggles the game drawer open, starts the canvas rendering loop, blurs terminal input, and focuses the game canvas.
 - `contact`: Outputs a formatted ASCII table containing the links to GitHub, Instagram, and Email.
 - Autocomplete supports `play` and `contact` commands.
