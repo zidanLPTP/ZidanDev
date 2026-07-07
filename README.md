@@ -28,6 +28,8 @@ Floating terminal drawer placed in the bottom right corner (toggled via backtick
   - `project <id>` - Inspect project specifications.
   - `use <id>` - Securely opens external link in a new tab (`noopener,noreferrer`).
   - `inventory` / `inspect <item-id>` - Read skills data.
+  - `quests` - List all active and completed quests.
+  - `guilds` - List active guilds and faction associations.
   - `guestbook` / `sign <init> <msg>` - Interact with guestbook.
   - `clear` - Clear console logs.
 
@@ -42,7 +44,14 @@ Technical skills are displayed as items inside a 4x4 inventory grid backpack.
 - **Inventory Detail Sheet**: Click slots to update the side panel with item type, rarity rank (LEGENDARY, EPIC, RARE), attributes (INT, STR, DEF stats), and usage notes.
 - **Responsive mobile grid**: Flex row layout on desktop, stacking into vertical columns on screens under `768px`.
 
-### 4. Arcade Guestbook & Leaderboard (Contact Form)
+### 4. RPG Quest Log & Guild Factions (Timeline)
+Chronicles work experience, educational history, and organization memberships as RPG quests.
+- **Active & Completed Quests Tab Controls**: A visual interface separating active tasks from completed achievements.
+- **Accordion Misi**: Click quest titles to dynamically expand and reveal the quest giver (Guild/Faction), dates, description, and EXP rewards.
+- **Tab State Auto-Reset**: Automatically clears active accordion expanded states when switching tabs.
+- **Empty Guilds Fallback**: If no active guilds are present, the CLI command handles a fallback response message.
+
+### 5. Arcade Guestbook & Leaderboard (Contact Form)
 A contact guestbook styled as a classic High-Score Board sorting entries by score descending.
 - **Gamified Scoring**: Scores calculate dynamically based on message length (`length * 100` + random bonus), incentivizing detailed entries.
 - **Safe Rendering (XSS Protection)**: Sanitizes input by strictly rendering messages/initials using `.textContent` / `.innerText` to prevent HTML/Script injections.
@@ -85,3 +94,5 @@ The test coverage validates:
 - XSS prevention escaping
 - High-score sorting & JSON structure schemas
 - Card markup generation
+- Quest schema validation and kebab-case ID consistency
+- Tab-reset accordion click handlers and mock UI rendering
