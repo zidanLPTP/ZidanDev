@@ -1,0 +1,38 @@
+[
+  {
+    "id": "developer",
+    "name": "SOFTWARE DEVELOPER",
+    "description": "Kelas berbasis logika pemrograman yang ahli dalam mengubah algoritma abstrak menjadi aplikasi web interaktif dan sistem antarmuka responsif.",
+    "stats": {
+      "HP": 80,
+      "MP": 99,
+      "INT": 95,
+      "STR": 45,
+      "AGI": 80
+    }
+  },
+  {
+    "id": "artist",
+    "name": "3D ARTIST / SCULPTOR",
+    "description": "Kelas seniman visual yang terampil dalam pemodelan low-poly 3D, UV mapping, pewarnaan tekstur, pencahayaan, dan animasi aset game.",
+    "stats": {
+      "HP": 90,
+      "MP": 65,
+      "INT": 80,
+      "STR": 95,
+      "AGI": 55
+    }
+  },
+  {
+    "id": "gamer",
+    "name": "HARDCORE GAMER",
+    "description": "Kelas dengan ketangkasan tinggi, optimal dalam kecepatan refleks, pengujian mekanika game, dan berburu rahasia tersembunyi (easter eggs).",
+    "stats": {
+      "HP": 99,
+      "MP": 45,
+      "INT": 60,
+      "STR": 70,
+      "AGI": 95
+    }
+  }
+]
