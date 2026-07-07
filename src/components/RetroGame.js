@@ -98,6 +98,7 @@ export class RetroGame {
   }
 
   destroy() {
+    if (!this.canvas) return;
     window.removeEventListener('keydown', this._keydownHandler);
     window.removeEventListener('keyup', this._keyupHandler);
     this.canvas.removeEventListener('touchmove', this._touchHandler);
@@ -107,7 +108,7 @@ export class RetroGame {
   }
 
   start() {
-    if (this.active) return;
+    if (!this.canvas || this.active) return;
     this.active = true;
     const loop = () => {
       if (!this.active) return;
