@@ -415,3 +415,111 @@ h1, h2, h3 {
     flex-direction: column;
   }
 }
+
+.quest-log-layout {
+  border: 3px double var(--text-cyan);
+  background-color: #050505;
+  padding: 20px;
+  font-family: var(--font-body);
+}
+
+.quest-tabs {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+  border-bottom: 2px dashed #333;
+  padding-bottom: 15px;
+}
+
+.quest-tab-btn {
+  background: transparent;
+  border: 2px solid var(--text-cyan);
+  color: var(--text-cyan);
+  font-family: var(--font-title);
+  font-size: 0.8rem;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.quest-tab-btn:hover {
+  background-color: var(--text-cyan);
+  color: #000;
+  box-shadow: 0 0 10px var(--text-cyan);
+}
+
+.quest-tab-btn.active {
+  border-color: var(--text-yellow);
+  color: var(--text-yellow);
+  box-shadow: 0 0 10px var(--text-yellow);
+}
+
+.quest-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.quest-item {
+  border: 1px solid #333;
+  background-color: #111;
+  padding: 15px;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.quest-item:hover {
+  border-color: var(--text-cyan);
+}
+
+.quest-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.quest-title-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.quest-checkbox {
+  font-family: var(--font-title);
+  font-size: 0.9rem;
+  color: var(--text-yellow);
+}
+
+.quest-title {
+  color: #fff;
+  font-size: 1.1rem;
+}
+
+.quest-period {
+  color: #888;
+  font-size: 0.9rem;
+}
+
+.quest-body {
+  margin-top: 15px;
+  border-top: 1px dashed #333;
+  padding-top: 15px;
+  display: none;
+}
+
+.quest-item.expanded .quest-body {
+  display: block;
+}
+
+.quest-guild {
+  color: var(--text-cyan);
+  font-size: 0.95rem;
+  margin-bottom: 5px;
+}
+
+.quest-rewards {
+  margin-top: 10px;
+  color: var(--text-magenta);
+  font-family: var(--font-title);
+  font-size: 0.8rem;
+}

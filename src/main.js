@@ -140,4 +140,64 @@ document.addEventListener('DOMContentLoaded', () => {
       window.addEventListener('guestbook-updated', renderLeaderboard);
     }).catch(err => console.error("Failed to load GuestbookHelper:", err));
   }
+
+  const questList = document.getElementById('quest-list');
+  const questTabs = document.querySelectorAll('.quest-tab-btn');
+
+  if (questList && questTabs.length > 0) {
+    import('./data/quests.json').then(({ default: quests }) => {
+      const renderQuests = (tabType) => {
+        // Step 1: Clean all active expanded states before rendering new tab content
+        document.querySelectorAll('.quest-item').forEach(el => el.classList.remove('expanded'));
+
+        questList.innerHTML = '';
+        const filtered = quests.filter(q => q.type === tabType);
+
+        filtered.forEach(q => {
+          const item = document.createElement('div');
+          item.className = 'quest-item';
+          
+          const checkbox = q.type === 'active' ? '[ ]' : '[x]';
+
+          item.innerHTML = `
+            <div class="quest-header">
+              <div class="quest-title-row">
+                <span class="quest-checkbox">${checkbox}</span>
+                <span class="quest-title">${q.title}</span>
+              </div>
+              <span class="quest-period">${q.period}</span>
+            </div>
+            <div class="quest-body">
+              <div class="quest-guild">GUILD/FACTION: ${q.guild}</div>
+              <p>${q.description}</p>
+              <div class="quest-rewards">REWARDS: ${q.rewards}</div>
+            </div>
+          `;
+
+          item.addEventListener('click', () => {
+            const isExpanded = item.classList.contains('expanded');
+            document.querySelectorAll('.quest-item').forEach(el => el.classList.remove('expanded'));
+            if (!isExpanded) {
+              item.classList.add('expanded');
+            }
+          });
+
+          questList.appendChild(item);
+        });
+      };
+
+      // Initial render
+      renderQuests('active');
+
+      // Bind Tab Button Clicks
+      questTabs.forEach(btn => {
+        btn.addEventListener('click', () => {
+          questTabs.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const tab = btn.getAttribute('data-tab');
+          renderQuests(tab);
+        });
+      });
+    });
+  }
 });
