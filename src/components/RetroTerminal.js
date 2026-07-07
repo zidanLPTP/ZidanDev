@@ -7,7 +7,7 @@ import { getLeaderboardEntries, addGuestbookEntry } from './GuestbookHelper';
 
 class RetroTerminal extends HTMLElement {
   connectedCallback() {
-    this.commands = ['help', 'projects', 'project', 'use', 'inspect', 'inventory', 'guestbook', 'sign', 'quests', 'guilds', 'clear', 'about', 'socials', 'status', 'select'];
+    this.commands = ['help', 'projects', 'project', 'use', 'inspect', 'inventory', 'guestbook', 'sign', 'quests', 'guilds', 'status', 'select', 'play', 'contact', 'clear', 'about', 'socials'];
     this.projectIds = projects.map(p => p.id);
     this.skillIds = skills.map(s => s.id);
     this.activeCharId = 'developer';
@@ -156,6 +156,8 @@ class RetroTerminal extends HTMLElement {
         this.writeLine("  about              - Boot up developer profile biography");
         this.writeLine("  status             - Show current RPG character stats");
         this.writeLine("  select <class-id>  - Choose a character class");
+        this.writeLine("  play               - Start retro game cabinet console");
+        this.writeLine("  contact            - Show developer communication channels");
         this.writeLine("  socials            - Clickable social channels listings");
         this.writeLine("  clear              - Wipe CLI panel clear");
         break;
@@ -361,6 +363,25 @@ class RetroTerminal extends HTMLElement {
         window.dispatchEvent(new CustomEvent('character-changed', {
           detail: { id: matched.id }
         }));
+        break;
+
+      case 'play':
+        this.writeLine("STARTING RETRO GAME CABINET CONSOLE... SUCCESS!");
+        // Release typing focus from terminal to canvas controls
+        if (this.input) this.input.blur();
+        
+        // Dispatch event so main.js opens the game drawer
+        window.dispatchEvent(new CustomEvent('play-triggered'));
+        break;
+
+      case 'contact':
+        this.writeLine("============================================================");
+        this.writeLine("BUMBU ARCADE - COMM CHANNELS");
+        this.writeLine("============================================================");
+        this.writeLine("GITHUB    : https://github.com/zidanLPTP");
+        this.writeLine("INSTAGRAM : https://instagram.com/zidan.lptp");
+        this.writeLine("EMAIL     : zidan@example.com");
+        this.writeLine("============================================================");
         break;
 
       case 'clear':
