@@ -249,11 +249,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         statsContainer.appendChild(row);
 
-        // Force a layout reflow and set width so transition animates
-        setTimeout(() => {
-          const fill = row.querySelector('.char-stat-bar-fill');
-          if (fill) fill.style.width = `${val}%`;
-        }, 50);
+        // Force a layout reflow and set width so transition animates synchronously
+        const fill = row.querySelector('.char-stat-bar-fill');
+        if (fill) {
+          fill.offsetHeight; // force reflow
+          fill.style.width = `${val}%`;
+        }
       });
     };
 
