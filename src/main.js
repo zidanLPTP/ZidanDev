@@ -329,6 +329,8 @@ document.addEventListener('DOMContentLoaded', () => {
       // Toggle open if closed
       if (gamePanel.style.transform !== 'translateY(0px)') {
         toggleGame();
+      } else {
+        gameCanvas.focus();
       }
     });
   }
