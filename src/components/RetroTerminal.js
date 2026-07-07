@@ -1,11 +1,12 @@
 import projects from '../data/projects.json';
 import skills from '../data/skills.json';
+import quests from '../data/quests.json';
 import { getAutocompleteMatch } from './RetroTerminalHelper';
 import { getLeaderboardEntries, addGuestbookEntry } from './GuestbookHelper';
 
 class RetroTerminal extends HTMLElement {
   connectedCallback() {
-    this.commands = ['help', 'projects', 'project', 'use', 'inspect', 'inventory', 'guestbook', 'sign', 'clear', 'about', 'socials'];
+    this.commands = ['help', 'projects', 'project', 'use', 'inspect', 'inventory', 'guestbook', 'sign', 'quests', 'guilds', 'clear', 'about', 'socials'];
     this.projectIds = projects.map(p => p.id);
     this.skillIds = skills.map(s => s.id);
     this.history = [];
@@ -138,6 +139,8 @@ class RetroTerminal extends HTMLElement {
         this.writeLine("  use <id>           - Securely open target project link in browser");
         this.writeLine("  inspect <item-id>  - Inspect details of a skill item");
         this.writeLine("  inventory          - Show inventory skills items");
+        this.writeLine("  quests             - Show active and completed quests");
+        this.writeLine("  guilds             - Show active guild factions and rewards");
         this.writeLine("  guestbook          - View guestbook leaderboard entries");
         this.writeLine("  sign <init> <msg>  - Sign guestbook and earn arcade points");
         this.writeLine("  about              - Boot up developer profile biography");
@@ -221,6 +224,34 @@ class RetroTerminal extends HTMLElement {
       case 'socials':
         this.writeLine("GitHub: https://github.com/your-username");
         this.writeLine("Itch.io: https://your-profile.itch.io");
+        break;
+
+      case 'quests':
+        this.writeLine("--- ACTIVE QUESTS ---");
+        quests.filter(q => q.type === 'active').forEach(q => {
+          this.writeLine(` [ ] ${q.id.padEnd(14)} : ${q.title} (${q.guild}) [${q.period}]`);
+        });
+        this.writeLine("");
+        this.writeLine("--- COMPLETED QUESTS ---");
+        quests.filter(q => q.type === 'completed').forEach(q => {
+          this.writeLine(` [x] ${q.id.padEnd(14)} : ${q.title} (${q.guild}) [${q.period}]`);
+        });
+        break;
+
+      case 'guilds':
+        const activeGuilds = quests.filter(q => q.category === 'guild' && q.type === 'active');
+        if (activeGuilds.length === 0) {
+          this.writeLine("Semua Guild Factions telah diselesaikan. Ketik 'quests' untuk melihat riwayat kejayaan masa lalu.");
+          break;
+        }
+        this.writeLine("--- ACTIVE GUILDS & FACTIONS ---");
+        activeGuilds.forEach(g => {
+          this.writeLine(`* ${g.guild}`);
+          this.writeLine(`  Role : ${g.title}`);
+          this.writeLine(`  Term : ${g.period}`);
+          this.writeLine(`  Bonus: ${g.rewards}`);
+          this.writeLine("");
+        });
         break;
 
       case 'guestbook':
