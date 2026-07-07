@@ -11,7 +11,7 @@ export async function openModelModal(project) {
   modal.style.width = '100%';
   modal.style.height = '100%';
   modal.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
-  modal.style.zIndex = '999';
+  modal.style.zIndex = '1000';
   modal.style.display = 'flex';
   modal.style.alignItems = 'center';
   modal.style.justifyContent = 'center';
