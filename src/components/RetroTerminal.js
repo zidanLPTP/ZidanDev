@@ -1,10 +1,12 @@
 import projects from '../data/projects.json';
+import skills from '../data/skills.json';
 import { getAutocompleteMatch } from './RetroTerminalHelper';
 
 class RetroTerminal extends HTMLElement {
   connectedCallback() {
-    this.commands = ['help', 'projects', 'project', 'use', 'clear', 'about', 'socials'];
+    this.commands = ['help', 'projects', 'project', 'use', 'inspect', 'inventory', 'clear', 'about', 'socials'];
     this.projectIds = projects.map(p => p.id);
+    this.skillIds = skills.map(s => s.id);
     this.history = [];
     this.historyIndex = -1;
     this.cycleIndex = 0;
@@ -86,7 +88,7 @@ class RetroTerminal extends HTMLElement {
         this.cycleIndex++;
       }
 
-      const matchInfo = getAutocompleteMatch(this.lastTabInput, this.cycleIndex, this.commands, this.projectIds);
+      const matchInfo = getAutocompleteMatch(this.lastTabInput, this.cycleIndex, this.commands, this.projectIds, this.skillIds);
       if (matchInfo) {
         this.input.value = matchInfo.completed;
         if (matchInfo.list.length > 1 && this.cycleIndex === 0) {
@@ -133,9 +135,35 @@ class RetroTerminal extends HTMLElement {
         this.writeLine("  projects           - Display project lists");
         this.writeLine("  project <id>       - Show project detail information");
         this.writeLine("  use <id>           - Securely open target project link in browser");
+        this.writeLine("  inspect <item-id>  - Inspect details of a skill item");
+        this.writeLine("  inventory          - Show inventory skills items");
         this.writeLine("  about              - Boot up developer profile biography");
         this.writeLine("  socials            - Clickable social channels listings");
         this.writeLine("  clear              - Wipe CLI panel clear");
+        break;
+
+      case 'inventory':
+        this.writeLine("--- RPG INVENTORY ITEMS ---");
+        skills.forEach(s => this.writeLine(` - ${s.id} : ${s.name}`));
+        break;
+
+      case 'inspect':
+        if (!arg) {
+          this.writeLine("Usage: inspect <item-id>");
+          break;
+        }
+        const skill = skills.find(s => s.id === arg.toLowerCase());
+        if (skill) {
+          this.writeLine("================================================");
+          this.writeLine(`ITEM   : ${skill.name}`);
+          this.writeLine(`TYPE   : ${skill.type} | RARITY: ${skill.rarity}`);
+          this.writeLine(`STATS  : ${skill.stats}`);
+          this.writeLine("------------------------------------------------");
+          this.writeLine(skill.description);
+          this.writeLine("================================================");
+        } else {
+          this.writeLine(`Item '${arg}' not found in inventory.`);
+        }
         break;
 
       case 'projects':

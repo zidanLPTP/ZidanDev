@@ -1,4 +1,4 @@
-export function getAutocompleteMatch(inputVal, cycleIndex, commands, projectIds) {
+export function getAutocompleteMatch(inputVal, cycleIndex, commands, projectIds, skillIds = []) {
   const parts = inputVal.trim().split(/\s+/);
   const commandInput = parts[0].toLowerCase();
   
@@ -21,6 +21,17 @@ export function getAutocompleteMatch(inputVal, cycleIndex, commands, projectIds)
     if (matchingProjects.length === 0) return null;
     const match = matchingProjects[cycleIndex % matchingProjects.length];
     return { completed: `${commandInput} ${match}`, index: cycleIndex % matchingProjects.length, list: matchingProjects };
+  }
+
+  // Case 3: Autocomplete skill IDs (second word) after "inspect"
+  if (parts.length >= 1 && commandInput === 'inspect') {
+    const typedSkillVal = (parts.length === 2 ? parts[1] : '').toLowerCase();
+    const matchingSkills = skillIds
+      .map(s => s.toLowerCase())
+      .filter(s => s.startsWith(typedSkillVal));
+    if (matchingSkills.length === 0) return null;
+    const match = matchingSkills[cycleIndex % matchingSkills.length];
+    return { completed: `${commandInput} ${match}`, index: cycleIndex % matchingSkills.length, list: matchingSkills };
   }
 
   return null;
