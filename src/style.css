@@ -864,6 +864,11 @@ h1, h2, h3 {
   pointer-events: none;
 }
 
+.pixelated-photo-container.has-fallback::after {
+  display: none;
+}
+
+
 .pixelated-photo-container.developer::after {
   background-color: var(--text-cyan);
   mix-blend-mode: multiply;

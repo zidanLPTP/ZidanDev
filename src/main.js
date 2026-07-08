@@ -10,6 +10,7 @@ import { getSkillSprite } from './components/SkillSprites';
 import './components/RetroTerminal';
 import { RetroGame } from './components/RetroGame';
 
+let hasPhotoLoadError = false;
 
 document.addEventListener('DOMContentLoaded', () => {
   let unlockedScore = null;
@@ -233,13 +234,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Update Portrait with retro photo filter and fallback
       portraitBox.innerHTML = `
-        <div class="pixelated-photo-container ${id}">
-          <img src="/zidan.jpg" class="retro-photo" onerror="this.parentElement.classList.add('has-fallback'); this.style.display='none'; this.nextElementSibling.style.display='block';" />
-          <div class="fallback-sprite" style="display: none;">
+        <div class="pixelated-photo-container ${id}${hasPhotoLoadError ? ' has-fallback' : ''}">
+          ${hasPhotoLoadError ? '' : `<img src="/zidan.jpg" class="retro-photo" />`}
+          <div class="fallback-sprite" style="${hasPhotoLoadError ? '' : 'display: none;'}">
             ${getCharacterSprite(id)}
           </div>
         </div>
       `;
+
+      if (!hasPhotoLoadError) {
+        const img = portraitBox.querySelector('.retro-photo');
+        if (img) {
+          img.addEventListener('error', () => {
+            hasPhotoLoadError = true;
+            const container = portraitBox.querySelector('.pixelated-photo-container');
+            if (container) container.classList.add('has-fallback');
+            img.style.display = 'none';
+            const fallback = portraitBox.querySelector('.fallback-sprite');
+            if (fallback) fallback.style.display = 'block';
+          });
+        }
+      }
+
 
       // Render stats bars with dynamic widths
       statsContainer.innerHTML = '';
