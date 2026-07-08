@@ -77,6 +77,12 @@ const SPRITES = {
       <rect x="5" y="2" width="1" height="4" fill="#ff2d20" />
       <rect x="8" y="2" width="1" height="4" fill="#ff2d20" />
     </svg>
+  `,
+  sql: `
+    <svg viewBox="0 0 16 16" width="32" height="32" shape-rendering="crispEdges">
+      <rect x="1" y="2" width="14" height="12" fill="#0078d4" rx="1" />
+      <text x="3" y="10" font-family="'Press Start 2P', monospace" font-size="5px" fill="#ffffff">SQL</text>
+    </svg>
   `
 };
 

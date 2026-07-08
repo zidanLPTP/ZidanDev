@@ -1,32 +1,52 @@
 [
   {
-    "id": "gdsc-staff",
-    "title": "Core Staff Member",
-    "guild": "Google Developer Student Clubs (GDSC)",
-    "period": "2025 - Present",
+    "id": "unri-student",
+    "title": "Mahasiswa Teknik Informatika (Semester 5)",
+    "guild": "Universitas Riau",
+    "period": "2024 - Sekarang",
     "type": "active",
-    "category": "guild",
-    "rewards": "EXP +400, Leadership +1, Network +5",
-    "description": "Contributing to organizing software engineering workshops, managing hackathon campaigns, and helping members with web development quests."
+    "category": "education",
+    "rewards": "EXP +800, Programming Logic +5",
+    "description": "Menempuh pendidikan tinggi program studi Teknik Informatika di UNRI, fokus pada pengembangan perangkat lunak dan sistem informasi."
   },
   {
-    "id": "freelance-dev",
-    "title": "Freelance Web Developer",
-    "guild": "Bumbu Studio",
-    "period": "2024 - Present",
+    "id": "ieee-webmaster",
+    "title": "Web Master IEEE SB UNRI",
+    "guild": "IEEE Student Branch UNRI",
+    "period": "2025 - Sekarang",
     "type": "active",
-    "category": "work",
-    "rewards": "EXP +600, HTML Skill +3, CSS Skill +2",
-    "description": "Building custom responsive web applications for small businesses, implementing pixelated retro game graphics and layouts."
+    "category": "guild",
+    "rewards": "EXP +500, Web Skill +4, Network +5",
+    "description": "Mengelola situs web dan infrastruktur digital IEEE Student Branch UNRI sejak awal kepengurusan tanggal 22 Desember 2025."
+  },
+  {
+    "id": "kse-divisi",
+    "title": "Anggota Divisi Pendidikan & Pelatihan",
+    "guild": "KSE UNRI",
+    "period": "2025 - 2026",
+    "type": "active",
+    "category": "guild",
+    "rewards": "EXP +400, Teaching Skill +3, Public Speaking +2",
+    "description": "Berkontribusi dalam divisi Pendidikan dan Pelatihan KSE UNRI untuk merancang program edukasi bagi mahasiswa."
+  },
+  {
+    "id": "erc-researcher",
+    "title": "Anggota Department Research",
+    "guild": "ERC UNRI",
+    "period": "2026 - Sekarang",
+    "type": "active",
+    "category": "guild",
+    "rewards": "EXP +450, Research Skill +4, Python +3",
+    "description": "Bergabung dalam Department Research ERC UNRI untuk melakukan riset teknologi terbaru dan analisis data."
   },
   {
     "id": "school-grad",
-    "title": "Software Engineering Student",
-    "guild": "Vocal High School",
+    "title": "Lulusan SMA",
+    "guild": "SMA Negeri 2 Sawahlunto",
     "period": "2021 - 2024",
     "type": "completed",
     "category": "education",
     "rewards": "EXP +1000, Title: Graduate",
-    "description": "Finished core software engineering curriculum, specialized in database schemas, basic algorithm structures, and web technologies."
+    "description": "Menyelesaikan pendidikan tingkat menengah atas di SMA Negeri 2 Sawahlunto."
   }
 ]

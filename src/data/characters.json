@@ -4,35 +4,35 @@
     "name": "SOFTWARE DEVELOPER",
     "description": "Menguasai JavaScript dan Python untuk membangun aplikasi web yang cepat, interaktif, serta skrip otomatisasi/scraping data dinamis.",
     "stats": {
-      "HP": 80,
-      "MP": 99,
-      "INT": 95,
-      "STR": 45,
-      "AGI": 85
+      "HP": 65,
+      "MP": 70,
+      "INT": 72,
+      "STR": 50,
+      "AGI": 68
     }
   },
   {
     "id": "artist",
     "name": "3D ARTIST",
-    "description": "Spesialis dalam pembuatan aset low-poly game, UV mapping, pencahayaan CRT retro, dan optimalisasi file GLTF/GLB untuk Web 3D.",
+    "description": "Fokus pada pembuatan pemodelan bangunan 3D bergaya low-to-mid poly dengan detail struktural murni tanpa shader kompleks.",
     "stats": {
-      "HP": 75,
-      "MP": 70,
-      "INT": 80,
-      "STR": 60,
-      "AGI": 70
+      "HP": 45,
+      "MP": 30,
+      "INT": 40,
+      "STR": 35,
+      "AGI": 45
     }
   },
   {
     "id": "gamer",
     "name": "HARDCORE GAMER",
-    "description": "Memiliki pemahaman mendalam tentang mekanika game retro 8-bit, level design, dan antarmuka interaktif.",
+    "description": "Menggemari game retro klasik dan mulai mempelajari dasar-dasar pengembangan game menggunakan game engine Godot.",
     "stats": {
-      "HP": 95,
-      "MP": 50,
-      "INT": 75,
-      "STR": 65,
-      "AGI": 95
+      "HP": 55,
+      "MP": 20,
+      "INT": 40,
+      "STR": 30,
+      "AGI": 50
     }
   }
 ]

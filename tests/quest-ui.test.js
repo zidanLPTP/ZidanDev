@@ -15,6 +15,6 @@ test('verify quest accordion item layout structure generation', () => {
   `;
 
   expect(html).toContain('[ ]');
-  expect(html).toContain('Core Staff Member');
-  expect(html).toContain('Google Developer Student Clubs');
+  expect(html).toContain('Mahasiswa Teknik Informatika');
+  expect(html).toContain('Universitas Riau');
 });

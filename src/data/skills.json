@@ -78,5 +78,13 @@
     "type": "Language",
     "stats": "STR +50, DEF +45",
     "description": "Pemrograman berorientasi objek (OOP) dasar dan aplikasi konsol terstruktur menggunakan Java."
+  },
+  {
+    "id": "sql",
+    "name": "SQL",
+    "iconType": "sql",
+    "type": "Database",
+    "stats": "INT +50, DEX +42",
+    "description": "Menguasai dasar-dasar query SQL (SELECT, INSERT, JOIN) untuk pengelolaan database relasional."
   }
 ]
