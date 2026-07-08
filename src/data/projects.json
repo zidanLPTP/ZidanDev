@@ -30,6 +30,28 @@
     "image": ""
   },
   {
+    "id": "gedung-sate",
+    "name": "Gedung Sate",
+    "category": "3d",
+    "isPlaceholder": false,
+    "description": "Model 3D Gedung Sate premium low-poly retro yang dimodelkan secara detail di Blender.",
+    "tech": ["Blender", "Three.js", "Low-poly Mesh"],
+    "modelSrc": "models/gedungsate.glb",
+    "link": "#",
+    "image": ""
+  },
+  {
+    "id": "lawang-sewu",
+    "name": "Lawang Sewu",
+    "category": "3d",
+    "isPlaceholder": false,
+    "description": "Model 3D Lawang Sewu premium low-poly retro yang dimodelkan secara detail di Blender.",
+    "tech": ["Blender", "Three.js", "Low-poly Mesh"],
+    "modelSrc": "models/lawangsewu.glb",
+    "link": "#",
+    "image": ""
+  },
+  {
     "id": "kse-unripedia",
     "name": "KSE Unripedia Scraper",
     "category": "random",
