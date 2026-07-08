@@ -51,7 +51,8 @@ class RetroTerminal extends HTMLElement {
     };
     window.addEventListener('character-changed', this._boundCharHandler);
 
-    this.writeLine("Selamat datang di Sistem CLI Bumbu Arcade. Ketik 'help' untuk daftar perintah.");
+    this.writeLine("Selamat datang di Sistem CLI ZidanDev. Ketik 'help' untuk daftar perintah.");
+
   }
 
 
@@ -388,7 +389,7 @@ class RetroTerminal extends HTMLElement {
 
       case 'contact':
         this.writeLine("============================================================");
-        this.writeLine("BUMBU ARCADE - SALURAN KOMUNIKASI");
+        this.writeLine("ZIDAN_DEV - SALURAN KOMUNIKASI");
         this.writeLine("============================================================");
         this.writeLine("GITHUB    : https://github.com/zidanLPTP");
         this.writeLine("INSTAGRAM : https://instagram.com/zidan.lptp");
