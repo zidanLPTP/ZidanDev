@@ -1,8 +1,6 @@
 import characters from '../data/characters.json';
 const charIds = characters.map(c => c.id);
-
-export const commandList = ['help', 'projects', 'project', 'use', 'inspect', 'inventory', 'guestbook', 'sign', 'quests', 'guilds', 'status', 'select', 'play', 'contact', 'clear', 'about', 'socials'];
-
+export const commandList = ['help', 'projects', 'project', 'use', 'inspect', 'inventory', 'guestbook', 'sign', 'quests', 'guilds', 'status', 'select', 'play', 'contact', 'clear', 'about', 'socials', 'reset-guestbook'];
 export function getAutocompleteMatch(inputVal, cycleIndex, commands, projectIds, skillIds = []) {
   const parts = inputVal.trim().split(/\s+/);
   const commandInput = parts[0].toLowerCase();

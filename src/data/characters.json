@@ -2,36 +2,36 @@
   {
     "id": "developer",
     "name": "SOFTWARE DEVELOPER",
-    "description": "Kelas berbasis logika pemrograman yang ahli dalam mengubah algoritma abstrak menjadi aplikasi web interaktif dan sistem antarmuka responsif.",
+    "description": "Menguasai JavaScript dan Python untuk membangun aplikasi web yang cepat, interaktif, serta skrip otomatisasi/scraping data dinamis.",
     "stats": {
       "HP": 80,
       "MP": 99,
       "INT": 95,
       "STR": 45,
-      "AGI": 80
+      "AGI": 85
     }
   },
   {
     "id": "artist",
-    "name": "3D ARTIST / SCULPTOR",
-    "description": "Kelas seniman visual yang terampil dalam pemodelan low-poly 3D, UV mapping, pewarnaan tekstur, pencahayaan, dan animasi aset game.",
+    "name": "3D ARTIST",
+    "description": "Spesialis dalam pembuatan aset low-poly game, UV mapping, pencahayaan CRT retro, dan optimalisasi file GLTF/GLB untuk Web 3D.",
     "stats": {
-      "HP": 90,
-      "MP": 65,
+      "HP": 75,
+      "MP": 70,
       "INT": 80,
-      "STR": 95,
-      "AGI": 55
+      "STR": 60,
+      "AGI": 70
     }
   },
   {
     "id": "gamer",
     "name": "HARDCORE GAMER",
-    "description": "Kelas dengan ketangkasan tinggi, optimal dalam kecepatan refleks, pengujian mekanika game, dan berburu rahasia tersembunyi (easter eggs).",
+    "description": "Memiliki pemahaman mendalam tentang mekanika game retro 8-bit, level design, dan antarmuka interaktif.",
     "stats": {
-      "HP": 99,
-      "MP": 45,
-      "INT": 60,
-      "STR": 70,
+      "HP": 95,
+      "MP": 50,
+      "INT": 75,
+      "STR": 65,
       "AGI": 95
     }
   }

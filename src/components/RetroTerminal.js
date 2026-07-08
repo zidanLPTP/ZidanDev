@@ -7,7 +7,7 @@ import { getLeaderboardEntries, addGuestbookEntry } from './GuestbookHelper';
 
 class RetroTerminal extends HTMLElement {
   connectedCallback() {
-    this.commands = ['help', 'projects', 'project', 'use', 'inspect', 'inventory', 'guestbook', 'sign', 'quests', 'guilds', 'status', 'select', 'play', 'contact', 'clear', 'about', 'socials'];
+    this.commands = ['help', 'projects', 'project', 'use', 'inspect', 'inventory', 'guestbook', 'sign', 'quests', 'guilds', 'status', 'select', 'play', 'contact', 'clear', 'about', 'socials', 'reset-guestbook'];
     this.projectIds = projects.map(p => p.id);
     this.skillIds = skills.map(s => s.id);
     this.activeCharId = 'developer';
@@ -176,9 +176,8 @@ class RetroTerminal extends HTMLElement {
         if (skill) {
           this.writeLine("================================================");
           this.writeLine(`ITEM   : ${skill.name}`);
-          this.writeLine(`TYPE   : ${skill.type} | RARITY: ${skill.rarity}`);
+          this.writeLine(`TYPE   : ${skill.type}`);
           this.writeLine(`STATS  : ${skill.stats}`);
-          this.writeLine("------------------------------------------------");
           this.writeLine(skill.description);
           this.writeLine("================================================");
         } else {
@@ -382,6 +381,16 @@ class RetroTerminal extends HTMLElement {
         this.writeLine("INSTAGRAM : https://instagram.com/zidan.lptp");
         this.writeLine("EMAIL     : zidan@example.com");
         this.writeLine("============================================================");
+        break;
+
+      case 'reset-guestbook':
+        try {
+          localStorage.removeItem('guestbook_entries');
+          this.writeLine("Arcade Guestbook local database reset... SUCCESS!");
+          window.dispatchEvent(new CustomEvent('guestbook-updated'));
+        } catch (e) {
+          this.writeLine("ERROR: Failed to reset database.");
+        }
         break;
 
       case 'clear':

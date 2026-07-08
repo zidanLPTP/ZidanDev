@@ -18,12 +18,30 @@
     "image": ""
   },
   {
+    "id": "dynamic-scraper",
+    "name": "Dynamic Web Scraper",
+    "category": "random",
+    "isPlaceholder": false,
+    "description": "Skrip scraping data web dinamis berbasis Python menggunakan BeautifulSoup dan Selenium.",
+    "link": "https://github.com/zidanLPTP/dynamic-scraper",
+    "image": ""
+  },
+  {
     "id": "weather-cli",
     "name": "Retro Weather App",
     "category": "random",
     "isPlaceholder": false,
     "description": "A Javascript terminal tool showcasing weather updates with ASCII visual representations.",
-    "link": "https://github.com/username/weather-cli",
+    "link": "https://github.com/zidanLPTP/weather-cli",
+    "image": ""
+  },
+  {
+    "id": "simple-inventory-php",
+    "name": "Simple Inventory DB",
+    "category": "random",
+    "isPlaceholder": false,
+    "description": "Sistem manajemen inventaris barang sederhana berbasis PHP native dan database MySQL.",
+    "link": "https://github.com/zidanLPTP/simple-inventory",
     "image": ""
   }
 ]

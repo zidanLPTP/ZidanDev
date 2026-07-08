@@ -1,29 +1,50 @@
 [
   {
     "id": "javascript",
-    "name": "JavaScript",
-    "iconType": "potion",
+    "name": "JavaScript (ES6+)",
+    "iconType": "js",
     "type": "Language",
-    "rarity": "LEGENDARY",
-    "stats": "INT +95, SPD +80",
-    "description": "Primary engine for building dynamic client-side experiences, custom HTML elements, and asynchronous agent pipelines."
+    "stats": "INT +60, AGI +55",
+    "description": "Dasar-dasar manipulasi DOM, penanganan event, dan ES6 untuk membuat halaman web interaktif."
   },
   {
-    "id": "css",
-    "name": "CSS",
-    "iconType": "shield",
-    "type": "Styling",
-    "rarity": "RARE",
-    "stats": "DEF +90, RES +95",
-    "description": "Essential tool used to style layout grids, implement CRT screen scanlines, and handle neon-glow micro-animations."
+    "id": "python",
+    "name": "Python 3",
+    "iconType": "python",
+    "type": "Language",
+    "stats": "INT +58, DEX +50",
+    "description": "Digunakan untuk otomatisasi sederhana dan ekstraksi data web dasar menggunakan request."
+  },
+  {
+    "id": "php",
+    "name": "PHP",
+    "iconType": "php",
+    "type": "Language",
+    "stats": "INT +50, DEF +40",
+    "description": "Bahasa server-side dasar untuk memproses data formulir dinamis dan interaksi database relasional."
+  },
+  {
+    "id": "laravel",
+    "name": "Laravel",
+    "iconType": "laravel",
+    "type": "Framework",
+    "stats": "INT +55, DEF +45",
+    "description": "Framework MVC PHP yang dipelajari untuk mempermudah routing, struktur MVC, dan pembuatan RESTful API."
   },
   {
     "id": "blender",
-    "name": "Blender",
-    "iconType": "sword",
-    "type": "3D Modeling",
-    "rarity": "EPIC",
-    "stats": "STR +88, DEX +50",
-    "description": "Creative suite for sculpting low-poly meshes, texture painting, and exporting optimized GLB/GLTF assets."
+    "name": "Blender 3D",
+    "iconType": "blender",
+    "type": "3D Art",
+    "stats": "STR +48, DEX +52",
+    "description": "Pembuatan model low-poly dasar, UV mapping sederhana, dan pencahayaan retro."
+  },
+  {
+    "id": "java",
+    "name": "Java SE",
+    "iconType": "java",
+    "type": "Language",
+    "stats": "STR +50, DEF +45",
+    "description": "Pemrograman berorientasi objek (OOP) dasar dan aplikasi konsol terstruktur menggunakan Java."
   }
 ]
