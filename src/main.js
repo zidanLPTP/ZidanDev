@@ -73,7 +73,8 @@ document.addEventListener('DOMContentLoaded', () => {
               </div>
             </div>
             <p style="font-size: 1.25rem;">${skill.description}</p>
-          `;        });
+          `;
+        });
       } else {
         slot.className = 'inventory-slot inventory-slot-empty';
         slot.textContent = '.';
@@ -81,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
           document.querySelectorAll('.inventory-slot').forEach(s => s.classList.remove('active'));
           slot.classList.add('active');
           inventoryDetails.innerHTML = `
-            <p class="blink-fast text-yellow" style="text-align: center; margin-top: 50px;">[ EMPTY SLOT. Complete new quests to unlock new skills! ]</p>
+            <p class="blink-fast text-yellow" style="text-align: center; margin-top: 50px;">[ SLOT KOSONG, ayo pelajari hal baru! ]</p>
           `;
         });
       }
@@ -161,7 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
         filtered.forEach(q => {
           const item = document.createElement('div');
           item.className = 'quest-item';
-          
+
           const checkbox = q.type === 'active' ? '[ ]' : '[x]';
 
           item.innerHTML = `
@@ -240,7 +241,7 @@ document.addEventListener('DOMContentLoaded', () => {
         row.className = 'char-stat-row';
 
         const fillClass = stat.toLowerCase();
-        
+
         row.innerHTML = `
           <span class="char-stat-label">${stat}</span>
           <div class="char-stat-bar-bg">
@@ -296,7 +297,7 @@ document.addEventListener('DOMContentLoaded', () => {
         gameScoreVal.textContent = finalScore.toString();
         gameScoreBadge.style.display = 'block';
       }
-      
+
       // Dispatch game-finished custom event
       window.dispatchEvent(new CustomEvent('game-finished', {
         detail: { score: finalScore }
@@ -304,17 +305,30 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     const toggleGame = () => {
+      const terminalEl = document.querySelector('retro-terminal');
+      const isTerminalOpen = terminalEl && terminalEl.panel && !terminalEl.panel.classList.contains('closed');
+      if (isTerminalOpen) return;
+
       const isVisible = gamePanel.style.transform === 'translate(-50%, -50%)';
       if (isVisible) {
         gamePanel.style.transform = 'translate(-50%, 150vh)';
         if (gameBackdrop) gameBackdrop.style.display = 'none';
         game.stop();
+
+        if (terminalEl && terminalEl.toggleBtn) {
+          terminalEl.toggleBtn.style.pointerEvents = 'auto';
+          terminalEl.toggleBtn.style.opacity = '1';
+        }
       } else {
         gamePanel.style.transform = 'translate(-50%, -50%)';
         if (gameBackdrop) gameBackdrop.style.display = 'block';
-        // Start game loop and focus canvas so keyboard works instantly
         game.start();
         gameCanvas.focus();
+
+        if (terminalEl && terminalEl.toggleBtn) {
+          terminalEl.toggleBtn.style.pointerEvents = 'none';
+          terminalEl.toggleBtn.style.opacity = '0.3';
+        }
       }
     };
 
@@ -323,6 +337,12 @@ document.addEventListener('DOMContentLoaded', () => {
       gamePanel.style.transform = 'translate(-50%, 150vh)';
       if (gameBackdrop) gameBackdrop.style.display = 'none';
       game.stop();
+
+      const terminalEl = document.querySelector('retro-terminal');
+      if (terminalEl && terminalEl.toggleBtn) {
+        terminalEl.toggleBtn.style.pointerEvents = 'auto';
+        terminalEl.toggleBtn.style.opacity = '1';
+      }
     });
 
     if (gameBackdrop) {
@@ -330,12 +350,21 @@ document.addEventListener('DOMContentLoaded', () => {
         gamePanel.style.transform = 'translate(-50%, 150vh)';
         gameBackdrop.style.display = 'none';
         game.stop();
+
+        const terminalEl = document.querySelector('retro-terminal');
+        if (terminalEl && terminalEl.toggleBtn) {
+          terminalEl.toggleBtn.style.pointerEvents = 'auto';
+          terminalEl.toggleBtn.style.opacity = '1';
+        }
       });
     }
 
-    // Listen to CLI command play trigger
     window.addEventListener('play-triggered', () => {
-      // Toggle open if closed
+      const terminalEl = document.querySelector('retro-terminal');
+      if (terminalEl && terminalEl.panel && !terminalEl.panel.classList.contains('closed')) {
+        terminalEl.toggle();
+      }
+
       if (gamePanel.style.transform !== 'translate(-50%, -50%)') {
         toggleGame();
       } else {

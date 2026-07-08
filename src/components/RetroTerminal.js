@@ -61,8 +61,25 @@ class RetroTerminal extends HTMLElement {
   }
 
   toggle() {
+    const gamePanel = document.getElementById('game-panel');
+    const isGameOpen = gamePanel && gamePanel.style.transform === 'translate(-50%, -50%)';
+    if (isGameOpen) return;
+
     this.panel.classList.toggle('closed');
-    if (!this.panel.classList.contains('closed')) {
+    const isOpen = !this.panel.classList.contains('closed');
+    
+    const gameToggle = document.getElementById('game-toggle');
+    if (gameToggle) {
+      if (isOpen) {
+        gameToggle.style.pointerEvents = 'none';
+        gameToggle.style.opacity = '0.3';
+      } else {
+        gameToggle.style.pointerEvents = 'auto';
+        gameToggle.style.opacity = '1';
+      }
+    }
+
+    if (isOpen) {
       setTimeout(() => this.input.focus(), 50);
     }
   }
