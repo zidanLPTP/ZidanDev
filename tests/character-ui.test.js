@@ -25,7 +25,7 @@ test('character portrait renders container with photo and fallback logic', () =>
   // Simulated render of pixelated photo container
   container.innerHTML = `
     <div class="pixelated-photo-container developer">
-      <img src="/zidan.jpg" class="retro-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+      <img src="/zidan.jpg" class="retro-photo" onerror="this.parentElement.classList.add('has-fallback'); this.style.display='none'; this.nextElementSibling.style.display='block';" />
       <div class="fallback-sprite" style="display: none;">
         <svg viewBox="0 0 16 16"></svg>
       </div>

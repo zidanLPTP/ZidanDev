@@ -847,14 +847,14 @@ h1, h2, h3 {
 .retro-photo {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   image-rendering: pixelated;
   image-rendering: crisp-edges;
   filter: grayscale(1) contrast(1.8) brightness(1.1);
   display: block;
 }
 
-.pixelated-photo-container::after {
+.pixelated-photo-container:not(.has-fallback)::after {
   content: '';
   position: absolute;
   top: 0;
