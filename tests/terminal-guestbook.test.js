@@ -16,7 +16,7 @@ test('verify terminal sign command substring parser logic', () => {
   expect(message).toBe('hello my friend how are you');
 });
 
-test('RetroTerminal executes guestbook and sign commands correctly', () => {
+test('RetroTerminal executes guestbook and sign commands correctly', async () => {
   const terminal = document.createElement('retro-terminal');
   document.body.appendChild(terminal);
 
@@ -26,7 +26,7 @@ test('RetroTerminal executes guestbook and sign commands correctly', () => {
   };
 
   // Test guestbook command
-  terminal.executeCommand('guestbook');
+  await terminal.executeCommand('guestbook');
   expect(lines.length).toBeGreaterThan(0);
   expect(lines[0]).toBe("============================================================");
   expect(lines[1]).toBe("PERINGKAT  INISIAL  SKOR   PESAN");
@@ -34,13 +34,13 @@ test('RetroTerminal executes guestbook and sign commands correctly', () => {
   lines.length = 0; // reset lines
 
   // Test sign command with missing arguments
-  terminal.executeCommand('sign ABC');
+  await terminal.executeCommand('sign ABC');
   expect(lines[0]).toBe("Penggunaan: sign <inisial> <pesan>");
 
   lines.length = 0; // reset lines
 
   // Test sign command successfully
-  terminal.executeCommand('sign TST hello from test suite');
+  await terminal.executeCommand('sign TST hello from test suite');
   expect(lines[0]).toBe("MEMASUKKAN KOIN... SUKSES!");
   expect(lines[1]).toBe("MENYIMPAN TANDA TANGAN... SUKSES!");
   expect(lines[2]).toContain("SKOR ANDA:");
@@ -49,7 +49,7 @@ test('RetroTerminal executes guestbook and sign commands correctly', () => {
   document.body.removeChild(terminal);
 });
 
-test('RetroTerminal sign command handles non-leaderboard placements correctly', () => {
+test('RetroTerminal sign command handles non-leaderboard placements correctly', async () => {
   // Populate local storage with 10 entries having very high scores
   const highEntries = [];
   for (let i = 0; i < 10; i++) {
@@ -66,14 +66,12 @@ test('RetroTerminal sign command handles non-leaderboard placements correctly', 
   };
 
   // Test sign command with a low scoring entry (short message, max score around 600)
-  terminal.executeCommand('sign LOW x');
+  await terminal.executeCommand('sign LOW x');
   expect(lines[0]).toBe("MEMASUKKAN KOIN... SUKSES!");
   expect(lines[1]).toBe("MENYIMPAN TANDA TANGAN... SUKSES!");
   expect(lines[2]).toContain("SKOR ANDA:");
   expect(lines[3]).toBe("Skor Anda belum masuk 10 besar leaderboard. Coba pesan yang lebih panjang lain kali!");
 
-
   document.body.removeChild(terminal);
   localStorage.clear();
 });
-

@@ -154,8 +154,9 @@ class RetroTerminal extends HTMLElement {
     }
   }
 
-  executeCommand(cmdStr) {
+  async executeCommand(cmdStr) {
     const parts = cmdStr.split(/\s+/);
+
     const command = parts[0].toLowerCase();
     const arg = parts.slice(1).join(' ');
 
@@ -292,7 +293,7 @@ class RetroTerminal extends HTMLElement {
         this.writeLine("============================================================");
         this.writeLine("PERINGKAT  INISIAL  SKOR   PESAN");
         this.writeLine("============================================================");
-        const entries = getLeaderboardEntries();
+        const entries = await getLeaderboardEntries();
         entries.forEach((e, idx) => {
           const rnkStr = `${idx + 1}.`.padEnd(11);
           const initStr = e.initials.padEnd(8);
@@ -314,12 +315,12 @@ class RetroTerminal extends HTMLElement {
         const message = cmdStr.substring(initIndex + initials.length).trim();
 
         this.writeLine("MEMASUKKAN KOIN... SUKSES!");
-        const res = addGuestbookEntry(initials, message);
+        const res = await addGuestbookEntry(initials, message);
         if (res.success) {
           this.writeLine("MENYIMPAN TANDA TANGAN... SUKSES!");
           this.writeLine(`SKOR ANDA: ${res.entry.score} PTS`);
           
-          const updated = getLeaderboardEntries();
+          const updated = await getLeaderboardEntries();
           const newRank = updated.findIndex(e => e.initials === res.entry.initials && e.score === res.entry.score);
           if (newRank !== -1) {
             this.writeLine(`SELAMAT! ANDA MENEMPATI PERINGKAT #${newRank + 1} DI LEADERBOARD!`);
@@ -330,6 +331,10 @@ class RetroTerminal extends HTMLElement {
           this.writeLine(`ERROR: ${res.error}`);
         }
         break;
+
+
+
+
 
       case 'status':
         const char = characters.find(c => c.id === this.activeCharId);

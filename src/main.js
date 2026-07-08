@@ -98,27 +98,28 @@ document.addEventListener('DOMContentLoaded', () => {
     import('./components/GuestbookHelper').then(({ getLeaderboardEntries, addGuestbookEntry }) => {
       const renderLeaderboard = () => {
         leaderboardBody.innerHTML = '';
-        const entries = getLeaderboardEntries();
-        entries.forEach((entry, idx) => {
-          const tr = document.createElement('tr');
+        getLeaderboardEntries().then(entries => {
+          entries.forEach((entry, idx) => {
+            const tr = document.createElement('tr');
 
-          const tdRank = document.createElement('td');
-          tdRank.textContent = `${idx + 1}.`;
-          tr.appendChild(tdRank);
+            const tdRank = document.createElement('td');
+            tdRank.textContent = `${idx + 1}.`;
+            tr.appendChild(tdRank);
 
-          const tdInit = document.createElement('td');
-          tdInit.textContent = entry.initials;
-          tr.appendChild(tdInit);
+            const tdInit = document.createElement('td');
+            tdInit.textContent = entry.initials;
+            tr.appendChild(tdInit);
 
-          const tdScore = document.createElement('td');
-          tdScore.textContent = entry.score.toLocaleString();
-          tr.appendChild(tdScore);
+            const tdScore = document.createElement('td');
+            tdScore.textContent = entry.score.toLocaleString();
+            tr.appendChild(tdScore);
 
-          const tdMsg = document.createElement('td');
-          tdMsg.textContent = entry.message;
-          tr.appendChild(tdMsg);
+            const tdMsg = document.createElement('td');
+            tdMsg.textContent = entry.message;
+            tr.appendChild(tdMsg);
 
-          leaderboardBody.appendChild(tr);
+            leaderboardBody.appendChild(tr);
+          });
         });
       };
 
@@ -131,17 +132,19 @@ document.addEventListener('DOMContentLoaded', () => {
         const initialsInput = document.getElementById('gb-initials');
         const messageInput = document.getElementById('gb-message');
 
-        const res = addGuestbookEntry(initialsInput.value, messageInput.value, unlockedScore);
-        if (res.success) {
-          initialsInput.value = '';
-          messageInput.value = '';
-          unlockedScore = null;
-          const gameScoreBadge = document.getElementById('game-score-badge');
-          if (gameScoreBadge) gameScoreBadge.style.display = 'none';
-        } else {
-          alert(res.error);
-        }
+        addGuestbookEntry(initialsInput.value, messageInput.value, unlockedScore).then(res => {
+          if (res.success) {
+            initialsInput.value = '';
+            messageInput.value = '';
+            unlockedScore = null;
+            const gameScoreBadge = document.getElementById('game-score-badge');
+            if (gameScoreBadge) gameScoreBadge.style.display = 'none';
+          } else {
+            alert(res.error);
+          }
+        });
       });
+
 
       // Listen to updates
       window.addEventListener('guestbook-updated', renderLeaderboard);

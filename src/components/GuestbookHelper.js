@@ -21,16 +21,28 @@ function getLocalEntries() {
   return [];
 }
 
-export function getLeaderboardEntries() {
+export async function getLeaderboardEntries() {
+  try {
+    const res = await fetch('/api/guestbook.php');
+    if (res.ok) {
+      const data = await res.json();
+      if (Array.isArray(data)) {
+        const merged = [...presets, ...data];
+        merged.sort((a, b) => b.score - a.score);
+        return merged.slice(0, 10);
+      }
+    }
+  } catch (e) {
+    // Fail-safe fallback to localStorage/presets
+  }
+
   const localEntries = getLocalEntries();
-  
-  // Merge, sort descending by score, slice top 10
   const merged = [...presets, ...localEntries];
   merged.sort((a, b) => b.score - a.score);
   return merged.slice(0, 10);
 }
 
-export function addGuestbookEntry(initials, message, customScore = null) {
+export async function addGuestbookEntry(initials, message, customScore = null) {
   const cleanInitials = initials.trim().toUpperCase();
   if (!/^[A-Z0-9]{3}$/.test(cleanInitials)) {
     return { success: false, error: 'Initials must be exactly 3 alphanumeric characters.' };
@@ -45,13 +57,28 @@ export function addGuestbookEntry(initials, message, customScore = null) {
     score
   };
 
+  try {
+    const res = await fetch('/api/guestbook.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(newEntry)
+    });
+    if (res.ok) {
+      const result = await res.json();
+      if (result.success) {
+        window.dispatchEvent(new CustomEvent('guestbook-updated'));
+        return { success: true, entry: result.entry };
+      }
+    }
+  } catch (e) {
+    // Fallback to local storage if API is offline or not configured yet
+  }
+
   const localEntries = getLocalEntries();
   localEntries.push(newEntry);
   localStorage.setItem('guestbook_entries', JSON.stringify(localEntries));
 
-  // Dispatch custom window event
   window.dispatchEvent(new CustomEvent('guestbook-updated'));
 
   return { success: true, entry: newEntry };
 }
-

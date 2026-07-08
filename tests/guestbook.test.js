@@ -1,4 +1,4 @@
-import { expect, test, beforeEach, vi } from 'vitest';
+import { expect, test, beforeEach } from 'vitest';
 import { calculateScore, getLeaderboardEntries, addGuestbookEntry } from '../src/components/GuestbookHelper';
 
 beforeEach(() => {
@@ -11,84 +11,82 @@ test('calculateScore calculates score correctly', () => {
   expect(score).toBeLessThanOrEqual(1000);
 });
 
-test('getLeaderboardEntries merges presets and sorts descending', () => {
+test('getLeaderboardEntries merges presets and sorts descending', async () => {
   // Add a very high score to local storage
   const highEntry = { initials: 'TOP', message: 'I am top', score: 120000 };
   localStorage.setItem('guestbook_entries', JSON.stringify([highEntry]));
 
-  const entries = getLeaderboardEntries();
+  const entries = await getLeaderboardEntries();
   expect(entries[0].initials).toBe('TOP');
   expect(entries[0].score).toBe(120000);
   expect(entries.length).toBe(4); // 3 presets + 1 local
 });
 
-test('addGuestbookEntry rejects invalid initials or messages', () => {
-
-  const r1 = addGuestbookEntry('AB', 'Valid message');
+test('addGuestbookEntry rejects invalid initials or messages', async () => {
+  const r1 = await addGuestbookEntry('AB', 'Valid message');
   expect(r1.success).toBe(false);
   expect(r1.error).toBe('Initials must be exactly 3 alphanumeric characters.');
 
-  const r2 = addGuestbookEntry('AAA', '');
+  const r2 = await addGuestbookEntry('AAA', '');
   expect(r2.success).toBe(false);
   expect(r2.error).toBe('Message cannot be empty.');
 });
 
-test('addGuestbookEntry rejects initials with punctuation, symbols, or incorrect length', () => {
-  const r1 = addGuestbookEntry('A.B', 'Valid message');
+test('addGuestbookEntry rejects initials with punctuation, symbols, or incorrect length', async () => {
+  const r1 = await addGuestbookEntry('A.B', 'Valid message');
   expect(r1.success).toBe(false);
   expect(r1.error).toBe('Initials must be exactly 3 alphanumeric characters.');
 
-  const r2 = addGuestbookEntry('!!!', 'Valid message');
+  const r2 = await addGuestbookEntry('!!!', 'Valid message');
   expect(r2.success).toBe(false);
   expect(r2.error).toBe('Initials must be exactly 3 alphanumeric characters.');
 
-  const r3 = addGuestbookEntry('AB', 'Valid message');
+  const r3 = await addGuestbookEntry('AB', 'Valid message');
   expect(r3.success).toBe(false);
   expect(r3.error).toBe('Initials must be exactly 3 alphanumeric characters.');
 
-  const r4 = addGuestbookEntry('ABCD', 'Valid message');
+  const r4 = await addGuestbookEntry('ABCD', 'Valid message');
   expect(r4.success).toBe(false);
   expect(r4.error).toBe('Initials must be exactly 3 alphanumeric characters.');
 });
 
-test('addGuestbookEntry rejects messages longer than 100 characters', () => {
+test('addGuestbookEntry rejects messages longer than 100 characters', async () => {
   const longMessage = 'A'.repeat(101);
-  const r = addGuestbookEntry('AAA', longMessage);
+  const r = await addGuestbookEntry('AAA', longMessage);
   expect(r.success).toBe(false);
   expect(r.error).toBe('Message cannot exceed 100 characters.');
 
   // exactly 100 characters should be allowed
   const exactMessage = 'A'.repeat(100);
-  const r2 = addGuestbookEntry('AAA', exactMessage);
+  const r2 = await addGuestbookEntry('AAA', exactMessage);
   expect(r2.success).toBe(true);
 });
 
-test('handles corrupted or invalid JSON in localStorage safely', () => {
+test('handles corrupted or invalid JSON in localStorage safely', async () => {
   // Corrupted JSON string
   localStorage.setItem('guestbook_entries', '{invalid_json');
   
   let entries;
-  expect(() => {
-    entries = getLeaderboardEntries();
-  }).not.toThrow();
+  await expect((async () => {
+    entries = await getLeaderboardEntries();
+  })()).resolves.not.toThrow();
   expect(entries.length).toBe(3); // just presets
 
   let addRes;
-  expect(() => {
-    addRes = addGuestbookEntry('AAA', 'Hello');
-  }).not.toThrow();
+  await expect((async () => {
+    addRes = await addGuestbookEntry('AAA', 'Hello');
+  })()).resolves.not.toThrow();
   expect(addRes.success).toBe(true);
 
   // Valid JSON but not an array
   localStorage.setItem('guestbook_entries', '{"not": "an array"}');
-  expect(() => {
-    entries = getLeaderboardEntries();
-  }).not.toThrow();
+  await expect((async () => {
+    entries = await getLeaderboardEntries();
+  })()).resolves.not.toThrow();
   expect(entries.length).toBe(3); // just presets
 
-  expect(() => {
-    addRes = addGuestbookEntry('BBB', 'Hello again');
-  }).not.toThrow();
+  await expect((async () => {
+    addRes = await addGuestbookEntry('BBB', 'Hello again');
+  })()).resolves.not.toThrow();
   expect(addRes.success).toBe(true);
 });
-
