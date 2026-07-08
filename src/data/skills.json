@@ -8,6 +8,22 @@
     "description": "Dasar-dasar manipulasi DOM, penanganan event, dan ES6 untuk membuat halaman web interaktif."
   },
   {
+    "id": "html",
+    "name": "HTML5",
+    "iconType": "html",
+    "type": "Markup",
+    "stats": "HP +60, DEF +50",
+    "description": "Struktur markup semantik halaman web menggunakan standar HTML5 modern."
+  },
+  {
+    "id": "css",
+    "name": "CSS3",
+    "iconType": "css",
+    "type": "Styling",
+    "stats": "DEF +65, RES +60",
+    "description": "Styling halaman web menggunakan flexbox, grid layout, custom properties, dan animasi retro."
+  },
+  {
     "id": "python",
     "name": "Python 3",
     "iconType": "python",
@@ -30,6 +46,22 @@
     "type": "Framework",
     "stats": "INT +55, DEF +45",
     "description": "Framework MVC PHP yang dipelajari untuk mempermudah routing, struktur MVC, dan pembuatan RESTful API."
+  },
+  {
+    "id": "dart",
+    "name": "Dart",
+    "iconType": "dart",
+    "type": "Language",
+    "stats": "AGI +50, INT +48",
+    "description": "Bahasa pemrograman OOP strongly-typed untuk pengembangan aplikasi mobile berkinerja tinggi."
+  },
+  {
+    "id": "flutter",
+    "name": "Flutter",
+    "iconType": "flutter",
+    "type": "Framework",
+    "stats": "AGI +55, DEX +50",
+    "description": "SDK framework multi-platform untuk membuat antarmuka aplikasi mobile Android dan iOS yang indah."
   },
   {
     "id": "blender",

@@ -1,8 +1,10 @@
 import { expect, test } from 'vitest';
 import skills from '../src/data/skills.json';
-import { getSkillSprite } from '../src/components/SkillSprites';test('skills json format validation', () => {
+import { getSkillSprite } from '../src/components/SkillSprites';
+
+test('skills json format validation', () => {
   expect(Array.isArray(skills)).toBe(true);
-  expect(skills.length).toBe(6);
+  expect(skills.length).toBe(10);
   expect(skills[0].id).toBe('javascript');
 });
 

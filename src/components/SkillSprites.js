@@ -5,14 +5,31 @@ const SPRITES = {
       <text x="3" y="11" font-family="'Press Start 2P', monospace" font-size="7px" fill="#000000" font-weight="bold">JS</text>
     </svg>
   `,
+  html: `
+    <svg viewBox="0 0 16 16" width="32" height="32" shape-rendering="crispEdges">
+      <path d="M2,2 h12 l-2,10 l-4,2 l-4,-2 z" fill="#e34f26" />
+      <path d="M8,2 v12 l4,-1.5 l1.5,-8.5 z" fill="#f06529" />
+      <text x="4" y="9" font-family="'Press Start 2P', monospace" font-size="5px" fill="#ffffff">&lt;&gt;</text>
+    </svg>
+  `,
+  css: `
+    <svg viewBox="0 0 16 16" width="32" height="32" shape-rendering="crispEdges">
+      <path d="M2,2 h12 l-2,10 l-4,2 l-4,-2 z" fill="#1572b6" />
+      <path d="M8,2 v12 l4,-1.5 l1.5,-8.5 z" fill="#33a9dc" />
+      <text x="5" y="10" font-family="'Press Start 2P', monospace" font-size="6px" fill="#ffffff">#</text>
+    </svg>
+  `,
   python: `
     <svg viewBox="0 0 16 16" width="32" height="32" shape-rendering="crispEdges">
-      <rect x="3" y="2" width="6" height="4" fill="#306998" />
-      <rect x="5" y="6" width="4" height="2" fill="#306998" />
+      <!-- Blue Snake -->
+      <path d="M3,2 h5 v3 h-3 v3 h-2 v-3 h-1 v-2 h2 z" fill="#3776ab" />
       <rect x="4" y="3" width="1" height="1" fill="#ffffff" />
-      <rect x="7" y="10" width="6" height="4" fill="#ffd43b" />
-      <rect x="7" y="8" width="4" height="2" fill="#ffd43b" />
-      <rect x="11" y="12" width="1" height="1" fill="#ffffff" />
+      <!-- Yellow Snake -->
+      <path d="M8,8 h3 v-3 h2 v3 h-1 v2 h-4 v-2 z" fill="#ffd343" />
+      <rect x="11" y="9" width="1" height="1" fill="#ffffff" />
+      <!-- Intersecting parts -->
+      <rect x="6" y="5" width="2" height="3" fill="#3776ab" />
+      <rect x="8" y="5" width="2" height="3" fill="#ffd343" />
     </svg>
   `,
   php: `
@@ -23,9 +40,25 @@ const SPRITES = {
   `,
   laravel: `
     <svg viewBox="0 0 16 16" width="32" height="32" shape-rendering="crispEdges">
-      <rect x="2" y="2" width="12" height="12" fill="none" stroke="#ff2d20" stroke-width="2" />
-      <rect x="5" y="5" width="6" height="6" fill="#ff2d20" />
-      <rect x="7" y="7" width="2" height="2" fill="#ffffff" />
+      <!-- Outer red background badge -->
+      <path d="M1,4 L8,1 L15,4 L15,12 L8,15 L1,12 Z" fill="#ff2d20" />
+      <!-- Inner geometric L shape -->
+      <path d="M5,5 L11,5 L11,8 L8,8 L8,11 L5,11 Z" fill="#ffffff" />
+      <rect x="7" y="7" width="2" height="2" fill="#ff2d20" />
+    </svg>
+  `,
+  dart: `
+    <svg viewBox="0 0 16 16" width="32" height="32" shape-rendering="crispEdges">
+      <path d="M8,1 L14,4 L14,12 L8,15 L2,12 L2,4 Z" fill="#00b4ab" />
+      <path d="M8,1 L14,4 L14,12 L8,15 Z" fill="#00d2c4" />
+      <path d="M8,4 L11,6 L11,10 L8,12 L5,10 L5,6 Z" fill="#ffffff" />
+    </svg>
+  `,
+  flutter: `
+    <svg viewBox="0 0 16 16" width="32" height="32" shape-rendering="crispEdges">
+      <path d="M9,2 L14,7 L11,10 L6,5 Z" fill="#02569b" />
+      <path d="M5,9 L9,13 L14,13 L8,7 Z" fill="#0175c2" />
+      <path d="M10,11 L12,13 L14,13 L11,10 Z" fill="#13b9fd" />
     </svg>
   `,
   blender: `
