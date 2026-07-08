@@ -1,7 +1,5 @@
 [
-  { "initials": "DEV", "message": "Selamat datang di Bumbu Arcade! Semoga Anda terhibur.", "score": 99900 },
-  { "initials": "ZDN", "message": "Pecahkan rekor Breakout milikku jika Anda berani!", "score": 85000 },
-  { "initials": "AAA", "message": "Peringkat pertama pasti akan menjadi milikku!", "score": 75000 },
-  { "initials": "BOT", "message": "Portofolio yang luar biasa dengan nuansa CRT retro yang bersih!", "score": 60000 },
-  { "initials": "GMR", "message": "Masukkan koin untuk melanjutkan permainan...", "score": 50000 }
+  { "initials": "DEV", "message": "01001000 01000101 01001100 01001100 01001111", "score": 99999 },
+  { "initials": "ZDN", "message": "Bumbu Studio akan segera hadir! Tetap pantau.", "score": 99998 },
+  { "initials": "GMR", "message": "Masukkan koin untuk melanjutkan...", "score": 50000 }
 ]

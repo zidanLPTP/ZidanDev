@@ -1,47 +1,72 @@
 [
   {
-    "id": "bumbu-coming-soon",
-    "name": "Project Cooking",
-    "category": "studio",
-    "isPlaceholder": true,
-    "description": "Bumbu Studio's next game is in active development. Insert coin to play soon!",
-    "link": "#",
-    "image": ""
-  },
-  {
-    "id": "robot-mech",
-    "name": "Sci-Fi Mech",
-    "category": "3d",
-    "isPlaceholder": false,
-    "description": "A low-poly retro sci-fi robot mech modeled in Blender.",
-    "modelSrc": "models/mech.glb",
-    "image": ""
-  },
-  {
-    "id": "dynamic-scraper",
-    "name": "Dynamic Web Scraper",
+    "id": "honusign",
+    "name": "HonuSign",
     "category": "random",
     "isPlaceholder": false,
-    "description": "Skrip scraping data web dinamis berbasis Python menggunakan BeautifulSoup dan Selenium.",
-    "link": "https://github.com/zidanLPTP/dynamic-scraper",
+    "description": "Platform edukasi SIBI interaktif tunarungu dengan feedback visual penuh, gamifikasi 3 mini-games, dan deteksi isyarat tangan real-time AI via MediaPipe di browser (Privacy-First).",
+    "tech": ["Laravel 13", "Livewire 4", "Tailwind CSS 4", "MediaPipe", "TensorFlow.js"],
+    "link": "https://github.com/ilyasmanaja/HonuSign",
     "image": ""
   },
   {
-    "id": "weather-cli",
-    "name": "Retro Weather App",
+    "id": "ieee-sbunri",
+    "name": "IEEE Student Branch Management",
     "category": "random",
     "isPlaceholder": false,
-    "description": "A Javascript terminal tool showcasing weather updates with ASCII visual representations.",
-    "link": "https://github.com/zidanLPTP/weather-cli",
+    "description": "Sistem manajemen komprehensif organisasi IEEE dengan RBAC aman, dashboard analitik, dan integrasi penyimpanan media cloud berskala besar via Cloudinary.",
+    "tech": ["Laravel 12", "Tailwind CSS 4", "Blade Templates", "Cloudinary"],
+    "link": "https://github.com/zidanLPTP/IEEESBUNRI-LARAVEL",
     "image": ""
   },
   {
-    "id": "simple-inventory-php",
-    "name": "Simple Inventory DB",
+    "id": "techgo",
+    "name": "TechGo EdTech",
     "category": "random",
     "isPlaceholder": false,
-    "description": "Sistem manajemen inventaris barang sederhana berbasis PHP native dan database MySQL.",
-    "link": "https://github.com/zidanLPTP/simple-inventory",
+    "description": "Platform inovatif edukasi teknologi dunia yang mengintegrasikan antarmuka 3D Globe interaktif dengan sistem kuis adaptif berbasis AI Google Gemini.",
+    "tech": ["React 19", "Three.js", "Node.js Express", "Google Gemini API"],
+    "link": "https://github.com/zidanLPTP/TechGo",
+    "image": ""
+  },
+  {
+    "id": "kse-unripedia",
+    "name": "KSE Unripedia Scraper",
+    "category": "random",
+    "isPlaceholder": false,
+    "description": "Portal informasi beasiswa statis terintegrasi dengan mesin Python Web Scraper paralel (Threaded) untuk mengumpulkan data lomba eksternal otomatis.",
+    "tech": ["Vanilla JS", "Bootstrap 5.3", "Python 3", "BeautifulSoup4"],
+    "link": "https://kseunripedia.my.id/",
+    "image": ""
+  },
+  {
+    "id": "kepegawaian-teknik",
+    "name": "Sistem Kepegawaian Teknik",
+    "category": "random",
+    "isPlaceholder": false,
+    "description": "Aplikasi manajemen administrasi internal untuk pengajuan surat tugas, kenaikan pangkat, dan verifikasi dokumen bertingkat oleh operator dan pimpinan.",
+    "tech": ["Laravel 12", "Blade", "MySQL", "PHPUnit"],
+    "link": "https://github.com/zidanLPTP/sistem-kepegawaian-teknik",
+    "image": ""
+  },
+  {
+    "id": "ascend-game",
+    "name": "AscendGame Dungeon Crawler",
+    "category": "random",
+    "isPlaceholder": false,
+    "description": "Game RPG petualangan bawah tanah 2D berbasis Java dengan mekanika pertempuran giliran (turn-based), manajemen party, inventaris, dan sistem skill.",
+    "tech": ["Java SE", "Custom Engine", "Aset Audio/Grafis"],
+    "link": "https://github.com/zidanLPTP/dungeon-crawler",
+    "image": ""
+  },
+  {
+    "id": "reservasi-hotel",
+    "name": "Aplikasi Reservasi Hotel",
+    "category": "random",
+    "isPlaceholder": false,
+    "description": "Sistem manajemen check-in/check-out tamu hotel, pemesanan kamar, dan status kebersihan (housekeeping) berbasis desktop.",
+    "tech": ["Java SE", "JDBC", "MySQL Database"],
+    "link": "https://github.com/zidanLPTP/reservasi-hotel",
     "image": ""
   }
 ]

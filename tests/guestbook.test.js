@@ -19,10 +19,11 @@ test('getLeaderboardEntries merges presets and sorts descending', () => {
   const entries = getLeaderboardEntries();
   expect(entries[0].initials).toBe('TOP');
   expect(entries[0].score).toBe(120000);
-  expect(entries.length).toBe(6); // 5 presets + 1 local
+  expect(entries.length).toBe(4); // 3 presets + 1 local
 });
 
 test('addGuestbookEntry rejects invalid initials or messages', () => {
+
   const r1 = addGuestbookEntry('AB', 'Valid message');
   expect(r1.success).toBe(false);
   expect(r1.error).toBe('Initials must be exactly 3 alphanumeric characters.');
@@ -70,7 +71,7 @@ test('handles corrupted or invalid JSON in localStorage safely', () => {
   expect(() => {
     entries = getLeaderboardEntries();
   }).not.toThrow();
-  expect(entries.length).toBe(5); // just presets
+  expect(entries.length).toBe(3); // just presets
 
   let addRes;
   expect(() => {
@@ -83,7 +84,7 @@ test('handles corrupted or invalid JSON in localStorage safely', () => {
   expect(() => {
     entries = getLeaderboardEntries();
   }).not.toThrow();
-  expect(entries.length).toBe(5); // just presets
+  expect(entries.length).toBe(3); // just presets
 
   expect(() => {
     addRes = addGuestbookEntry('BBB', 'Hello again');
