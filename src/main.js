@@ -231,8 +231,15 @@ document.addEventListener('DOMContentLoaded', () => {
       charName.textContent = char.name;
       charDesc.textContent = char.description;
 
-      // Update Portrait
-      portraitBox.innerHTML = getCharacterSprite(id);
+      // Update Portrait with retro photo filter and fallback
+      portraitBox.innerHTML = `
+        <div class="pixelated-photo-container ${id}">
+          <img src="/zidan.jpg" class="retro-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+          <div class="fallback-sprite" style="display: none;">
+            ${getCharacterSprite(id)}
+          </div>
+        </div>
+      `;
 
       // Render stats bars with dynamic widths
       statsContainer.innerHTML = '';
