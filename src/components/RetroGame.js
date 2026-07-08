@@ -265,11 +265,27 @@ export class RetroGame {
       return;
     }
 
-    // Draw paddle
-    this.ctx.fillStyle = "magenta";
-    this.ctx.fillRect(this.paddleX, this.height - this.paddleHeight, this.paddleWidth, this.paddleHeight);
+
+    // Draw plate (piring) paddle
+    const px = this.paddleX;
+    const py = this.height - this.paddleHeight;
+    const pw = this.paddleWidth;
+    const ph = this.paddleHeight;
+
+    // Body piring abu-abu terang / putih seng
+    this.ctx.fillStyle = "#e0e0e0";
+    this.ctx.fillRect(px + 4, py + 2, pw - 8, ph - 2); // bagian tengah piring
+    this.ctx.fillRect(px, py, 4, 3); // bibir piring kiri
+    this.ctx.fillRect(px + 2, py + 2, 2, 2);
+    this.ctx.fillRect(px + pw - 4, py, 4, 3); // bibir piring kanan
+    this.ctx.fillRect(px + pw - 4, py + 2, 2, 2);
+
+    // Garis hiasan piring tradisional biru
+    this.ctx.fillStyle = "#0078d4";
+    this.ctx.fillRect(px + 6, py + 4, pw - 12, 1.5);
 
     // Draw bricks
+
     for (let c = 0; c < this.brickCols; c++) {
       for (let r = 0; r < this.brickRows; r++) {
         const b = this.bricks[c][r];
@@ -316,11 +332,25 @@ export class RetroGame {
       return;
     }
 
-    // Draw ball (only when game is started)
-    this.ctx.beginPath();
-    this.ctx.arc(this.ballX, this.ballY, this.ballRadius, 0, Math.PI * 2);
-    this.ctx.fillStyle = "cyan";
-    this.ctx.fill();
-    this.ctx.closePath();
+    // Draw seasoning packet (bungkusan bumbu) ball
+    const bx = this.ballX - 4;
+    const by = this.ballY - 4;
+    const size = 8;
+
+    // Warna dasar kuning kemasan
+    this.ctx.fillStyle = "#ffd343";
+    this.ctx.fillRect(bx, by, size, size);
+
+    // Label tengah merah
+    this.ctx.fillStyle = "#ff2d20";
+    this.ctx.fillRect(bx + 2, by + 2, size - 4, size - 4);
+
+    // Efek gerigi kemasan atas dan bawah
+    this.ctx.fillStyle = "#b58d10";
+    for (let i = 0; i < size; i += 2) {
+      this.ctx.fillRect(bx + i, by, 1, 1);
+      this.ctx.fillRect(bx + i + 1, by + size - 1, 1, 1);
+    }
   }
+
 }

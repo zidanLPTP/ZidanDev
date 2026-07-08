@@ -1,4 +1,4 @@
-import { expect, test } from 'vitest';
+import { expect, test, vi } from 'vitest';
 import { RetroGame } from '../src/components/RetroGame';
 
 test('verify physics update bounds calculations', () => {
@@ -48,4 +48,36 @@ test('RetroGame initialization and reset parameters', () => {
   canvas.remove();
   scoreSpan.remove();
   livesSpan.remove();
+});
+
+test('RetroGame custom drawing functions run without errors', () => {
+  const canvas = document.createElement('canvas');
+  canvas.id = 'gameCanvasMock';
+  canvas.width = 240;
+  canvas.height = 240;
+  document.body.appendChild(canvas);
+
+  const game = new RetroGame('gameCanvasMock', null, null, null);
+  
+  // Mock canvas context functions to prevent jsdom HTML5 canvas null-pointer errors
+  game.ctx = {
+    clearRect: vi.fn(),
+    fillText: vi.fn(),
+    fillRect: vi.fn(),
+    beginPath: vi.fn(),
+    arc: vi.fn(),
+    fill: vi.fn(),
+    closePath: vi.fn()
+  };
+
+  const fillRectSpy = vi.spyOn(game.ctx, 'fillRect');
+  
+  // Call draw
+  game._draw();
+  
+  // Verify fillRect is called (representing drawing plate/bricks/packet)
+  expect(fillRectSpy).toHaveBeenCalled();
+  
+  game.destroy();
+  canvas.remove();
 });
