@@ -1,108 +1,109 @@
-# 🕹️ Retro Arcade Portfolio Website
+# 🕹️ Situs Web Portofolio Retro Arcade
 
-Welcome to **Bumbu Arcade**, a high-fidelity, interactive developer portfolio website styled after classic 80s arcade cabinets and RPG interfaces. Built using modern web technologies with a lightweight, dependency-free code architecture.
+Selamat datang di **Bumbu Arcade**, sebuah situs web portofolio pengembang interaktif berakurasi tinggi yang dirancang dengan gaya kabinet arkade klasik tahun 80-an dan antarmuka RPG. Dibangun menggunakan teknologi web modern dengan arsitektur kode yang ringan dan bebas ketergantungan framework (dependency-free).
 
-This portfolio features a hybrid interface: a gorgeous visual grid UI and a fully functional floating command-line terminal widget.
-
----
-
-## 🚀 Live Demo & Repository
-- **Target URL**: [https://github.com/zidanLPTP/ZidanDev.git](https://github.com/zidanLPTP/ZidanDev.git)
-- **Local Dev Server**: Run `npm run dev` to start locally.
+Portofolio ini menampilkan antarmuka hibrida: antarmuka visual grid yang indah dan widget terminal baris perintah (CLI) melayang yang berfungsi penuh.
 
 ---
 
-## 👾 Core Features
-
-### 1. Interactive CLI Terminal Widget (`<retro-terminal>`)
-Floating terminal drawer placed in the bottom right corner (toggled via backtick `` ` `` key or mobile touch button `[ >_ CLI_MODE ]` with `48px` touch target).
-- **Tab Autocomplete Cycling**: Case-insensitive command and argument completion that cycles sequentially.
-- **Command History**: Navigate previous commands using Arrow Up/Down keys.
-- **Contextual Autocomplete Routing**:
-  - `project <id>` & `use <id>` autocomplete targets project IDs from `projects.json`.
-  - `inspect <id>` autocompletes skill IDs from `skills.json`.
-- **Command Executions**:
-  - `help` - Lists instructions.
-  - `about` / `socials` - Developer bio & social channels.
-  - `projects` - Print structured project listings.
-  - `project <id>` - Inspect project specifications.
-  - `use <id>` - Securely opens external link in a new tab (`noopener,noreferrer`).
-  - `inventory` / `inspect <item-id>` - Read skills data.
-  - `quests` - List all active and completed quests.
-  - `guilds` - List active guilds and faction associations.
-  - `status` - Show active character stats.
-  - `select <class-id>` - Switch active character class.
-  - `guestbook` / `sign <init> <msg>` - Interact with guestbook.
-  - `clear` - Clear console logs.
-
-### 2. RPG Character Status & Selection (About Me)
-Interactive profile bio page designed like an RPG status screen.
-- **Dynamic Character Selection**: Choose between classes (Developer, 3D Artist, Gamer) to swap portraits, attributes, and descriptions.
-- **Aesthetic Progress Bars**: Renders HP, MP, INT, STR, and AGI attributes using sharp pixel blocks styled with repeating linear gradients.
-- **Synchronized CLI select**: Use `select <class>` to change choices from the terminal, which triggers immediate GUI redraws.
-
-### 3. 3D Blender Art Showcase & Modal Viewer
-Showcases 3D modeling work natively using `.glb` assets.
-- **Lazy-Loaded 3D Engine**: `@google/model-viewer` and `three.js` are dynamically imported on-demand when a user clicks a 3D asset card, ensuring fast initial page loads.
-- **Accessible Modal Interactions**: Backdrop click closing, body scroll locking, and keyboard `Escape` key close listeners.
-
-### 4. RPG Skills Inventory (Backpack Grid)
-Technical skills are displayed as items inside a 4x4 inventory grid backpack.
-- **Custom Pixel Art SVGs**: Custom pixelated vector icons (potion for languages, sword for 3D modeling, shield for styling) rendering sharp-pixel borders.
-- **Inventory Detail Sheet**: Click slots to update the side panel with item type, rarity rank (LEGENDARY, EPIC, RARE), attributes (INT, STR, DEF stats), and usage notes.
-- **Responsive mobile grid**: Flex row layout on desktop, stacking into vertical columns on screens under `768px`.
-
-### 5. RPG Quest Log & Guild Factions (Timeline)
-Chronicles work experience, educational history, and organization memberships as RPG quests.
-- **Active & Completed Quests Tab Controls**: A visual interface separating active tasks from completed achievements.
-- **Accordion Misi**: Click quest titles to dynamically expand and reveal the quest giver (Guild/Faction), dates, description, and EXP rewards.
-- **Tab State Auto-Reset**: Automatically clears active accordion expanded states when switching tabs.
-- **Empty Guilds Fallback**: If no active guilds are present, the CLI command handles a fallback response message.
-
-### 6. Arcade Guestbook & Leaderboard (Contact Form)
-A contact guestbook styled as a classic High-Score Board sorting entries by score descending.
-- **Gamified Scoring**: Scores calculate dynamically based on message length (`length * 100` + random bonus), incentivizing detailed entries.
-- **Safe Rendering (XSS Protection)**: Sanitizes input by strictly rendering messages/initials using `.textContent` / `.innerText` to prevent HTML/Script injections.
-- **Event-Driven Synchronization**: Updates visually in real-time across CLI and GUI components upon custom event signals.
-- **Local Storage Persistence**: Saves entries locally using try-catch blocks to prevent crashes on invalid storage data.
-
-### 5. Retro CRT Monitor Aesthetics
-- **CRT Overlay Scanlines**: Faux phosphors and horizontal scanline grids.
-- **Flicker Overlay**: Electrical CRT monitor screen flicker animation.
-- **Pixel Typography**: Loaded Google Fonts `Press Start 2P` & `VT323` matching retro system configurations.
+## 🚀 Live Demo & Repositori
+- **Tautan Repositori**: [https://github.com/zidanLPTP/ZidanDev.git](https://github.com/zidanLPTP/ZidanDev.git)
+- **Server Pengembangan Lokal**: Jalankan `npm run dev` to start locally.
 
 ---
 
-## 🛠️ Tech Stack & Architecture
+## 👾 Fitur Utama
+
+### 1. Widget Terminal CLI Interaktif (`<retro-terminal>`)
+Laci terminal melayang di pojok kanan bawah (dapat dialihkan melalui tombol backtick `` ` `` atau tombol sentuh seluler `[ >_ CLI_MODE ]` dengan target sentuh `48px`).
+- **Siklus Autocomplete Tab**: Penyelesaian perintah dan argumen yang tidak sensitif terhadap huruf besar/kecil (case-insensitive) yang berputar secara berurutan.
+- **Riwayat Perintah**: Menavigasi perintah sebelumnya menggunakan tombol Panah Atas/Bawah.
+- **Perutean Autocomplete Kontekstual**:
+  - `project <id>` & `use <id>` otomatis melengkapi target ID proyek dari `projects.json`.
+  - `inspect <id>` otomatis melengkapi ID keahlian dari `skills.json`.
+- **Eksekusi Perintah**:
+  - `help` - Menampilkan panduan instruksi.
+  - `about` / `socials` - Biografi pengembang & saluran sosial.
+  - `projects` - Mencetak daftar proyek terstruktur.
+  - `project <id>` - Memeriksa spesifikasi proyek.
+  - `use <id>` - Membuka tautan eksternal secara aman di tab baru (`noopener,noreferrer`).
+  - `inventory` / `inspect <item-id>` - Membaca data keahlian.
+  - `quests` - Menampilkan semua misi aktif dan selesai.
+  - `guilds` - Menampilkan guild aktif dan asosiasi faksi.
+  - `status` - Menampilkan statistik karakter aktif.
+  - `select <class-id>` - Mengubah kelas karakter aktif.
+  - `guestbook` / `sign <init> <msg>` - Berinteraksi dengan buku tamu.
+  - `clear` - Membersihkan log konsol.
+  - `reset-guestbook` - Mereset database lokal buku tamu.
+
+### 2. Status & Pemilihan Karakter RPG (Tentang Saya)
+Halaman biografi profil interaktif yang dirancang seperti layar status RPG.
+- **Pemilihan Karakter Dinamis**: Pilih di antara kelas (Pengembang, Seniman 3D, Gamer) untuk mengubah potret, atribut, dan deskripsi secara dinamis.
+- **Bilah Kemajuan Estetis**: Merender atribut HP, MP, INT, STR, dan AGI menggunakan blok piksel tajam yang bergaya dengan gradien linier berulang.
+- **Sinkronisasi CLI select**: Gunakan `select <class>` untuk mengubah pilihan dari terminal, yang langsung memicu pembaruan visual pada GUI.
+
+### 3. Galeri Seni 3D Blender & Penampil Modal
+Menampilkan karya pemodelan 3D secara langsung menggunakan aset `.glb`.
+- **Mesin 3D Lazy-Loaded**: Komponen `@google/model-viewer` dan `three.js` diimpor secara dinamis saat pengguna mengklik kartu aset 3D, memastikan pemuatan halaman awal yang cepat.
+- **Interaksi Modal yang Aksesibel**: Penutupan melalui klik latar belakang (backdrop), penguncian gulir halaman, dan penutupan dengan tombol keyboard `Escape`.
+
+### 4. Inventaris Keahlian RPG (Tas Ransel)
+Keahlian teknis ditampilkan sebagai item di dalam grid inventaris ransel 4x4.
+- **SVG Seni Piksel Kustom**: Ikon vektor piksel kustom yang melambangkan teknologi asli (misal: perisai oranye untuk HTML, perisai biru untuk CSS, logo ular piksel untuk Python, dll.).
+- **Lembar Detail Inventaris**: Klik slot untuk memperbarui panel samping dengan tipe item, statistik atribut (INT, STR, DEF), dan catatan deskripsi.
+- **Kisi Responsif**: Tata letak baris flex pada desktop, yang menumpuk menjadi kolom vertikal pada layar di bawah `768px`.
+
+### 5. Log Misi RPG & Faksi Guild (Timeline)
+Mencatat pengalaman kerja, riwayat pendidikan, dan keanggotaan organisasi sebagai misi RPG.
+- **Kontrol Tab Misi Aktif & Selesai**: Antarmuka visual yang memisahkan tugas aktif dari pencapaian yang telah diselesaikan.
+- **Akordeon Misi**: Klik judul misi untuk memperluas secara dinamis dan menampilkan pemberi misi (Guild/Faksi), tanggal, deskripsi, dan hadiah EXP.
+- **Reset Otomatis Tab**: Secara otomatis membersihkan status akordeon yang diperluas saat beralih tab.
+- **Pesan Cadangan Guild Kosong**: Jika tidak ada guild aktif yang terdaftar, terminal CLI akan menampilkan pesan cadangan yang cerdas.
+
+### 6. Buku Tamu Arkade & Leaderboard (Formulir Kontak)
+Buku tamu kontak yang dirancang sebagai Papan Skor Klasik yang mengurutkan entri berdasarkan skor tertinggi secara menurun.
+- **Skor Gamifikasi**: Skor dihitung secara dinamis berdasarkan panjang pesan (`panjang * 100` + bonus acak) untuk mendorong entri yang detail.
+- **Perenderaan Aman (Perlindungan XSS)**: Membersihkan input dengan merender pesan/inisial menggunakan `.textContent` / `.innerText` untuk mencegah injeksi HTML/Script.
+- **Sinkronisasi Berbasis Event**: Memperbarui visual secara real-time di seluruh komponen CLI dan GUI saat menerima sinyal event kustom.
+- **Penyimpanan Lokal (Local Storage)**: Menyimpan entri secara lokal dengan blok try-catch untuk mencegah crash pada data penyimpanan yang tidak valid.
+
+### 7. Estetika Monitor CRT Retro
+- **Scanline CRT**: Efek fosfor buatan dan kisi scanline horizontal.
+- **Efek Flickering**: Animasi flicker layar monitor CRT listrik.
+- **Tipografi Piksel**: Memuat Google Fonts `Press Start 2P` & `VT323` yang cocok dengan konfigurasi sistem retro.
+
+---
+
+## 🛠️ Stack Teknologi & Arsitektur
 
 - **Bundler & Server**: Vite
-- **Logic**: Vanilla JS (Custom Web Elements, ES Modules)
-- **Styling**: Vanilla CSS (Variables, Flexbox, CSS Grid)
-- **3D Render**: Google `@google/model-viewer` & `three.js` (Lazy-loaded)
-- **Testing**: Vitest with `jsdom` (TDD verification)
-- **Design Philosophy**: **Ponytail Style** (Zero framework boilerplate, standard web APIs, minimal lines of code).
+- **Logika**: Vanilla JS (Custom Web Elements, ES Modules)
+- **Gaya**: Vanilla CSS (Variabel, Flexbox, CSS Grid)
+- **Render 3D**: Google `@google/model-viewer` & `three.js` (Lazy-loaded)
+- **Pengujian**: Vitest dengan `jsdom` (Verifikasi TDD)
+- **Filosofi Desain**: **Gaya Ponytail** (Tanpa boilerplate framework, menggunakan API standar web, baris kode minimal).
 
 ---
 
-## 🧪 Running Tests & Development
+## 🧪 Menjalankan Pengujian & Pengembangan
 
-Start the development server:
+Mulai server pengembangan:
 ```bash
 npm run dev
 ```
 
-Run the unit and integration test suite:
+Jalankan rangkaian pengujian unit dan integrasi:
 ```bash
 npm run test
 ```
 
-The test coverage validates:
-- Autocomplete routing logic
-- Space-preserving CLI argument parsing
-- XSS prevention escaping
-- High-score sorting & JSON structure schemas
-- Card markup generation
-- Quest schema validation and kebab-case ID consistency
-- Tab-reset accordion click handlers and mock UI rendering
-- Character JSON dataset schemas and SVG icon helper outputs
-- Character select CLI status console visual rendering and string word-wraps
+Cakupan pengujian memvalidasi:
+- Logika perutean autocomplete.
+- Analisis argumen CLI yang mempertahankan spasi.
+- Pencegahan celah keamanan XSS.
+- Pengurutan skor tinggi & skema struktur JSON.
+- Pembuatan markup kartu proyek.
+- Validasi skema misi dan konsistensi ID kebab-case.
+- Penanganan klik akordeon dan rendering mock UI.
+- Skema data JSON karakter dan keluaran ikon SVG.
+- Rendering konsol status CLI seleksi karakter dan pemotongan baris string.

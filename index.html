@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bumbu Studio & Art Portfolio</title>
+  <title>Portofolio Seni & Bumbu Studio</title>
   <link rel="icon" type="image/svg+xml" href="/icon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,25 +14,25 @@
 <body>
   <div id="crt-overlay"></div>
   <header style="text-align: center; margin-bottom: 30px;">
-    <h1 class="blink-fast" style="font-size: 2rem;">BUMBU ARCADE SYSTEM</h1>
+    <h1 class="blink-fast" style="font-size: 2rem;">SISTEM BUMBU ARCADE</h1>
   </header>
   <main id="app">
 
     <!-- 1. CHARACTER STATUS -->
     <section class="grid-section">
-      <h2 style="font-size: 1.5rem; border-bottom: 2px solid var(--text-cyan); padding-bottom: 10px; margin-bottom: 20px;">[ CHARACTER STATUS ]</h2>
+      <h2 style="font-size: 1.5rem; border-bottom: 2px solid var(--text-cyan); padding-bottom: 10px; margin-bottom: 20px;">[ STATUS KARAKTER ]</h2>
       <div class="char-select-layout">
         <div class="char-left-panel">
           <div class="char-buttons">
-            <button class="char-btn active" data-char="developer">[ DEVELOPER ]</button>
-            <button class="char-btn" data-char="artist">[ 3D ARTIST ]</button>
+            <button class="char-btn active" data-char="developer">[ PENGEMBANG ]</button>
+            <button class="char-btn" data-char="artist">[ SENIMAN 3D ]</button>
             <button class="char-btn" data-char="gamer">[ GAMER ]</button>
           </div>
           <div id="char-portrait" class="char-portrait-box"></div>
         </div>
         <div class="char-right-panel">
           <h3 id="char-name" class="char-title-name">SOFTWARE DEVELOPER</h3>
-          <p id="char-desc" class="char-bio-desc">Loading biography...</p>
+          <p id="char-desc" class="char-bio-desc">Memuat biografi...</p>
           <div id="char-stats-container" class="char-stats-grid"></div>
         </div>
       </div>
@@ -40,11 +40,11 @@
 
     <!-- 2. RPG SKILLS INVENTORY -->
     <section class="grid-section">
-      <h2 style="font-size: 1.5rem; border-bottom: 2px solid var(--text-yellow); padding-bottom: 10px; margin-bottom: 20px;">[ RPG SKILLS INVENTORY ]</h2>
+      <h2 style="font-size: 1.5rem; border-bottom: 2px solid var(--text-yellow); padding-bottom: 10px; margin-bottom: 20px;">[ INVENTARIS KEAHLIAN ]</h2>
       <div class="inventory-layout">
         <div id="inventory-grid" class="inventory-grid"></div>
         <div id="inventory-details" class="inventory-details">
-          <p class="blink-fast text-yellow" style="text-align: center; margin-top: 50px;">[ SELECT AN ITEM TO INSPECT ]</p>
+          <p class="blink-fast text-yellow" style="text-align: center; margin-top: 50px;">[ PILIH ITEM UNTUK DIPERIKSA ]</p>
         </div>
       </div>
     </section>
@@ -58,23 +58,23 @@
 
     <!-- 3b. 3D BLENDER ART -->
     <section class="grid-section">
-      <h2 style="font-size: 1.5rem; border-bottom: 2px solid var(--text-cyan); padding-bottom: 10px; margin-bottom: 20px;">[ 3D BLENDER ART ]</h2>
+      <h2 style="font-size: 1.5rem; border-bottom: 2px solid var(--text-cyan); padding-bottom: 10px; margin-bottom: 20px;">[ 3D BLENDER ]</h2>
       <div id="blender-grid" class="cards-container"></div>
     </section>
 
     <!-- 3c. RANDOM PROJECTS -->
     <section class="grid-section">
-      <h2 style="font-size: 1.5rem; border-bottom: 2px solid var(--text-yellow); padding-bottom: 10px; margin-bottom: 20px;">[ RANDOM PROJECTS ]</h2>
+      <h2 style="font-size: 1.5rem; border-bottom: 2px solid var(--text-yellow); padding-bottom: 10px; margin-bottom: 20px;">[ PROYEK LAINNYA ]</h2>
       <div id="random-grid" class="cards-container"></div>
     </section>
 
     <!-- 4. RPG QUEST LOG -->
     <section class="grid-section">
-      <h2 style="font-size: 1.5rem; border-bottom: 2px solid var(--text-cyan); padding-bottom: 10px; margin-bottom: 20px;">[ RPG QUEST LOG ]</h2>
+      <h2 style="font-size: 1.5rem; border-bottom: 2px solid var(--text-cyan); padding-bottom: 10px; margin-bottom: 20px;">[ LOG MISI ]</h2>
       <div class="quest-log-layout">
         <div class="quest-tabs">
-          <button class="quest-tab-btn active" data-tab="active">[ ACTIVE QUESTS ]</button>
-          <button class="quest-tab-btn" data-tab="completed">[ COMPLETED QUESTS ]</button>
+          <button class="quest-tab-btn active" data-tab="active">[ MISI AKTIF ]</button>
+          <button class="quest-tab-btn" data-tab="completed">[ MISI SELESAI ]</button>
         </div>
         <div id="quest-list" class="quest-list"></div>
       </div>
@@ -82,40 +82,42 @@
 
     <!-- 5. ARCADE GUESTBOOK -->
     <section class="grid-section">
-      <h2 style="font-size: 1.5rem; border-bottom: 2px solid var(--text-magenta); padding-bottom: 10px; margin-bottom: 20px;">[ ARCADE GUESTBOOK ]</h2>
+      <h2 style="font-size: 1.5rem; border-bottom: 2px solid var(--text-magenta); padding-bottom: 10px; margin-bottom: 20px;">[ BUKU TAMU ]</h2>
       <div class="guestbook-layout">
         <div class="leaderboard-panel" style="flex: 1.2;">
-          <h3 class="blink-slow text-cyan" style="text-align: center; margin-bottom: 15px; font-family: var(--font-title); font-size: 1.2rem;">TOP 10 PLAYERS</h3>
+          <h3 class="blink-slow text-cyan" style="text-align: center; margin-bottom: 15px; font-family: var(--font-title); font-size: 1.2rem;">10 PEMAIN TERATAS</h3>
           <table id="leaderboard-table" class="retro-table">
             <thead>
               <tr>
                 <th style="width: 15%;">RNK</th>
                 <th style="width: 25%;">INIT</th>
-                <th style="width: 25%;">SCORE</th>
-                <th style="width: 35%;">MESSAGE</th>
+                <th style="width: 25%;">SKOR</th>
+                <th style="width: 35%;">PESAN</th>
               </tr>
             </thead>
             <tbody id="leaderboard-body"></tbody>
           </table>
         </div>
         <div class="guestbook-form-panel" style="flex: 0.9;">
-          <h3 style="color: var(--text-yellow); margin-bottom: 15px; font-family: var(--font-title); font-size: 1.1rem;">[ SIGN THE LEADERBOARD ]</h3>
+          <h3 style="color: var(--text-yellow); margin-bottom: 15px; font-family: var(--font-title); font-size: 1.1rem;">[ ISI PAPAN SKOR ]</h3>
           
           <!-- Game Score Badge Hook -->
           <div id="game-score-badge" style="display: none; background-color: #111; border: 2px dashed var(--text-magenta); padding: 8px; margin-bottom: 15px; font-family: var(--font-title); font-size: 0.7rem; color: var(--text-magenta); text-align: center;">
-            [ 🏆 UNLOCKED GAME SCORE: <span id="game-score-val">0</span> PTS ]
+            [ 🏆 SKOR GAME TERBUKA: <span id="game-score-val">0</span> PTS ]
           </div>
           
           <form id="guestbook-form" autocomplete="off">
             <div class="form-group">
-              <label for="gb-initials">YOUR INITIALS (3 CHARS):</label>
+              <label for="gb-initials">INISIAL ANDA (3 KARAKTER):</label>
               <input type="text" id="gb-initials" maxlength="3" required placeholder="AAA" style="text-transform: uppercase;" />
             </div>
             <div class="form-group" style="margin-top: 15px;">
-              <label for="gb-message">YOUR NOTE/MESSAGE (MAX 100 CHARS):</label>
-              <textarea id="gb-message" maxlength="100" required placeholder="ENTER MESSAGE..."></textarea>
+              <label for="gb-message">CATATAN/PESAN ANDA (MAKS 100 KARAKTER):</label>
+              <textarea id="gb-message" maxlength="100" required placeholder="MASUKKAN PESAN..."></textarea>
             </div>
-            <button type="submit" class="gb-submit-btn">[ INSERT COIN & SUBMIT ]</button>
+            <div class="form-group-btn" style="margin-top: 15px;">
+              <button type="submit" class="gb-submit-btn">[ MASUKKAN KOIN & KIRIM ]</button>
+            </div>
           </form>
         </div>
       </div>
@@ -123,27 +125,27 @@
 
     <!-- 6. CONTACT CHANNELS -->
     <section class="grid-section">
-      <h2 style="font-size: 1.5rem; border-bottom: 2px solid var(--text-magenta); padding-bottom: 10px; margin-bottom: 20px;">[ COMM CHANNELS ]</h2>
+      <h2 style="font-size: 1.5rem; border-bottom: 2px solid var(--text-magenta); padding-bottom: 10px; margin-bottom: 20px;">[ SALURAN KOMUNIKASI ]</h2>
       <div class="contact-channels-panel">
         <div class="contact-links">
           <a href="https://github.com/zidanLPTP" target="_blank" rel="noopener noreferrer" class="contact-link-item">
             <div class="contact-label">> GITHUB</div>
             <div class="contact-val">github.com/zidanLPTP</div>
           </a>
-          <a href="https://instagram.com/zidan.lptp" target="_blank" rel="noopener noreferrer" class="contact-link-item">
+          <a href="https://instagram.com/fathinn_ny" target="_blank" rel="noopener noreferrer" class="contact-link-item">
             <div class="contact-label">> INSTAGRAM</div>
-            <div class="contact-val">@zidan.lptp</div>
+            <div class="contact-val">@fathinn_ny</div>
           </a>
-          <a href="mailto:zidan@example.com" class="contact-link-item">
+          <a href="mailto:[EMAIL_ADDRESS]" class="contact-link-item">
             <div class="contact-label">> EMAIL</div>
-            <div class="contact-val">zidan@example.com</div>
+            <div class="contact-val">zidanlptp@gmail.com</div>
           </a>
         </div>
       </div>
     </section>
 
   </main>
-  <button id="game-toggle" class="cli-toggle-btn" style="left: 20px; right: auto; z-index: 999;">[ 🎮 GAME_MODE ]</button>
+  <button id="game-toggle" class="cli-toggle-btn" style="left: 20px; right: auto; z-index: 999;">[ 🎮 MODE_GAME ]</button>
   <div id="game-backdrop" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); z-index: 997;"></div>
   <div id="game-panel" style="transform: translate(-50%, 150vh);">
     <div class="terminal-header">
@@ -153,11 +155,11 @@
     <div class="terminal-body">
       <canvas id="game-canvas" width="280" height="180" tabindex="0"></canvas>
       <div class="game-stats">
-        <span>SCORE: <span id="game-score">000</span></span>
-        <span>LIVES: <span id="game-lives">3</span></span>
+        <span>SKOR: <span id="game-score">000</span></span>
+        <span>NYAWA: <span id="game-lives">3</span></span>
       </div>
       <div class="game-instructions">
-        [ A/D / Panah Kiri-Kanan / Drag Layar untuk Bergerak ]
+        [ A/D / Panah Kiri-Kanan / Geser Layar untuk Bergerak ]
       </div>
     </div>
   </div>

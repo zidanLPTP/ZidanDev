@@ -29,22 +29,22 @@ test('RetroTerminal executes guestbook and sign commands correctly', () => {
   terminal.executeCommand('guestbook');
   expect(lines.length).toBeGreaterThan(0);
   expect(lines[0]).toBe("============================================================");
-  expect(lines[1]).toBe("RANK  INIT  SCORE   MESSAGE");
+  expect(lines[1]).toBe("PERINGKAT  INISIAL  SKOR   PESAN");
 
   lines.length = 0; // reset lines
 
   // Test sign command with missing arguments
   terminal.executeCommand('sign ABC');
-  expect(lines[0]).toBe("Usage: sign <initials> <message>");
+  expect(lines[0]).toBe("Penggunaan: sign <inisial> <pesan>");
 
   lines.length = 0; // reset lines
 
   // Test sign command successfully
   terminal.executeCommand('sign TST hello from test suite');
-  expect(lines[0]).toBe("INSERTING COIN... SUCCESS!");
-  expect(lines[1]).toBe("SAVING SIGNATURE... SUCCESS!");
-  expect(lines[2]).toContain("YOUR SCORE:");
-  expect(lines[3]).toContain("CONGRATULATIONS!");
+  expect(lines[0]).toBe("MEMASUKKAN KOIN... SUKSES!");
+  expect(lines[1]).toBe("MENYIMPAN TANDA TANGAN... SUKSES!");
+  expect(lines[2]).toContain("SKOR ANDA:");
+  expect(lines[3]).toContain("SELAMAT!");
 
   document.body.removeChild(terminal);
 });
@@ -67,10 +67,11 @@ test('RetroTerminal sign command handles non-leaderboard placements correctly', 
 
   // Test sign command with a low scoring entry (short message, max score around 600)
   terminal.executeCommand('sign LOW x');
-  expect(lines[0]).toBe("INSERTING COIN... SUCCESS!");
-  expect(lines[1]).toBe("SAVING SIGNATURE... SUCCESS!");
-  expect(lines[2]).toContain("YOUR SCORE:");
-  expect(lines[3]).toBe("Your score did not place in the top 10 leaderboard. Try a longer message next time!");
+  expect(lines[0]).toBe("MEMASUKKAN KOIN... SUKSES!");
+  expect(lines[1]).toBe("MENYIMPAN TANDA TANGAN... SUKSES!");
+  expect(lines[2]).toContain("SKOR ANDA:");
+  expect(lines[3]).toBe("Skor Anda belum masuk 10 besar leaderboard. Coba pesan yang lebih panjang lain kali!");
+
 
   document.body.removeChild(terminal);
   localStorage.clear();

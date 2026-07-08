@@ -51,8 +51,9 @@ class RetroTerminal extends HTMLElement {
     };
     window.addEventListener('character-changed', this._boundCharHandler);
 
-    this.writeLine("Welcome to Bumbu Arcade CLI System. Type 'help' for command list.");
+    this.writeLine("Selamat datang di Sistem CLI Bumbu Arcade. Ketik 'help' untuk daftar perintah.");
   }
+
 
   disconnectedCallback() {
     window.removeEventListener('keydown', this._boundBacktickHandler);
@@ -142,51 +143,53 @@ class RetroTerminal extends HTMLElement {
 
     switch (command) {
       case 'help':
-        this.writeLine("Available commands:");
-        this.writeLine("  help               - Show instruction guidelines");
-        this.writeLine("  projects           - Display project lists");
-        this.writeLine("  project <id>       - Show project detail information");
-        this.writeLine("  use <id>           - Securely open target project link in browser");
-        this.writeLine("  inspect <item-id>  - Inspect details of a skill item");
-        this.writeLine("  inventory          - Show inventory skills items");
-        this.writeLine("  quests             - Show active and completed quests");
-        this.writeLine("  guilds             - Show active guild factions and rewards");
-        this.writeLine("  guestbook          - View guestbook leaderboard entries");
-        this.writeLine("  sign <init> <msg>  - Sign guestbook and earn arcade points");
-        this.writeLine("  about              - Boot up developer profile biography");
-        this.writeLine("  status             - Show current RPG character stats");
-        this.writeLine("  select <class-id>  - Choose a character class");
-        this.writeLine("  play               - Start retro game cabinet console");
-        this.writeLine("  contact            - Show developer communication channels");
-        this.writeLine("  socials            - Clickable social channels listings");
-        this.writeLine("  clear              - Wipe CLI panel clear");
+        this.writeLine("Daftar perintah yang tersedia:");
+        this.writeLine("  help               - Menampilkan panduan instruksi");
+        this.writeLine("  projects           - Menampilkan daftar proyek");
+        this.writeLine("  project <id>       - Menampilkan detail informasi proyek");
+        this.writeLine("  use <id>           - Membuka tautan proyek di browser");
+        this.writeLine("  inspect <item-id>  - Memeriksa detail item keahlian");
+        this.writeLine("  inventory          - Menampilkan item inventaris keahlian");
+        this.writeLine("  quests             - Menampilkan misi aktif dan selesai");
+        this.writeLine("  guilds             - Menampilkan faksi guild aktif dan hadiah");
+        this.writeLine("  guestbook          - Menampilkan papan skor buku tamu");
+        this.writeLine("  sign <init> <msg>  - Mengisi buku tamu dan mendapatkan poin arkade");
+        this.writeLine("  about              - Memuat biografi profil pengembang");
+        this.writeLine("  status             - Menampilkan statistik karakter RPG saat ini");
+        this.writeLine("  select <class-id>  - Memilih kelas karakter");
+        this.writeLine("  play               - Memulai konsol game kabinet retro");
+        this.writeLine("  contact            - Menampilkan saluran komunikasi pengembang");
+        this.writeLine("  socials            - Tautan saluran sosial media aktif");
+        this.writeLine("  clear              - Membersihkan panel CLI");
+        this.writeLine("  reset-guestbook    - Mereset database lokal buku tamu");
         break;
 
       case 'inventory':
-        this.writeLine("--- RPG INVENTORY ITEMS ---");
+        this.writeLine("--- ITEM INVENTARIS RPG ---");
         skills.forEach(s => this.writeLine(` - ${s.id} : ${s.name}`));
         break;
 
       case 'inspect':
         if (!arg) {
-          this.writeLine("Usage: inspect <item-id>");
+          this.writeLine("Penggunaan: inspect <item-id>");
           break;
         }
         const skill = skills.find(s => s.id === arg.toLowerCase());
         if (skill) {
           this.writeLine("================================================");
           this.writeLine(`ITEM   : ${skill.name}`);
-          this.writeLine(`TYPE   : ${skill.type}`);
-          this.writeLine(`STATS  : ${skill.stats}`);
+          this.writeLine(`TIPE   : ${skill.type}`);
+          this.writeLine(`STAT   : ${skill.stats}`);
+          this.writeLine("------------------------------------------------");
           this.writeLine(skill.description);
           this.writeLine("================================================");
         } else {
-          this.writeLine(`Item '${arg}' not found in inventory.`);
+          this.writeLine(`Item '${arg}' tidak ditemukan di inventaris.`);
         }
         break;
 
       case 'projects':
-        const categories = { studio: 'BUMBU STUDIO (GAMES & APPS)', '3d': '3D BLENDER ART', random: 'RANDOM PROJECTS' };
+        const categories = { studio: 'BUMBU STUDIO (GAMES & APPS)', '3d': 'SENI 3D BLENDER', random: 'PROYEK LAINNYA' };
         for (const [cat, label] of Object.entries(categories)) {
           this.writeLine(`--- ${label} ---`);
           projects.filter(p => p.category === cat).forEach(p => this.writeLine(` - ${p.id} : ${p.name}`));
@@ -195,57 +198,57 @@ class RetroTerminal extends HTMLElement {
 
       case 'project':
         if (!arg) {
-          this.writeLine("Usage: project <project-id>");
+          this.writeLine("Penggunaan: project <project-id>");
           break;
         }
         const proj = projects.find(p => p.id === arg);
         if (proj) {
-          this.writeLine(`Name: ${proj.name}`);
-          this.writeLine(`Category: ${proj.category.toUpperCase()}`);
-          this.writeLine(`Description: ${proj.description}`);
-          if (proj.link && proj.link !== '#') this.writeLine(`Link: ${proj.link}`);
+          this.writeLine(`Nama: ${proj.name}`);
+          this.writeLine(`Kategori: ${proj.category.toUpperCase()}`);
+          this.writeLine(`Deskripsi: ${proj.description}`);
+          if (proj.link && proj.link !== '#') this.writeLine(`Tautan: ${proj.link}`);
         } else {
-          this.writeLine(`Project '${arg}' not found.`);
+          this.writeLine(`Proyek '${arg}' tidak ditemukan.`);
         }
         break;
 
       case 'use':
         if (!arg) {
-          this.writeLine("Usage: use <project-id>");
+          this.writeLine("Penggunaan: use <project-id>");
           break;
         }
         const useProj = projects.find(p => p.id === arg);
         if (useProj) {
           if (useProj.link && useProj.link !== '#') {
-            this.writeLine(`Redirecting to: ${useProj.link}...`);
+            this.writeLine(`Mengalihkan ke: ${useProj.link}...`);
             window.open(useProj.link, '_blank', 'noopener,noreferrer');
           } else {
-            this.writeLine(`Project '${arg}' does not have a redirect link. (Coming Soon)`);
+            this.writeLine(`Proyek '${arg}' tidak memiliki tautan pengalihan. (Segera Hadir)`);
           }
         } else {
-          this.writeLine(`Project '${arg}' not found.`);
+          this.writeLine(`Proyek '${arg}' tidak ditemukan.`);
         }
         break;
 
       case 'about':
-        this.writeLine("BOOTING DEVELOPER BIO...");
-        this.writeLine("Dev: Game Enthusiast & Creative Coder");
-        this.writeLine("Blender Art: Specialized in Retro & Low-poly mesh models");
-        this.writeLine("Core Stack: Javascript, WebDev, & Interactive Visuals");
+        this.writeLine("MEMULAI BIOGRAFI PENGEMBANG...");
+        this.writeLine("Pengembang: Penggemar Game & Pemrogram Kreatif");
+        this.writeLine("Seni Blender: Spesialisasi dalam model mesh low-poly retro");
+        this.writeLine("Keahlian Utama: Javascript, WebDev, & Visual Interaktif");
         break;
 
       case 'socials':
-        this.writeLine("GitHub: https://github.com/your-username");
-        this.writeLine("Itch.io: https://your-profile.itch.io");
+        this.writeLine("GitHub    : https://github.com/zidanLPTP");
+        this.writeLine("Instagram : https://instagram.com/zidan.lptp");
         break;
 
       case 'quests':
-        this.writeLine("--- ACTIVE QUESTS ---");
+        this.writeLine("--- MISI AKTIF ---");
         quests.filter(q => q.type === 'active').forEach(q => {
           this.writeLine(` [ ] ${q.id.padEnd(14)} : ${q.title} (${q.guild}) [${q.period}]`);
         });
         this.writeLine("");
-        this.writeLine("--- COMPLETED QUESTS ---");
+        this.writeLine("--- MISI SELESAI ---");
         quests.filter(q => q.type === 'completed').forEach(q => {
           this.writeLine(` [x] ${q.id.padEnd(14)} : ${q.title} (${q.guild}) [${q.period}]`);
         });
@@ -257,25 +260,25 @@ class RetroTerminal extends HTMLElement {
           this.writeLine("Semua Guild Factions telah diselesaikan. Ketik 'quests' untuk melihat riwayat kejayaan masa lalu.");
           break;
         }
-        this.writeLine("--- ACTIVE GUILDS & FACTIONS ---");
+        this.writeLine("--- GUILD & FAKSI AKTIF ---");
         activeGuilds.forEach(g => {
           this.writeLine(`* ${g.guild}`);
-          this.writeLine(`  Role : ${g.title}`);
-          this.writeLine(`  Term : ${g.period}`);
-          this.writeLine(`  Bonus: ${g.rewards}`);
+          this.writeLine(`  Peran : ${g.title}`);
+          this.writeLine(`  Waktu : ${g.period}`);
+          this.writeLine(`  Hadiah: ${g.rewards}`);
           this.writeLine("");
         });
         break;
 
       case 'guestbook':
         this.writeLine("============================================================");
-        this.writeLine("RANK  INIT  SCORE   MESSAGE");
+        this.writeLine("PERINGKAT  INISIAL  SKOR   PESAN");
         this.writeLine("============================================================");
         const entries = getLeaderboardEntries();
         entries.forEach((e, idx) => {
-          const rnkStr = `${idx + 1}.`.padEnd(5);
-          const initStr = e.initials.padEnd(6);
-          const scoreStr = e.score.toString().padEnd(8);
+          const rnkStr = `${idx + 1}.`.padEnd(11);
+          const initStr = e.initials.padEnd(8);
+          const scoreStr = e.score.toString().padEnd(7);
           this.writeLine(`${rnkStr}${initStr}${scoreStr}${e.message}`);
         });
         this.writeLine("============================================================");
@@ -284,28 +287,26 @@ class RetroTerminal extends HTMLElement {
       case 'sign':
         const signParts = cmdStr.trim().split(/\s+/);
         if (signParts.length < 3) {
-          this.writeLine("Usage: sign <initials> <message>");
+          this.writeLine("Penggunaan: sign <inisial> <pesan>");
           break;
         }
         const initials = signParts[1];
-        // Calculate message substring index to preserve spaces
         const commandIndex = cmdStr.indexOf(signParts[0]);
         const initIndex = cmdStr.indexOf(initials, commandIndex + signParts[0].length);
         const message = cmdStr.substring(initIndex + initials.length).trim();
 
-        this.writeLine("INSERTING COIN... SUCCESS!");
+        this.writeLine("MEMASUKKAN KOIN... SUKSES!");
         const res = addGuestbookEntry(initials, message);
         if (res.success) {
-          this.writeLine("SAVING SIGNATURE... SUCCESS!");
-          this.writeLine(`YOUR SCORE: ${res.entry.score} PTS`);
+          this.writeLine("MENYIMPAN TANDA TANGAN... SUKSES!");
+          this.writeLine(`SKOR ANDA: ${res.entry.score} PTS`);
           
-          // Find new rank
           const updated = getLeaderboardEntries();
           const newRank = updated.findIndex(e => e.initials === res.entry.initials && e.score === res.entry.score);
           if (newRank !== -1) {
-            this.writeLine(`CONGRATULATIONS! YOU PLACED RANK #${newRank + 1} ON THE LEADERBOARD!`);
+            this.writeLine(`SELAMAT! ANDA MENEMPATI PERINGKAT #${newRank + 1} DI LEADERBOARD!`);
           } else {
-            this.writeLine("Your score did not place in the top 10 leaderboard. Try a longer message next time!");
+            this.writeLine("Skor Anda belum masuk 10 besar leaderboard. Coba pesan yang lebih panjang lain kali!");
           }
         } else {
           this.writeLine(`ERROR: ${res.error}`);
@@ -315,7 +316,7 @@ class RetroTerminal extends HTMLElement {
       case 'status':
         const char = characters.find(c => c.id === this.activeCharId);
         this.writeLine("============================================================");
-        this.writeLine(`CHARACTER STATUS: ${char.name}`);
+        this.writeLine(`STATUS KARAKTER: ${char.name}`);
         this.writeLine("============================================================");
         
         Object.entries(char.stats).forEach(([stat, val]) => {
@@ -326,7 +327,6 @@ class RetroTerminal extends HTMLElement {
         });
         
         this.writeLine("============================================================");
-        // Word-wrap description
         const wrapLimit = 50;
         const words = char.description.split(/\s+/);
         let currentLine = '';
@@ -347,35 +347,31 @@ class RetroTerminal extends HTMLElement {
       case 'select':
         const targetClass = parts[1];
         if (!targetClass) {
-          this.writeLine("Usage: select <developer|artist|gamer>");
+          this.writeLine("Penggunaan: select <developer|artist|gamer>");
           break;
         }
         const matched = characters.find(c => c.id === targetClass.toLowerCase());
         if (!matched) {
-          this.writeLine(`ERROR: Class '${targetClass}' not found.`);
+          this.writeLine(`ERROR: Kelas '${targetClass}' tidak ditemukan.`);
           break;
         }
         this.activeCharId = matched.id;
-        this.writeLine(`SELECTING CLASS: ${matched.name}... SUCCESS!`);
+        this.writeLine(`MEMILIH KELAS: ${matched.name}... SUKSES!`);
         
-        // Dispatch synchronization event to visual GUI elements
         window.dispatchEvent(new CustomEvent('character-changed', {
           detail: { id: matched.id }
         }));
         break;
 
       case 'play':
-        this.writeLine("STARTING RETRO GAME CABINET CONSOLE... SUCCESS!");
-        // Release typing focus from terminal to canvas controls
+        this.writeLine("MEMULAI KONSOL GAME KABINET RETRO... SUKSES!");
         if (this.input) this.input.blur();
-        
-        // Dispatch event so main.js opens the game drawer
         window.dispatchEvent(new CustomEvent('play-triggered'));
         break;
 
       case 'contact':
         this.writeLine("============================================================");
-        this.writeLine("BUMBU ARCADE - COMM CHANNELS");
+        this.writeLine("BUMBU ARCADE - SALURAN KOMUNIKASI");
         this.writeLine("============================================================");
         this.writeLine("GITHUB    : https://github.com/zidanLPTP");
         this.writeLine("INSTAGRAM : https://instagram.com/zidan.lptp");
@@ -398,7 +394,7 @@ class RetroTerminal extends HTMLElement {
         break;
 
       default:
-        this.writeLine(`Command not recognized: '${command}'. Type 'help' for options.`);
+        this.writeLine(`Perintah tidak dikenal: '${command}'. Ketik 'help' untuk bantuan.`);
     }
   }
 }

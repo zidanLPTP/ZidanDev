@@ -93,7 +93,8 @@ test('retro-terminal status command outputs correct lines', () => {
   terminal.executeCommand('status');
 
   const lines = Array.from(terminal.output.children).map(c => c.textContent);
-  expect(lines.some(l => l.includes('CHARACTER STATUS: SOFTWARE DEVELOPER'))).toBe(true);
+  expect(lines.some(l => l.includes('STATUS KARAKTER: SOFTWARE DEVELOPER'))).toBe(true);
+
   expect(lines.some(l => l.includes('HP  :'))).toBe(true);
   expect(lines.some(l => l.includes('BIO :'))).toBe(true);
 
