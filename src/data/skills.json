@@ -86,5 +86,21 @@
     "type": "Database",
     "stats": "INT +50, DEX +42",
     "description": "Menguasai dasar-dasar query SQL (SELECT, INSERT, JOIN) untuk pengelolaan database relasional."
+  },
+  {
+    "id": "rust",
+    "name": "Rust",
+    "iconType": "rust",
+    "type": "Language",
+    "stats": "INT +62, DEF +55",
+    "description": "Bahasa pemrograman tingkat sistem berkinerja tinggi, aman memori, untuk membangun backend desktop Tauri."
+  },
+  {
+    "id": "tauri",
+    "name": "Tauri",
+    "iconType": "tauri",
+    "type": "Framework",
+    "stats": "AGI +60, INT +58",
+    "description": "Framework multi-platform modern untuk membangun aplikasi desktop hemat memori berbasis Webview."
   }
 ]

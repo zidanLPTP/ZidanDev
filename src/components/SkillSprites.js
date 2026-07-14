@@ -83,8 +83,22 @@ const SPRITES = {
       <rect x="1" y="2" width="14" height="12" fill="#0078d4" rx="1" />
       <text x="3" y="10" font-family="'Press Start 2P', monospace" font-size="5px" fill="#ffffff">SQL</text>
     </svg>
+  `,
+  rust: `
+    <svg viewBox="0 0 16 16" width="32" height="32" shape-rendering="crispEdges">
+      <rect x="2" y="2" width="12" height="12" fill="#ce412b" rx="2" />
+      <text x="4" y="11" font-family="'Press Start 2P', monospace" font-size="7px" fill="#ffffff">R</text>
+    </svg>
+  `,
+  tauri: `
+    <svg viewBox="0 0 16 16" width="32" height="32" shape-rendering="crispEdges">
+      <path d="M2,2 L8,0 L14,2 L14,10 L8,15 L2,10 Z" fill="#24c8db" />
+      <text x="3" y="10" font-family="'Press Start 2P', monospace" font-size="5px" fill="#ffffff">TR</text>
+    </svg>
   `
 };
+
+
 
 export function getSkillSprite(iconType) {
   return SPRITES[iconType] || '';

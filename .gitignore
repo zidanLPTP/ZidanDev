@@ -2,8 +2,10 @@ node_modules
 dist
 .env
 .DS_Store
-.superpowers/sdd/task-*-brief.md
-.superpowers/sdd/task-*-report.md
-.superpowers/sdd/review-*.diff
+.superpowers/
 3d_viewers/
 download_glb.js
+image.png
+readme tumis.md
+/Tumis.png
+

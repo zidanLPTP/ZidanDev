@@ -1,4 +1,15 @@
+
 [
+  {
+    "id": "tumis",
+    "name": "TUMIS (Tugas, Waktu & Musik)",
+    "category": "studio",
+    "isPlaceholder": false,
+    "description": "Aplikasi desktop Y2K Light Terminal produktivitas terintegrasi Pomodoro timer LCD neon, papan Kanban drag-drop interaktif, pemutar musik Vinyl 8-bit, filesystem Rust scanner, dan YouTube downloader.",
+    "tech": ["Tauri v2", "Rust", "Web Audio API", "HTML5", "CSS3", "JavaScript", "Deno", "yt-dlp"],
+    "link": "https://github.com/zidanLPTP/TumisApp",
+    "image": "/Tumis.png"
+  },
   {
     "id": "honusign",
     "name": "HonuSign",

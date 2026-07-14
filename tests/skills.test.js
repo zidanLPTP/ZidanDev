@@ -4,7 +4,7 @@ import { getSkillSprite } from '../src/components/SkillSprites';
 
 test('skills json format validation', () => {
   expect(Array.isArray(skills)).toBe(true);
-  expect(skills.length).toBe(11);
+  expect(skills.length).toBe(13);
   expect(skills[0].id).toBe('javascript');
 });
 

@@ -988,5 +988,35 @@ body:has(#cli-panel:not(.closed)) #game-toggle {
   padding: 0 10px;
 }
 
+/* Card Image Retro Styling */
+.card-image-wrapper {
+  width: 100%;
+  height: 160px;
+  overflow: hidden;
+  border-bottom: 2px solid var(--text-cyan);
+  margin-bottom: 15px;
+  background-color: #000;
+  position: relative;
+}
+
+.card-studio .card-image-wrapper {
+  border-bottom-color: var(--text-magenta);
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  transition: transform 0.3s ease;
+}
+
+.card:hover .card-image {
+  transform: scale(1.05);
+}
+
+
+
 
 
