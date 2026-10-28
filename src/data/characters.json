@@ -10,29 +10,5 @@
       "STR": 50,
       "AGI": 68
     }
-  },
-  {
-    "id": "artist",
-    "name": "3D ARTIST",
-    "description": "Fokus pada pembuatan pemodelan bangunan 3D bergaya low-to-mid poly dengan detail struktural murni tanpa shader kompleks.",
-    "stats": {
-      "HP": 45,
-      "MP": 30,
-      "INT": 40,
-      "STR": 35,
-      "AGI": 45
-    }
-  },
-  {
-    "id": "gamer",
-    "name": "HARDCORE GAMER",
-    "description": "Menggemari game retro klasik dan mulai mempelajari dasar-dasar pengembangan game menggunakan game engine Godot.",
-    "stats": {
-      "HP": 55,
-      "MP": 20,
-      "INT": 40,
-      "STR": 30,
-      "AGI": 50
-    }
   }
 ]
