@@ -14,20 +14,30 @@
     "title": "Web Master IEEE SB UNRI",
     "guild": "IEEE Student Branch UNRI",
     "period": "2025 - Sekarang",
-    "type": "active",
+    "type": "completed",
     "category": "guild",
     "rewards": "EXP +500, Web Skill +4, Network +5",
     "description": "Mengelola situs web dan infrastruktur digital IEEE Student Branch UNRI sejak awal kepengurusan tanggal 22 Desember 2025."
   },
   {
-    "id": "kse-divisi",
+    "id": "kse-divisi-part-1",
     "title": "Anggota Divisi Pendidikan & Pelatihan",
     "guild": "KSE UNRI",
-    "period": "2025 - Sekarang",
-    "type": "active",
+    "period": "2025 - 2026",
+    "type": "completed",
     "category": "guild",
     "rewards": "EXP +400, Teaching Skill +3, Public Speaking +2",
     "description": "Berkontribusi dalam divisi Pendidikan dan Pelatihan KSE UNRI untuk merancang program edukasi bagi mahasiswa."
+  },
+  {
+    "id": "kse-divisi-part-2",
+    "title": "Bendahara Divisi Internal Relations",
+    "guild": "KSE UNRI",
+    "period": "2026 - Sekarang",
+    "type": "active",
+    "category": "guild",
+    "rewards": "EXP +450, Finance Management +5, Communication +4",
+    "description": "Menjabat sebagai bendahara divisi internal relations KSE UNRI, mengelola keuangan divisi dan aktif dalam membangun relasi antar anggota organisasi serta membuat beberapa kegiatan yang bertujuan dalam mempererat tali silaturahmi antar anggota."
   },
   {
     "id": "erc-researcher",
