@@ -18,11 +18,11 @@ test('projects database schema validation', () => {
 
 test('characters data has correct adjusted stats', () => {
   const developer = characters.find(c => c.id === 'developer');
-  expect(developer.stats.INT).toBe(72);
-  expect(developer.stats.HP).toBe(65);
+  expect(developer.stats.INT).toBe(88);
+  expect(developer.stats.HP).toBe(75);
 
   const gamer = characters.find(c => c.id === 'gamer');
-  expect(gamer.stats.MP).toBe(20);
+  expect(gamer.stats.MP).toBe(45);
 });
 
 test('sql skill is present in skills data', () => {

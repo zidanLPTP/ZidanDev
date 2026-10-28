@@ -1,14 +1,38 @@
 [
   {
     "id": "developer",
-    "name": "SOFTWARE DEVELOPER",
-    "description": "Menguasai JavaScript dan Python untuk membangun aplikasi web yang cepat, interaktif, serta skrip otomatisasi/scraping data dinamis.",
+    "name": "FULLSTACK WEB DEVELOPER",
+    "description": "Fokus pada modern web development: React, TypeScript, Node.js, dan Tailwind untuk membangun aplikasi web interaktif, performan tinggi, serta arsitektur fullstack yang kokoh dan scalable.",
     "stats": {
-      "HP": 65,
-      "MP": 70,
-      "INT": 72,
-      "STR": 50,
-      "AGI": 68
+      "HP": 75,
+      "MP": 85,
+      "INT": 88,
+      "STR": 55,
+      "AGI": 80
+    }
+  },
+  {
+    "id": "artist",
+    "name": "CREATIVE CODER",
+    "description": "Eksplorasi antarmuka kreatif, estetika retro CRT, dan visual interaktif berbasis styling web modern dan animasi CSS.",
+    "stats": {
+      "HP": 60,
+      "MP": 75,
+      "INT": 70,
+      "STR": 40,
+      "AGI": 75
+    }
+  },
+  {
+    "id": "gamer",
+    "name": "RETRO GAMER & BUILDER",
+    "description": "Menikmati game arcade retro klasik dan membangun mekanika mini-games interaktif web berbasis canvas.",
+    "stats": {
+      "HP": 70,
+      "MP": 45,
+      "INT": 65,
+      "STR": 65,
+      "AGI": 85
     }
   }
 ]

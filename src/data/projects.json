@@ -1,5 +1,24 @@
-
 [
+  {
+    "id": "lms-irma",
+    "name": "LMS Irma (Learning Management System)",
+    "category": "random",
+    "isPlaceholder": false,
+    "description": "Platform Learning Management System komersial klien berbayar untuk pengelolaan kursus online, modul materi, kuis, dan pemantauan progres belajar peserta secara terstruktur.",
+    "tech": ["Web Development", "Fullstack", "PHP / Laravel", "MySQL", "Tailwind CSS"],
+    "link": "https://github.com/zidanLPTP/LMS-Irma",
+    "image": ""
+  },
+  {
+    "id": "absensi-piket-kse",
+    "name": "Absensi Piket KSE",
+    "category": "random",
+    "isPlaceholder": false,
+    "description": "Sistem presensi piket divisi Internal Relation untuk anggota organisasi beasiswa KSE, terhubung langsung secara real-time dengan Google Spreadsheet sebagai database cloud yang fleksibel.",
+    "tech": ["Web Development", "JavaScript", "Google Sheets API", "CSS3 / Tailwind"],
+    "link": "https://github.com/zidanLPTP/absensi-piket-kse",
+    "image": ""
+  },
   {
     "id": "tumis",
     "name": "TUMIS (Tugas, Waktu & Musik)",
@@ -35,31 +54,9 @@
     "name": "TechGo EdTech",
     "category": "random",
     "isPlaceholder": false,
-    "description": "Platform inovatif edukasi teknologi dunia yang mengintegrasikan antarmuka 3D Globe interaktif dengan sistem kuis adaptif berbasis AI Google Gemini.",
-    "tech": ["React 19", "Three.js", "Node.js Express", "Google Gemini API"],
+    "description": "Platform inovatif edukasi teknologi dunia yang mengintegrasikan antarmuka interaktif dengan sistem kuis adaptif berbasis AI Google Gemini.",
+    "tech": ["React", "Node.js Express", "Tailwind CSS", "Google Gemini API"],
     "link": "https://github.com/zidanLPTP/TechGo",
-    "image": ""
-  },
-  {
-    "id": "gedung-sate",
-    "name": "Gedung Sate",
-    "category": "3d",
-    "isPlaceholder": false,
-    "description": "Model 3D Gedung Sate premium low-poly retro yang dimodelkan secara detail di Blender.",
-    "tech": ["Blender", "Three.js", "Low-poly Mesh"],
-    "modelSrc": "models/gedungsate.glb",
-    "link": "#",
-    "image": ""
-  },
-  {
-    "id": "lawang-sewu",
-    "name": "Lawang Sewu",
-    "category": "3d",
-    "isPlaceholder": false,
-    "description": "Model 3D Lawang Sewu premium low-poly retro yang dimodelkan secara detail di Blender.",
-    "tech": ["Blender", "Three.js", "Low-poly Mesh"],
-    "modelSrc": "models/lawangsewu.glb",
-    "link": "#",
     "image": ""
   },
   {

@@ -8,6 +8,38 @@
     "description": "Dasar-dasar manipulasi DOM, penanganan event, dan ES6 untuk membuat halaman web interaktif."
   },
   {
+    "id": "typescript",
+    "name": "TypeScript",
+    "iconType": "ts",
+    "type": "Language",
+    "stats": "INT +68, DEF +55",
+    "description": "Superset JavaScript dengan sistem pengetikan statis (static typing) ketat untuk skalabilitas dan keandalan kode web enterprise."
+  },
+  {
+    "id": "react",
+    "name": "React",
+    "iconType": "react",
+    "type": "Library",
+    "stats": "INT +65, AGI +62",
+    "description": "Library antarmuka berbasis komponen dinamis, state hooks, reactive rendering, dan arsitektur SPA modern."
+  },
+  {
+    "id": "nodejs",
+    "name": "Node.js",
+    "iconType": "nodejs",
+    "type": "Runtime",
+    "stats": "INT +64, STR +55",
+    "description": "JavaScript runtime asynchronous event-driven di sisi backend server untuk membangun REST API dan backend microservices."
+  },
+  {
+    "id": "tailwind",
+    "name": "Tailwind",
+    "iconType": "tailwind",
+    "type": "Styling",
+    "stats": "AGI +65, DEX +60",
+    "description": "Utility-first CSS framework untuk styling cepat, desain responsif pixel-perfect, serta antarmuka modern yang bersih."
+  },
+  {
     "id": "html",
     "name": "HTML",
     "iconType": "html",
@@ -78,5 +110,21 @@
     "type": "Database",
     "stats": "INT +50, DEX +42",
     "description": "Menguasai dasar-dasar query SQL (SELECT, INSERT, JOIN) untuk pengelolaan database relasional."
+  },
+  {
+    "id": "rust",
+    "name": "Rust",
+    "iconType": "rust",
+    "type": "Language",
+    "stats": "STR +65, DEF +65",
+    "description": "Bahasa systems programming dengan jaminan memory-safety, konkurensi tinggi, dan performa native mendekati C++."
+  },
+  {
+    "id": "tauri",
+    "name": "Tauri",
+    "iconType": "tauri",
+    "type": "Framework",
+    "stats": "AGI +60, INT +62",
+    "description": "Framework aplikasi desktop modern berbasis web frontend dengan backend native Rust yang super ringan dan hemat memori."
   }
 ]

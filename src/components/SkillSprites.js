@@ -95,6 +95,33 @@ const SPRITES = {
       <path d="M2,2 L8,0 L14,2 L14,10 L8,15 L2,10 Z" fill="#24c8db" />
       <text x="3" y="10" font-family="'Press Start 2P', monospace" font-size="5px" fill="#ffffff">TR</text>
     </svg>
+  `,
+  ts: `
+    <svg viewBox="0 0 16 16" width="32" height="32" shape-rendering="crispEdges">
+      <rect x="1" y="1" width="14" height="14" fill="#3178c6" />
+      <text x="3" y="11" font-family="'Press Start 2P', monospace" font-size="6px" fill="#ffffff" font-weight="bold">TS</text>
+    </svg>
+  `,
+  react: `
+    <svg viewBox="0 0 16 16" width="32" height="32" shape-rendering="crispEdges">
+      <circle cx="8" cy="8" r="2" fill="#00d8ff" />
+      <ellipse cx="8" cy="8" rx="7" ry="2.5" fill="none" stroke="#00d8ff" stroke-width="1" />
+      <ellipse cx="8" cy="8" rx="7" ry="2.5" transform="rotate(60 8 8)" fill="none" stroke="#00d8ff" stroke-width="1" />
+      <ellipse cx="8" cy="8" rx="7" ry="2.5" transform="rotate(120 8 8)" fill="none" stroke="#00d8ff" stroke-width="1" />
+    </svg>
+  `,
+  nodejs: `
+    <svg viewBox="0 0 16 16" width="32" height="32" shape-rendering="crispEdges">
+      <path d="M8,1 L14,4.5 L14,11.5 L8,15 L2,11.5 L2,4.5 Z" fill="#339933" />
+      <text x="4" y="10" font-family="'Press Start 2P', monospace" font-size="5px" fill="#ffffff">JS</text>
+    </svg>
+  `,
+  tailwind: `
+    <svg viewBox="0 0 16 16" width="32" height="32" shape-rendering="crispEdges">
+      <rect x="1" y="1" width="14" height="14" fill="#06b6d4" rx="2" />
+      <path d="M4,6 Q6,3 8,6 Q10,9 12,6" fill="none" stroke="#ffffff" stroke-width="1.5" />
+      <path d="M5,10 Q7,7 9,10 Q11,13 13,10" fill="none" stroke="#ffffff" stroke-width="1.5" />
+    </svg>
   `
 };
 
