@@ -1,7 +1,7 @@
 [
   {
     "id": "javascript",
-    "name": "JavaScript (ES6+)",
+    "name": "JavaScript",
     "iconType": "js",
     "type": "Language",
     "stats": "INT +60, AGI +55",
@@ -9,7 +9,7 @@
   },
   {
     "id": "html",
-    "name": "HTML5",
+    "name": "HTML",
     "iconType": "html",
     "type": "Markup",
     "stats": "HP +60, DEF +50",
@@ -17,7 +17,7 @@
   },
   {
     "id": "css",
-    "name": "CSS3",
+    "name": "CSS",
     "iconType": "css",
     "type": "Styling",
     "stats": "DEF +65, RES +60",
@@ -25,7 +25,7 @@
   },
   {
     "id": "python",
-    "name": "Python 3",
+    "name": "Python",
     "iconType": "python",
     "type": "Language",
     "stats": "INT +58, DEX +50",
@@ -64,16 +64,8 @@
     "description": "SDK framework multi-platform untuk membuat antarmuka aplikasi mobile Android dan iOS yang indah."
   },
   {
-    "id": "blender",
-    "name": "Blender 3D",
-    "iconType": "blender",
-    "type": "3D Art",
-    "stats": "STR +48, DEX +52",
-    "description": "Pembuatan model low-poly dasar, UV mapping sederhana, dan pencahayaan retro."
-  },
-  {
     "id": "java",
-    "name": "Java SE",
+    "name": "Java",
     "iconType": "java",
     "type": "Language",
     "stats": "STR +50, DEF +45",
@@ -86,21 +78,5 @@
     "type": "Database",
     "stats": "INT +50, DEX +42",
     "description": "Menguasai dasar-dasar query SQL (SELECT, INSERT, JOIN) untuk pengelolaan database relasional."
-  },
-  {
-    "id": "rust",
-    "name": "Rust",
-    "iconType": "rust",
-    "type": "Language",
-    "stats": "INT +62, DEF +55",
-    "description": "Bahasa pemrograman tingkat sistem berkinerja tinggi, aman memori, untuk membangun backend desktop Tauri."
-  },
-  {
-    "id": "tauri",
-    "name": "Tauri",
-    "iconType": "tauri",
-    "type": "Framework",
-    "stats": "AGI +60, INT +58",
-    "description": "Framework multi-platform modern untuk membangun aplikasi desktop hemat memori berbasis Webview."
   }
 ]
